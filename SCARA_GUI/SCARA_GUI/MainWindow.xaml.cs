@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Serilog;
+using System.IO.Ports;
 
 namespace SCARA_GUI
 {
@@ -37,6 +38,29 @@ namespace SCARA_GUI
                 .WriteTo.File($"logs/{timenow}.txt")
                 .CreateLogger();
             Log.Information("Started at time: " + timenow);
+        }
+
+        // Handler when the Form closes
+        /*
+        private void MainPage_Closing(object WriteLineer, FormClosingEventArgs e)
+        {
+            closing_form = true;
+            Log.Debug("Closing form");
+            DisconnectAll();
+            Log.CloseAndFlush();
+        }*/
+
+        // Add a line of text to the outputs log
+        public void UpdateUser(string msg)
+        {
+            /*
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new MethodInvoker(delegate () { UpdateBox(msg); }));
+                return;
+            }*/
+            Log.Information(msg);
+            //textBox_Updates.Text = msg + "\r\n" + textBox_Updates.Text;
         }
     }
 }
