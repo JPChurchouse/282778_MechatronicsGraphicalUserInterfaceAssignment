@@ -25,6 +25,7 @@
             <ColumnDefinition Name="Output" Width="2*"/>
         </Grid.ColumnDefinitions>
 
+        <!--Top menu-->
         <Menu
             Name="Menu" 
             Grid.Row="0"
@@ -50,7 +51,7 @@
         </Menu>
         
         <!--Connection panel-->
-        <Grid Grid.Column="0" Grid.Row="1" Background="LightGray">
+        <Grid Grid.Row="1" Background="AliceBlue">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
@@ -78,7 +79,7 @@
         <Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Background="DarkGray"/>
 
         <!--Status panel-->
-        <Grid Grid.Row="1" Grid.Column="2" Background="LightGray"/>
+        <Grid Grid.Row="1" Grid.Column="2" Background="AliceBlue"/>
         <Label Grid.Column="2" Grid.Row="1"
             Name="lbl_Status"
                Content="Offline"
@@ -86,7 +87,18 @@
                HorizontalAlignment="Center"
                Margin="5,5,5,5"
         />
-        
+
+        <!--Inputs panel-->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            
+            
+        </Grid>
+            
+
 
     </Grid>
 </Window>
