@@ -35,7 +35,7 @@ namespace SCARA_GUI
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
                 .WriteTo.Console()
-                .WriteTo.File($"logs/{timenow}.txt")
+                .WriteTo.File($"logs/{timenow}.log")
                 .CreateLogger();
             Log.Information("Started at time: " + timenow);
         }
@@ -61,6 +61,11 @@ namespace SCARA_GUI
             }*/
             Log.Information(msg);
             //textBox_Updates.Text = msg + "\r\n" + textBox_Updates.Text;
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

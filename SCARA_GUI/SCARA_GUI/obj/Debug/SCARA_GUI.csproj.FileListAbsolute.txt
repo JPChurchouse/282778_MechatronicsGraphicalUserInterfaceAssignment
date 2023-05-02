@@ -22,3 +22,28 @@ D:\git\282778_MechatronicsGraphicalUserInterfaceAssignment\SCARA_GUI\SCARA_GUI\o
 D:\git\282778_MechatronicsGraphicalUserInterfaceAssignment\SCARA_GUI\SCARA_GUI\obj\Debug\SCARA_GUI.csproj.CopyComplete
 D:\git\282778_MechatronicsGraphicalUserInterfaceAssignment\SCARA_GUI\SCARA_GUI\obj\Debug\SCARA_GUI.exe
 D:\git\282778_MechatronicsGraphicalUserInterfaceAssignment\SCARA_GUI\SCARA_GUI\obj\Debug\SCARA_GUI.pdb
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\obj\Debug\SCARA_GUI.csproj.AssemblyReference.cache
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\obj\Debug\SCARA_GUI.csproj.SuggestedBindingRedirects.cache
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\obj\Debug\MainWindow.g.cs
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\obj\Debug\App.g.cs
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\obj\Debug\SCARA_GUI_MarkupCompile.cache
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\obj\Debug\SCARA_GUI_MarkupCompile.lref
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\obj\Debug\SCARA_GUI.pdb
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\bin\Debug\SCARA_GUI.exe.config
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\bin\Debug\SCARA_GUI.exe
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\bin\Debug\SCARA_GUI.pdb
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\bin\Debug\AxInterop.WMPLib.dll
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\bin\Debug\Serilog.dll
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\bin\Debug\Serilog.Sinks.Console.dll
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\bin\Debug\Serilog.Sinks.File.dll
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\bin\Debug\Serilog.xml
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\bin\Debug\Serilog.Sinks.Console.xml
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\bin\Debug\Serilog.Sinks.File.pdb
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\bin\Debug\Serilog.Sinks.File.xml
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\obj\Debug\MainWindow.baml
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\obj\Debug\SCARA_GUI.g.resources
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\obj\Debug\SCARA_GUI.Properties.Resources.resources
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\obj\Debug\SCARA_GUI.csproj.GenerateResource.cache
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\obj\Debug\SCARA_GUI.csproj.CoreCompileInputs.cache
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\obj\Debug\SCARA_GUI.csproj.CopyComplete
+E:\git\GUI assign\SCARA_GUI\SCARA_GUI\obj\Debug\SCARA_GUI.exe

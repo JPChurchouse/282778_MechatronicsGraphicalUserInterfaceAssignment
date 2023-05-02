@@ -87,7 +87,7 @@
         <member name="M:Serilog.Configuration.LoggerDestructuringConfiguration.AsScalar(System.Type)">
             <summary>
             Treat objects of the specified type as scalar values, i.e., don't break
-            them down into properties even when destructuring complex types.
+            them down into properties event when destructuring complex types.
             </summary>
             <param name="scalarType">Type to treat as scalar.</param>
             <returns>Configuration object allowing method chaining.</returns>
@@ -96,7 +96,7 @@
         <member name="M:Serilog.Configuration.LoggerDestructuringConfiguration.AsScalar``1">
             <summary>
             Treat objects of the specified type as scalar values, i.e., don't break
-            them down into properties even when destructuring complex types.
+            them down into properties event when destructuring complex types.
             </summary>
             <typeparam name="TScalar">Type to treat as scalar.</typeparam>
             <returns>Configuration object allowing method chaining.</returns>
@@ -370,7 +370,7 @@
             <returns>Configuration object allowing method chaining.</returns>
             <exception cref="T:System.ArgumentNullException">When <paramref name="source"/> is <code>null</code></exception>
             <exception cref="T:System.ArgumentException">When a trimmed <paramref name="source"/> is empty</exception>
-            <exception cref="T:System.ArgumentNullException">When <paramref name="levelSwitch"/> is <code>null</code></exception>
+            <exception cref="T:System.ArgumentNullException">When <paramref name="levelSwitch"/> is <code>null</code></exception> 
         </member>
         <member name="M:Serilog.Configuration.LoggerMinimumLevelConfiguration.Override(System.String,Serilog.Events.LogEventLevel)">
             <summary>
@@ -622,9 +622,11 @@
             </summary>
             <param name="name">The name of the property.</param>
             <param name="value">The value of the property.</param>
+            <returns>A handle to later remove the property from the context.</returns>
             <param name="destructureObjects">If true, and the value is a non-primitive, non-array type,
             then the value will be converted to a structure; otherwise, unknown types will
             be converted to scalars, which are generally stored as strings.</param>
+            <returns></returns>
             <exception cref="T:System.ArgumentNullException">When <paramref name="name"/> is <code>null</code></exception>
             <exception cref="T:System.ArgumentException">When <paramref name="name"/> is empty or only contains whitespace</exception>
         </member>
@@ -692,7 +694,7 @@
             <param name="destructureObjects">If true, and the value is a non-primitive, non-array type,
             then the value will be converted to a structure; otherwise, unknown types will
             be converted to scalars, which are generally stored as strings.</param>
-            <returns>Created <see cref="T:Serilog.Events.LogEventProperty"/> instance.</returns>
+            <returns></returns>
         </member>
         <member name="T:Serilog.Core.ILogEventPropertyValueFactory">
             <summary>
@@ -1610,7 +1612,7 @@
              </summary>
              <example>
              <code>
-             [MessageTemplateFormatMethod("messageTemplate")]
+             [LoggerMethod("messageTemplate")]
              public void Information(string messageTemplate, params object[] propertyValues)
              {
                  // Do something
@@ -2699,14 +2701,14 @@
              <summary>
              The core Serilog logging API, used for writing log events.
              </summary>
-             <example><code>
+             <example>
              var log = new LoggerConfiguration()
                  .WriteTo.Console()
                  .CreateLogger();
             
              var thing = "World";
              log.Information("Hello, {Thing}!", thing);
-             </code></example>
+             </example>
              <remarks>
              The methods on <see cref="T:Serilog.ILogger"/> (and its static sibling <see cref="T:Serilog.Log"/>) are guaranteed
              never to throw exceptions. Methods on all other types may.
@@ -2860,9 +2862,9 @@
             Write a log event with the <see cref="F:Serilog.Events.LogEventLevel.Verbose"/> level.
             </summary>
             <param name="messageTemplate">Message template describing the event.</param>
-            <example><code>
+            <example>
             Log.Verbose("Staring into space, wondering if we're alone.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Verbose``1(System.String,``0)">
             <summary>
@@ -2870,9 +2872,9 @@
             </summary>
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValue">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Verbose("Staring into space, wondering if we're alone.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Verbose``2(System.String,``0,``1)">
             <summary>
@@ -2881,9 +2883,9 @@
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValue0">Object positionally formatted into the message template.</param>
             <param name="propertyValue1">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Verbose("Staring into space, wondering if we're alone.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Verbose``3(System.String,``0,``1,``2)">
             <summary>
@@ -2893,9 +2895,9 @@
             <param name="propertyValue0">Object positionally formatted into the message template.</param>
             <param name="propertyValue1">Object positionally formatted into the message template.</param>
             <param name="propertyValue2">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Verbose("Staring into space, wondering if we're alone.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Verbose(System.String,System.Object[])">
             <summary>
@@ -2903,9 +2905,9 @@
             </summary>
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValues">Objects positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Verbose("Staring into space, wondering if we're alone.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Verbose(System.Exception,System.String)">
             <summary>
@@ -2913,9 +2915,9 @@
             </summary>
             <param name="exception">Exception related to the event.</param>
             <param name="messageTemplate">Message template describing the event.</param>
-            <example><code>
+            <example>
             Log.Verbose(ex, "Staring into space, wondering where this comet came from.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Verbose``1(System.Exception,System.String,``0)">
             <summary>
@@ -2924,9 +2926,9 @@
             <param name="exception">Exception related to the event.</param>
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValue">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Verbose(ex, "Staring into space, wondering where this comet came from.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Verbose``2(System.Exception,System.String,``0,``1)">
             <summary>
@@ -2936,9 +2938,9 @@
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValue0">Object positionally formatted into the message template.</param>
             <param name="propertyValue1">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Verbose(ex, "Staring into space, wondering where this comet came from.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Verbose``3(System.Exception,System.String,``0,``1,``2)">
             <summary>
@@ -2949,9 +2951,9 @@
             <param name="propertyValue0">Object positionally formatted into the message template.</param>
             <param name="propertyValue1">Object positionally formatted into the message template.</param>
             <param name="propertyValue2">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Verbose(ex, "Staring into space, wondering where this comet came from.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Verbose(System.Exception,System.String,System.Object[])">
             <summary>
@@ -2960,18 +2962,18 @@
             <param name="exception">Exception related to the event.</param>
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValues">Objects positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Verbose(ex, "Staring into space, wondering where this comet came from.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Debug(System.String)">
             <summary>
             Write a log event with the <see cref="F:Serilog.Events.LogEventLevel.Debug"/> level.
             </summary>
             <param name="messageTemplate">Message template describing the event.</param>
-            <example><code>
+            <example>
             Log.Debug("Starting up at {StartedAt}.", DateTime.Now);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Debug``1(System.String,``0)">
             <summary>
@@ -2979,9 +2981,9 @@
             </summary>
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValue">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Debug("Starting up at {StartedAt}.", DateTime.Now);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Debug``2(System.String,``0,``1)">
             <summary>
@@ -2990,9 +2992,9 @@
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValue0">Object positionally formatted into the message template.</param>
             <param name="propertyValue1">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Debug("Starting up at {StartedAt}.", DateTime.Now);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Debug``3(System.String,``0,``1,``2)">
             <summary>
@@ -3002,9 +3004,9 @@
             <param name="propertyValue0">Object positionally formatted into the message template.</param>
             <param name="propertyValue1">Object positionally formatted into the message template.</param>
             <param name="propertyValue2">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Debug("Starting up at {StartedAt}.", DateTime.Now);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Debug(System.String,System.Object[])">
             <summary>
@@ -3012,9 +3014,9 @@
             </summary>
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValues">Objects positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Debug("Starting up at {StartedAt}.", DateTime.Now);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Debug(System.Exception,System.String)">
             <summary>
@@ -3022,9 +3024,9 @@
             </summary>
             <param name="exception">Exception related to the event.</param>
             <param name="messageTemplate">Message template describing the event.</param>
-            <example><code>
+            <example>
             Log.Debug(ex, "Swallowing a mundane exception.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Debug``1(System.Exception,System.String,``0)">
             <summary>
@@ -3033,9 +3035,9 @@
             <param name="exception">Exception related to the event.</param>
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValue">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Debug(ex, "Swallowing a mundane exception.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Debug``2(System.Exception,System.String,``0,``1)">
             <summary>
@@ -3045,9 +3047,9 @@
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValue0">Object positionally formatted into the message template.</param>
             <param name="propertyValue1">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Debug(ex, "Swallowing a mundane exception.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Debug``3(System.Exception,System.String,``0,``1,``2)">
             <summary>
@@ -3058,9 +3060,9 @@
             <param name="propertyValue0">Object positionally formatted into the message template.</param>
             <param name="propertyValue1">Object positionally formatted into the message template.</param>
             <param name="propertyValue2">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Debug(ex, "Swallowing a mundane exception.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Debug(System.Exception,System.String,System.Object[])">
             <summary>
@@ -3069,18 +3071,18 @@
             <param name="exception">Exception related to the event.</param>
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValues">Objects positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Debug(ex, "Swallowing a mundane exception.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Information(System.String)">
             <summary>
             Write a log event with the <see cref="F:Serilog.Events.LogEventLevel.Information"/> level.
             </summary>
             <param name="messageTemplate">Message template describing the event.</param>
-            <example><code>
+            <example>
             Log.Information("Processed {RecordCount} records in {TimeMS}.", records.Length, sw.ElapsedMilliseconds);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Information``1(System.String,``0)">
             <summary>
@@ -3088,9 +3090,9 @@
             </summary>
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValue">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Information("Processed {RecordCount} records in {TimeMS}.", records.Length, sw.ElapsedMilliseconds);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Information``2(System.String,``0,``1)">
             <summary>
@@ -3099,9 +3101,9 @@
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValue0">Object positionally formatted into the message template.</param>
             <param name="propertyValue1">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Information("Processed {RecordCount} records in {TimeMS}.", records.Length, sw.ElapsedMilliseconds);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Information``3(System.String,``0,``1,``2)">
             <summary>
@@ -3111,9 +3113,9 @@
             <param name="propertyValue0">Object positionally formatted into the message template.</param>
             <param name="propertyValue1">Object positionally formatted into the message template.</param>
             <param name="propertyValue2">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Information("Processed {RecordCount} records in {TimeMS}.", records.Length, sw.ElapsedMilliseconds);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Information(System.String,System.Object[])">
             <summary>
@@ -3121,9 +3123,9 @@
             </summary>
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValues">Objects positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Information("Processed {RecordCount} records in {TimeMS}.", records.Length, sw.ElapsedMilliseconds);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Information(System.Exception,System.String)">
             <summary>
@@ -3131,9 +3133,9 @@
             </summary>
             <param name="exception">Exception related to the event.</param>
             <param name="messageTemplate">Message template describing the event.</param>
-            <example><code>
+            <example>
             Log.Information(ex, "Processed {RecordCount} records in {TimeMS}.", records.Length, sw.ElapsedMilliseconds);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Information``1(System.Exception,System.String,``0)">
             <summary>
@@ -3142,9 +3144,9 @@
             <param name="exception">Exception related to the event.</param>
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValue">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Information(ex, "Processed {RecordCount} records in {TimeMS}.", records.Length, sw.ElapsedMilliseconds);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Information``2(System.Exception,System.String,``0,``1)">
             <summary>
@@ -3154,9 +3156,9 @@
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValue0">Object positionally formatted into the message template.</param>
             <param name="propertyValue1">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Information(ex, "Processed {RecordCount} records in {TimeMS}.", records.Length, sw.ElapsedMilliseconds);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Information``3(System.Exception,System.String,``0,``1,``2)">
             <summary>
@@ -3167,9 +3169,9 @@
             <param name="propertyValue0">Object positionally formatted into the message template.</param>
             <param name="propertyValue1">Object positionally formatted into the message template.</param>
             <param name="propertyValue2">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Information(ex, "Processed {RecordCount} records in {TimeMS}.", records.Length, sw.ElapsedMilliseconds);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Information(System.Exception,System.String,System.Object[])">
             <summary>
@@ -3178,18 +3180,18 @@
             <param name="exception">Exception related to the event.</param>
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValues">Objects positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Information(ex, "Processed {RecordCount} records in {TimeMS}.", records.Length, sw.ElapsedMilliseconds);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Warning(System.String)">
             <summary>
             Write a log event with the <see cref="F:Serilog.Events.LogEventLevel.Warning"/> level.
             </summary>
             <param name="messageTemplate">Message template describing the event.</param>
-            <example><code>
+            <example>
             Log.Warning("Skipped {SkipCount} records.", skippedRecords.Length);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Warning``1(System.String,``0)">
             <summary>
@@ -3197,9 +3199,9 @@
             </summary>
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValue">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Warning("Skipped {SkipCount} records.", skippedRecords.Length);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Warning``2(System.String,``0,``1)">
             <summary>
@@ -3208,9 +3210,9 @@
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValue0">Object positionally formatted into the message template.</param>
             <param name="propertyValue1">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Warning("Skipped {SkipCount} records.", skippedRecords.Length);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Warning``3(System.String,``0,``1,``2)">
             <summary>
@@ -3220,9 +3222,9 @@
             <param name="propertyValue0">Object positionally formatted into the message template.</param>
             <param name="propertyValue1">Object positionally formatted into the message template.</param>
             <param name="propertyValue2">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Warning("Skipped {SkipCount} records.", skippedRecords.Length);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Warning(System.String,System.Object[])">
             <summary>
@@ -3230,9 +3232,9 @@
             </summary>
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValues">Objects positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Warning("Skipped {SkipCount} records.", skippedRecords.Length);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Warning(System.Exception,System.String)">
             <summary>
@@ -3240,9 +3242,9 @@
             </summary>
             <param name="exception">Exception related to the event.</param>
             <param name="messageTemplate">Message template describing the event.</param>
-            <example><code>
+            <example>
             Log.Warning(ex, "Skipped {SkipCount} records.", skippedRecords.Length);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Warning``1(System.Exception,System.String,``0)">
             <summary>
@@ -3251,9 +3253,9 @@
             <param name="exception">Exception related to the event.</param>
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValue">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Warning(ex, "Skipped {SkipCount} records.", skippedRecords.Length);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Warning``2(System.Exception,System.String,``0,``1)">
             <summary>
@@ -3263,9 +3265,9 @@
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValue0">Object positionally formatted into the message template.</param>
             <param name="propertyValue1">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Warning(ex, "Skipped {SkipCount} records.", skippedRecords.Length);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Warning``3(System.Exception,System.String,``0,``1,``2)">
             <summary>
@@ -3276,9 +3278,9 @@
             <param name="propertyValue0">Object positionally formatted into the message template.</param>
             <param name="propertyValue1">Object positionally formatted into the message template.</param>
             <param name="propertyValue2">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Warning(ex, "Skipped {SkipCount} records.", skippedRecords.Length);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Warning(System.Exception,System.String,System.Object[])">
             <summary>
@@ -3287,18 +3289,18 @@
             <param name="exception">Exception related to the event.</param>
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValues">Objects positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Warning(ex, "Skipped {SkipCount} records.", skippedRecords.Length);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Error(System.String)">
             <summary>
             Write a log event with the <see cref="F:Serilog.Events.LogEventLevel.Error"/> level.
             </summary>
             <param name="messageTemplate">Message template describing the event.</param>
-            <example><code>
+            <example>
             Log.Error("Failed {ErrorCount} records.", brokenRecords.Length);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Error``1(System.String,``0)">
             <summary>
@@ -3306,9 +3308,9 @@
             </summary>
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValue">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Error("Failed {ErrorCount} records.", brokenRecords.Length);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Error``2(System.String,``0,``1)">
             <summary>
@@ -3317,9 +3319,9 @@
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValue0">Object positionally formatted into the message template.</param>
             <param name="propertyValue1">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Error("Failed {ErrorCount} records.", brokenRecords.Length);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Error``3(System.String,``0,``1,``2)">
             <summary>
@@ -3329,9 +3331,9 @@
             <param name="propertyValue0">Object positionally formatted into the message template.</param>
             <param name="propertyValue1">Object positionally formatted into the message template.</param>
             <param name="propertyValue2">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Error("Failed {ErrorCount} records.", brokenRecords.Length);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Error(System.String,System.Object[])">
             <summary>
@@ -3339,9 +3341,9 @@
             </summary>
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValues">Objects positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Error("Failed {ErrorCount} records.", brokenRecords.Length);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Error(System.Exception,System.String)">
             <summary>
@@ -3349,9 +3351,9 @@
             </summary>
             <param name="exception">Exception related to the event.</param>
             <param name="messageTemplate">Message template describing the event.</param>
-            <example><code>
+            <example>
             Log.Error(ex, "Failed {ErrorCount} records.", brokenRecords.Length);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Error``1(System.Exception,System.String,``0)">
             <summary>
@@ -3360,9 +3362,9 @@
             <param name="exception">Exception related to the event.</param>
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValue">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Error(ex, "Failed {ErrorCount} records.", brokenRecords.Length);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Error``2(System.Exception,System.String,``0,``1)">
             <summary>
@@ -3372,9 +3374,9 @@
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValue0">Object positionally formatted into the message template.</param>
             <param name="propertyValue1">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Error(ex, "Failed {ErrorCount} records.", brokenRecords.Length);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Error``3(System.Exception,System.String,``0,``1,``2)">
             <summary>
@@ -3385,9 +3387,9 @@
             <param name="propertyValue0">Object positionally formatted into the message template.</param>
             <param name="propertyValue1">Object positionally formatted into the message template.</param>
             <param name="propertyValue2">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Error(ex, "Failed {ErrorCount} records.", brokenRecords.Length);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Error(System.Exception,System.String,System.Object[])">
             <summary>
@@ -3396,18 +3398,18 @@
             <param name="exception">Exception related to the event.</param>
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValues">Objects positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Error(ex, "Failed {ErrorCount} records.", brokenRecords.Length);
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Fatal(System.String)">
             <summary>
             Write a log event with the <see cref="F:Serilog.Events.LogEventLevel.Fatal"/> level.
             </summary>
             <param name="messageTemplate">Message template describing the event.</param>
-            <example><code>
+            <example>
             Log.Fatal("Process terminating.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Fatal``1(System.String,``0)">
             <summary>
@@ -3415,9 +3417,9 @@
             </summary>
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValue">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Fatal("Process terminating.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Fatal``2(System.String,``0,``1)">
             <summary>
@@ -3426,9 +3428,9 @@
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValue0">Object positionally formatted into the message template.</param>
             <param name="propertyValue1">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Fatal("Process terminating.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Fatal``3(System.String,``0,``1,``2)">
             <summary>
@@ -3438,9 +3440,9 @@
             <param name="propertyValue0">Object positionally formatted into the message template.</param>
             <param name="propertyValue1">Object positionally formatted into the message template.</param>
             <param name="propertyValue2">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Fatal("Process terminating.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Fatal(System.String,System.Object[])">
             <summary>
@@ -3448,9 +3450,9 @@
             </summary>
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValues">Objects positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Fatal("Process terminating.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Fatal(System.Exception,System.String)">
             <summary>
@@ -3458,9 +3460,9 @@
             </summary>
             <param name="exception">Exception related to the event.</param>
             <param name="messageTemplate">Message template describing the event.</param>
-            <example><code>
+            <example>
             Log.Fatal(ex, "Process terminating.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Fatal``1(System.Exception,System.String,``0)">
             <summary>
@@ -3469,9 +3471,9 @@
             <param name="exception">Exception related to the event.</param>
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValue">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Fatal(ex, "Process terminating.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Fatal``2(System.Exception,System.String,``0,``1)">
             <summary>
@@ -3481,9 +3483,9 @@
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValue0">Object positionally formatted into the message template.</param>
             <param name="propertyValue1">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Fatal(ex, "Process terminating.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Fatal``3(System.Exception,System.String,``0,``1,``2)">
             <summary>
@@ -3494,9 +3496,9 @@
             <param name="propertyValue0">Object positionally formatted into the message template.</param>
             <param name="propertyValue1">Object positionally formatted into the message template.</param>
             <param name="propertyValue2">Object positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Fatal(ex, "Process terminating.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.Fatal(System.Exception,System.String,System.Object[])">
             <summary>
@@ -3505,9 +3507,9 @@
             <param name="exception">Exception related to the event.</param>
             <param name="messageTemplate">Message template describing the event.</param>
             <param name="propertyValues">Objects positionally formatted into the message template.</param>
-            <example><code>
+            <example>
             Log.Fatal(ex, "Process terminating.");
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.BindMessageTemplate(System.String,System.Object[],Serilog.Events.MessageTemplate@,System.Collections.Generic.IEnumerable{Serilog.Events.LogEventProperty}@)">
             <summary>
@@ -3520,16 +3522,16 @@
             <param name="parsedTemplate">The internal representation of the template, which may be used to
             render the <paramref name="boundProperties"/> as text.</param>
             <param name="boundProperties">Captured properties from the template and <paramref name="propertyValues"/>.</param>
-            <example><code>
+            <example>
             MessageTemplate template;
-            IEnumerable&lt;LogEventProperty&gt; properties;
+            IEnumerable&lt;LogEventProperty&gt; properties>;
             if (Log.BindMessageTemplate("Hello, {Name}!", new[] { "World" }, out template, out properties)
             {
                 var propsByName = properties.ToDictionary(p => p.Name, p => p.Value);
                 Console.WriteLine(template.Render(propsByName, null));
                 // -> "Hello, World!"
             }
-            </code></example>
+            </example>
         </member>
         <member name="M:Serilog.ILogger.BindProperty(System.String,System.Object,System.Boolean,Serilog.Events.LogEventProperty@)">
             <summary>
