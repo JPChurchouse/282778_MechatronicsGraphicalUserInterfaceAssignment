@@ -12,11 +12,30 @@
         ResizeMode="CanResize" 
         MinHeight="450" 
         MinWidth="800">
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Name="grid" Height="*"/>
+            <RowDefinition Name="MenuBar" Height="22"/>
+            <RowDefinition Name="StatusBar" Height="1*"/>
+            <RowDefinition Name="Body" Height="10*"/>
         </Grid.RowDefinitions>
-        <Menu Name="Menu" Height="22" VerticalAlignment="Top" HorizontalAlignment="Center" Width="800">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Name="Controls" Width="3*"/>
+            <ColumnDefinition Name="Border" Width="3"/>
+            <ColumnDefinition Name="Output" Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Menu
+            Name="Menu" 
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            Margin="0"
+            MinWidth="800"
+            MinHeight="22"
+            VerticalAlignment="Stretch" 
+            HorizontalAlignment="Stretch" 
+            >
             <MenuItem Header="Options">
                 <MenuItem Header="_Controls Visibility">
                     <MenuItem Header="_PING" IsCheckable="True" Click="MenuItem_Click"/>
@@ -29,6 +48,45 @@
                 <MenuItem Header="_Advanced Features" IsCheckable="True"/>
             </MenuItem>
         </Menu>
+        
+        <!--Connection panel-->
+        <Grid Grid.Column="0" Grid.Row="1" Background="LightGray">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Grid.Column="0"
+                Name="lbl_ConnectionStatus" 
+                Content="Status: Disconnected"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Stretch"
+                Margin="5,5,5,5"
+                />
+            <Button
+                Grid.Column="1"
+                Name="btn_Connect"
+                Content="Connect" 
+                HorizontalAlignment="Stretch" 
+                VerticalAlignment="Stretch"
+                Margin="5,5,5,5"
+                />
+        </Grid>
+        
+        <!--Splitter panel-->
+        <Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Background="DarkGray"/>
+
+        <!--Status panel-->
+        <Grid Grid.Row="1" Grid.Column="2" Background="LightGray"/>
+        <Label Grid.Column="2" Grid.Row="1"
+            Name="lbl_Status"
+               Content="Offline"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               Margin="5,5,5,5"
+        />
+        
 
     </Grid>
 </Window>
