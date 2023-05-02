@@ -1,7 +1,6 @@
 D:\git\282778_MechatronicsGraphicalUserInterfaceAssignment\SCARA_GUI\SCARA_GUI\bin\Debug\SCARA_GUI.exe.config
 D:\git\282778_MechatronicsGraphicalUserInterfaceAssignment\SCARA_GUI\SCARA_GUI\bin\Debug\SCARA_GUI.exe
 D:\git\282778_MechatronicsGraphicalUserInterfaceAssignment\SCARA_GUI\SCARA_GUI\bin\Debug\SCARA_GUI.pdb
-D:\git\282778_MechatronicsGraphicalUserInterfaceAssignment\SCARA_GUI\SCARA_GUI\bin\Debug\Serilog.dll
 D:\git\282778_MechatronicsGraphicalUserInterfaceAssignment\SCARA_GUI\SCARA_GUI\bin\Debug\Serilog.Sinks.Console.dll
 D:\git\282778_MechatronicsGraphicalUserInterfaceAssignment\SCARA_GUI\SCARA_GUI\bin\Debug\Serilog.Sinks.File.dll
 D:\git\282778_MechatronicsGraphicalUserInterfaceAssignment\SCARA_GUI\SCARA_GUI\bin\Debug\Serilog.xml
@@ -47,3 +46,6 @@ E:\git\GUI assign\SCARA_GUI\SCARA_GUI\obj\Debug\SCARA_GUI.csproj.GenerateResourc
 E:\git\GUI assign\SCARA_GUI\SCARA_GUI\obj\Debug\SCARA_GUI.csproj.CoreCompileInputs.cache
 E:\git\GUI assign\SCARA_GUI\SCARA_GUI\obj\Debug\SCARA_GUI.csproj.CopyComplete
 E:\git\GUI assign\SCARA_GUI\SCARA_GUI\obj\Debug\SCARA_GUI.exe
+D:\git\282778_MechatronicsGraphicalUserInterfaceAssignment\SCARA_GUI\SCARA_GUI\bin\Debug\AxInterop.WMPLib.dll
+D:\git\282778_MechatronicsGraphicalUserInterfaceAssignment\SCARA_GUI\SCARA_GUI\bin\Debug\System.CodeDom.dll
+D:\git\282778_MechatronicsGraphicalUserInterfaceAssignment\SCARA_GUI\SCARA_GUI\bin\Debug\System.CodeDom.xml
