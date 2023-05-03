@@ -36,7 +36,7 @@ namespace SCARA_GUI
             if (port_connected) return;
 
             // Update labels
-            UpdateUser($"Setting up Serial Ports...");
+            LogMessage($"Setting up Serial Ports...");
 
             // Update UI availibility for this function
             //button_Scan.Enabled = false;
@@ -62,15 +62,15 @@ namespace SCARA_GUI
                         || caption.Contains("CH340"))
                     {
                         port.PortName = ParsePortInfo(caption);
-                        UpdateUser("Attempting to open Serial Port");
+                        LogMessage("Attempting to open Serial Port");
                         try
                         {
                             port.Open();
-                            UpdateUser("Controller openned");
+                            LogMessage("Controller openned");
                         }
                         catch
                         {
-                            UpdateUser("Controller FAILED to open");
+                            LogMessage("Controller FAILED to open");
                         }
                         port_connected = port.IsOpen;
                     }
@@ -85,7 +85,7 @@ namespace SCARA_GUI
                 player.URL = "alarm.mp3";
                 player.controls.play();
 
-                UpdateUser("CRITICAL WARNING - SCARA ACTIVE");
+                LogMessage("CRITICAL WARNING - SCARA ACTIVE");
                 MessageBox.Show(
                     "The SCARA is about to become active. Press OK when the area is safe.",
                     "⚠️ CRITICAL WARNING ⚠️");
@@ -107,7 +107,7 @@ namespace SCARA_GUI
         {
             if (port.IsOpen)
             {
-                UpdateUser($"Closing Serial Port");
+                LogMessage($"Closing Serial Port");
                 SendData(port, "STOP");
                 port.Close();
             }

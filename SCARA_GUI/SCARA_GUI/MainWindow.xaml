@@ -11,7 +11,8 @@
         WindowState="Normal" 
         ResizeMode="CanResize" 
         MinHeight="450" 
-        MinWidth="600" Icon="/1701019.ico">
+        MinWidth="600" Icon="/1701019.ico"
+        SizeChanged="WindowResized">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -49,22 +50,23 @@
             </MenuItem>
             <MenuItem Header="Options">
                 <MenuItem Header="Controls Visibility">
-                    <MenuItem Header="PING" IsCheckable="True" Click="MenuItem_Click"/>
-                    <MenuItem Header="ID" IsCheckable="True"/>
-                    <MenuItem Header="OFFSET" IsCheckable="True"/>
-                    <MenuItem Header="ROFFSET" IsCheckable="True"/>
-                    <MenuItem Header="PROX" IsCheckable="True"/>
-                    <MenuItem Header="SPEEDSET" IsCheckable="True"/>
+                    <MenuItem Header="WAIT" IsCheckable="True" Name="menu_Visibility_Wait" Click="MenuItem_Click"/>
+                    <MenuItem Header="PING" IsCheckable="True" Name="menu_Visibility_Ping" Click="MenuItem_Click"/>
+                    <MenuItem Header="ID" IsCheckable="True" Name="menu_Visibility_ID"/>
+                    <MenuItem Header="SOFFSET" IsCheckable="True" Name="menu_Visibility_SOffset"/>
+                    <MenuItem Header="ROFFSET" IsCheckable="True" Name="menu_Visibility_ROffset"/>
+                    <MenuItem Header="PROX" IsCheckable="True" Name="menu_Visibility_Prox"/>
+                    <MenuItem Header="SPEEDSET" IsCheckable="True" Name="menu_Visibility_Speedset"/>
                 </MenuItem>
-                <MenuItem Header="Advanced Features" IsCheckable="True"/>
+                <MenuItem Header="Advanced Features" IsCheckable="True" IsEnabled="False"/>
                 <MenuItem Header="Outputs">
-                    <MenuItem Header="Alerts" IsChecked="True" IsEnabled="False"/>
-                    <MenuItem Header="System" IsCheckable="True" IsChecked="False"/>
-                    <MenuItem Header="Transmit" IsCheckable="True" IsChecked="True"/>
-                    <MenuItem Header="Receive" IsCheckable="True" IsChecked="True"/>
+                    <MenuItem Header="Alerts" IsChecked="True" IsEnabled="False" Name="menu_Outputs_Alert"/>
+                    <MenuItem Header="System" IsCheckable="True" IsChecked="False" Name="menu_Outputs_System"/>
+                    <MenuItem Header="Transmit" IsCheckable="True" IsChecked="True" Name="menu_Outputs_Transmit"/>
+                    <MenuItem Header="Receive" IsCheckable="True" IsChecked="True" Name="menu_Outputs_Receive"/>
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="_Help">
+            <MenuItem Header="Help">
             </MenuItem>
         </Menu>
         
@@ -84,6 +86,7 @@
                 Margin="5,5,5,5"
                 />
             <Button
+                Name="btn_Connect"
                 Grid.Column="1"
                 Click="btn_Connect_Click"
                 Content="Connect" 
@@ -97,6 +100,7 @@
         <!--Status panel-->
         <Grid Grid.Row="1" Grid.Column="2" Background="AliceBlue"/>
         <Label 
+            Name="lbl_DeviceStatus"
             Grid.Column="2" 
             Grid.Row="1"
             Content="Offline"
@@ -129,6 +133,7 @@
                 BorderThickness="2"
                 Grid.ColumnSpan="2"
                 Click="btn_Stop_Click"
+                Name="btn_EmergencyStop"
                 />
 
             <!--Move func-->
@@ -149,15 +154,15 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0" Margin="2,2,2,2" MinHeight="40" Content="W:" />
-                    <Label Grid.Row="1" Margin="2,2,2,2" MinHeight="40" Content="X:" />
-                    <Label Grid.Row="2" Margin="2,2,2,2" MinHeight="40" Content="Y:" />
+                    <Label Grid.Row="0" Margin="2,2,2,2" MinHeight="40" Content="W:" Name="lbl_MoveW"/>
+                    <Label Grid.Row="1" Margin="2,2,2,2" MinHeight="40" Content="X:" Name="lbl_MoveX"/>
+                    <Label Grid.Row="2" Margin="2,2,2,2" MinHeight="40" Content="Y:" Name="lbl_MoveY"/>
 
-                    <Button Grid.Row="3" Grid.ColumnSpan="2" Margin="2,2,2,2" Content="Move" Click="btn_Move_Click"/>
+                    <Button Grid.Row="3" Grid.ColumnSpan="2" Margin="2,2,2,2" Content="Move" Click="btn_Move_Click" Name="btn_MoveExecute"/>
 
-                    <TextBox Grid.Column="1" Margin="2,2,2,2" Text="0" Name="txt_W"/>
-                    <TextBox Grid.Column="1" Grid.Row="1" Margin="2,2,2,2" Text="0" Name="txt_X"/>
-                    <TextBox Grid.Column="1" Grid.Row="2" Margin="2,2,2,2" Text="0" Name="txt_Y"/>
+                    <TextBox Grid.Column="1" Grid.Row="0" Margin="2,2,2,2" Text="0" Name="txt_MoveW"/>
+                    <TextBox Grid.Column="1" Grid.Row="1" Margin="2,2,2,2" Text="0" Name="txt_MoveX"/>
+                    <TextBox Grid.Column="1" Grid.Row="2" Margin="2,2,2,2" Text="0" Name="txt_MoveY"/>
                 </Grid>
             </Border>
 
@@ -180,8 +185,8 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0" Content="Piston:" />
-                    <Label Grid.Row="1" Content="Gripper:" />
+                    <Label Grid.Row="0" Content="Piston:" Name="lbl_Piston"/>
+                    <Label Grid.Row="1" Content="Gripper:" Name="lbl_Gripper"/>
 
                     <Button 
                         Grid.Column="1" 
@@ -236,21 +241,21 @@
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Label Content="Wait:" Margin="2,2,2,2" />
-                            <TextBox Grid.Column="1" Text="1000" Margin="2,2,2,2"/>
-                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" />
+                            <Label Content="Wait:" Margin="2,2,2,2" Name="lbl_Wait"/>
+                            <TextBox Grid.Column="1" Text="1000" Margin="2,2,2,2" Name="txt_Wait"/>
+                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" Name="btn_Wait"/>
                         </Grid>
 
                         <!--ID-->
-                        <Grid Grid.Row="1" Name="grid_ID">
+                        <Grid Grid.Row="1" Name="grid_ID" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Label Content="ID:" Margin="2,2,2,2"/>
-                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" />
+                            <Label Content="ID:" Margin="2,2,2,2" Name="lbl_ID"/>
+                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" Name="btn_ID"/>
                         </Grid>
 
                         <!--Set Offset-->
@@ -261,9 +266,9 @@
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Label Content="Offset:" Margin="2,2,2,2"/>
-                            <TextBox Grid.Column="1" Text="0" Margin="2,2,2,2"/>
-                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" />
+                            <Label Content="Offset:" Margin="2,2,2,2" Name="lbl_SOffset"/>
+                            <TextBox Grid.Column="1" Text="0" Margin="2,2,2,2" Name="txt_SOffset"/>
+                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" Name="btn_SOffset"/>
                         </Grid>
 
                         <!--Read Offset-->
@@ -274,20 +279,20 @@
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Label Content="R-Offset:" Margin="2,2,2,2"/>
-                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" />
+                            <Label Content="R-Offset:" Margin="2,2,2,2" Name="lbl_ROffset"/>
+                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" Name="btn_ROffset"/>
                         </Grid>
 
                         <!--Read proximity-->
-                        <Grid Grid.Row="4" Name="grid_RProx">
+                        <Grid Grid.Row="4" Name="grid_Prox">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Label Content="Prox:" Margin="2,2,2,2"/>
-                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" />
+                            <Label Content="Prox:" Margin="2,2,2,2" Name="lbl_Prox"/>
+                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" Name="btn_Prox"/>
                         </Grid>
 
                         <!--Speedset-->
@@ -298,9 +303,9 @@
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Label Content="Speedset:" Margin="2,2,2,2"/>
-                            <TextBox Grid.Column="1" Text="100" Margin="2,2,2,2"/>
-                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" />
+                            <Label Content="Speedset:" Margin="2,2,2,2" Name="lbl_Speedset"/>
+                            <TextBox Grid.Column="1" Text="100" Margin="2,2,2,2" Name="txt_Speedset"/>
+                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" Name="btn_Speedset"/>
                         </Grid>
                     </Grid>
                 </ScrollViewer>
@@ -308,15 +313,15 @@
         </Grid>
             
         <!--Output-->
-        <TextBlock 
+        <TextBox 
             Grid.Column="2" 
             HorizontalAlignment="Stretch" 
             Margin="5,5,5,5" 
             Grid.Row="2" 
-            TextWrapping="NoWrap"  
-            Text="TextBlock" 
+            TextWrapping="NoWrap"
+            Text="" 
             VerticalAlignment="Stretch"
-            
+            Name="text_OuputLog" IsReadOnly="True" MouseDoubleClick="LogBox_DoubleClicked"
             />
 
     </Grid>
