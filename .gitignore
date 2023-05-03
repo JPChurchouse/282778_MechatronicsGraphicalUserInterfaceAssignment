@@ -31,3 +31,7 @@
 *.out
 *.app
 SCARA_GUI/SCARA_GUI/bin/Debug/logs
+SCARA_GUI/.vs/SCARA_GUI/FileContentIndex
+SCARA_GUI/.vs
+SCARA_GUI/SCARA_GUI/obj
+SCARA_GUI/SCARA_GUI/bin

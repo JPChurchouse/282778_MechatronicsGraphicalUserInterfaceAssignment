@@ -12,7 +12,8 @@
         ResizeMode="CanResize" 
         MinHeight="450" 
         MinWidth="600" Icon="/1701019.ico"
-        SizeChanged="WindowResized">
+        SizeChanged="WindowResized"
+        Closing="Window_Closing">
 
     <Grid>
         <Grid.RowDefinitions>

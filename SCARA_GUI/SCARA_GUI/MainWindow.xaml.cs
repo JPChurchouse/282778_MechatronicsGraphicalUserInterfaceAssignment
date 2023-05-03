@@ -45,16 +45,6 @@ namespace SCARA_GUI
             Log.Information("Started programme at time: " + timenow);
         }
 
-        // Handler when the Form closes
-        /*
-        private void MainPage_Closing(object WriteLineer, FormClosingEventArgs e)
-        {
-            closing_form = true;
-            Log.Debug("Closing form");
-            DisconnectAll();
-            Log.CloseAndFlush();
-        }*/
-
         // Add a line of text to the outputs log
         public enum MsgType { UNK, ALT, SYS, RXD, TXD, RET}
         public void LogMessage(string msg, MsgType type = MsgType.UNK)
@@ -76,9 +66,8 @@ namespace SCARA_GUI
         public void WindowResized(object sender, EventArgs e)
         {
             Log.Debug($"rezize height: {this.Height} and width: {this.Width}");
-            int s = (int)this.Width * (int)this.Height / 50000;
+            int s = (int)this.Width * (int)this.Height / 80000 + 12;
             Log.Debug($"Size: {s}");
-            s = 30;
 
             btn_Connect.FontSize = s;
             lbl_ConnectionStatus.FontSize = s;
@@ -156,18 +145,24 @@ namespace SCARA_GUI
 
             text_OuputLog.FontSize = s;
 
-            btn_EmergencyStop.FontSize = s;
+            btn_EmergencyStop.FontSize = s * 3;
 
         }
 
-        private void LogBox_DoubleClicked(object sender, MouseButtonEventArgs e)
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            string dire = Environment.CurrentDirectory;
-            try 
-            { 
-                Process.Start("explorer.exe", $"/select, {dire}\\{LogFile}");
+            if (MessageBox.Show("Are you sure you want to close the programme?",
+                "Close?", MessageBoxButton.YesNoCancel,
+                MessageBoxImage.Question, MessageBoxResult.Cancel) != MessageBoxResult.Yes)
+            {
+                e.Cancel = true;
             }
-            catch {}
+            else
+            {
+                // save settings
+                Disconnect(serialport);
+                Log.CloseAndFlush();
+            }
         }
     }
 }
