@@ -63,9 +63,6 @@ namespace SCARA_GUI
             //textBox_Updates.Text = msg + "\r\n" + textBox_Updates.Text;
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
     }
 }

@@ -11,7 +11,7 @@
         WindowState="Normal" 
         ResizeMode="CanResize" 
         MinHeight="450" 
-        MinWidth="600">
+        MinWidth="600" Icon="/1701019.ico">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -44,24 +44,24 @@
             VerticalAlignment="Stretch" 
             HorizontalAlignment="Stretch" 
             >
-            <MenuItem Header="_File">
-                <MenuItem Header="_Open Log File"/>
+            <MenuItem Header="File">
+                <MenuItem Header="Open Log File"/>
             </MenuItem>
-            <MenuItem Header="_Options">
-                <MenuItem Header="_Controls Visibility">
-                    <MenuItem Header="_PING" IsCheckable="True" Click="MenuItem_Click"/>
-                    <MenuItem Header="_ID" IsCheckable="True"/>
-                    <MenuItem Header="_OFFSET" IsCheckable="True"/>
-                    <MenuItem Header="_ROFFSET" IsCheckable="True"/>
-                    <MenuItem Header="_PROX" IsCheckable="True"/>
-                    <MenuItem Header="_SPEEDSET" IsCheckable="True"/>
+            <MenuItem Header="Options">
+                <MenuItem Header="Controls Visibility">
+                    <MenuItem Header="PING" IsCheckable="True" Click="MenuItem_Click"/>
+                    <MenuItem Header="ID" IsCheckable="True"/>
+                    <MenuItem Header="OFFSET" IsCheckable="True"/>
+                    <MenuItem Header="ROFFSET" IsCheckable="True"/>
+                    <MenuItem Header="PROX" IsCheckable="True"/>
+                    <MenuItem Header="SPEEDSET" IsCheckable="True"/>
                 </MenuItem>
-                <MenuItem Header="_Advanced Features" IsCheckable="True"/>
-                <MenuItem Header="_Outputs">
-                    <MenuItem Header="_Alerts" IsChecked="True" IsEnabled="False"/>
-                    <MenuItem Header="_System" IsCheckable="True" IsChecked="False"/>
-                    <MenuItem Header="_Transmit" IsCheckable="True" IsChecked="True"/>
-                    <MenuItem Header="_Receive" IsCheckable="True" IsChecked="True"/>
+                <MenuItem Header="Advanced Features" IsCheckable="True"/>
+                <MenuItem Header="Outputs">
+                    <MenuItem Header="Alerts" IsChecked="True" IsEnabled="False"/>
+                    <MenuItem Header="System" IsCheckable="True" IsChecked="False"/>
+                    <MenuItem Header="Transmit" IsCheckable="True" IsChecked="True"/>
+                    <MenuItem Header="Receive" IsCheckable="True" IsChecked="True"/>
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="_Help">
@@ -85,33 +85,35 @@
                 />
             <Button
                 Grid.Column="1"
-                Name="btn_Connect"
+                Click="btn_Connect_Click"
                 Content="Connect" 
                 HorizontalAlignment="Stretch" 
                 VerticalAlignment="Stretch"
                 Margin="5,5,5,5"
+                IsDefault="True"
                 />
         </Grid>
 
         <!--Status panel-->
         <Grid Grid.Row="1" Grid.Column="2" Background="AliceBlue"/>
-        <Label Grid.Column="2" Grid.Row="1"
-            Name="lbl_Status"
-               Content="Offline"
-               VerticalAlignment="Center"
-               HorizontalAlignment="Center"
-               Margin="5,5,5,5"
+        <Label 
+            Grid.Column="2" 
+            Grid.Row="1"
+            Content="Offline"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Margin="5,5,5,5"
         />
 
         <!--Inputs panel-->
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="3*"/>
-                <RowDefinition Height="2*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
             
@@ -119,24 +121,25 @@
             <Button
                 Content="STOP"
                 Background="Red"
-                Margin="2,1,2,1"
+                Margin="4,2,4,2"
                 FontSize="40"
                 FontWeight="Bold"
                 Foreground="White"
                 BorderBrush="Black"
                 BorderThickness="2"
+                Grid.ColumnSpan="2"
+                Click="btn_Stop_Click"
                 />
 
-            <!--MOVE func-->
+            <!--Move func-->
             <Border 
                 Grid.Row="1" 
-                Margin="2,1,2,1"
+                Margin="4,2,2,2"
                 BorderThickness="2" 
                 BorderBrush="Gray">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -149,75 +152,30 @@
                     <Label Grid.Row="0" Margin="2,2,2,2" MinHeight="40" Content="W:" />
                     <Label Grid.Row="1" Margin="2,2,2,2" MinHeight="40" Content="X:" />
                     <Label Grid.Row="2" Margin="2,2,2,2" MinHeight="40" Content="Y:" />
-                
-                    <Button
-                        Grid.Row="3"
-                        Grid.ColumnSpan="2" Margin="2,2,2,2"
-                        Content="MOVE"
-                        />
-                    <Button
-                        Grid.Row="3"
-                        Grid.Column="2" Margin="2,2,2,2"
-                        Content="Save preset"
-                        />
-                
-                    <TextBox
-                        Grid.Column="1" Margin="2,2,2,2"
-                        Text="0"
-                        VerticalAlignment="Stretch"
-                        HorizontalAlignment="Stretch"
-                        />
-                    <TextBox
-                        Grid.Column="1"
-                        Grid.Row="1" Margin="2,2,2,2"
-                        Text="0"
-                        VerticalAlignment="Stretch"
-                        HorizontalAlignment="Stretch"
-                        />
-                    <TextBox
-                        Grid.Column="1"
-                        Grid.Row="2" Margin="2,2,2,2"
-                        Text="0"
-                        VerticalAlignment="Stretch"
-                        HorizontalAlignment="Stretch"
-                        />
-                
-                    <Label
-                        Grid.Column="2" Margin="2,2,2,2"
-                        Content="0"
-                        VerticalAlignment="Stretch"
-                        HorizontalAlignment="Stretch"
-                        />
-                    <Label
-                        Grid.Column="2"
-                        Grid.Row="1" Margin="2,2,2,2"
-                        Content="0"
-                        VerticalAlignment="Stretch"
-                        HorizontalAlignment="Stretch"
-                        />
-                    <Label
-                        Grid.Column="2"
-                        Grid.Row="2" Margin="2,2,2,2"
-                        Content="0"
-                        VerticalAlignment="Stretch"
-                        HorizontalAlignment="Stretch"
-                        />
+
+                    <Button Grid.Row="3" Grid.ColumnSpan="2" Margin="2,2,2,2" Content="Move" Click="btn_Move_Click"/>
+
+                    <TextBox Grid.Column="1" Margin="2,2,2,2" Text="0" Name="txt_W"/>
+                    <TextBox Grid.Column="1" Grid.Row="1" Margin="2,2,2,2" Text="0" Name="txt_X"/>
+                    <TextBox Grid.Column="1" Grid.Row="2" Margin="2,2,2,2" Text="0" Name="txt_Y"/>
                 </Grid>
             </Border>
 
             <!---Air func-->
             <Border 
-                Grid.Row="2" 
-                Margin="2,1,2,1"
+                Grid.Row="1" 
+                Grid.Column="1"
+                Margin="2,2,4,2"
                 BorderThickness="2" 
                 BorderBrush="Gray">
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
@@ -225,70 +183,127 @@
                     <Label Grid.Row="0" Content="Piston:" />
                     <Label Grid.Row="1" Content="Gripper:" />
 
-                    <Button
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        Content="UP / down" Margin="2,2,2,2"
+                    <Button 
+                        Grid.Column="1" 
+                        Content="UP / down" 
+                        Margin="2,2,2,2" 
+                        Click="btn_Piston_Click"
+                        Name="btn_Piston"
                         />
-                    <Button
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Content="OPEN / close" Margin="2,2,2,2"
+                    <Button 
+                        Grid.Row="1" 
+                        Grid.Column="1" 
+                        Content="OPEN / close" 
+                        Click="btn_Gripper_Click"
+                        Name="btn_Gripper"
+                        Margin="2,2,2,2" 
                         />
-
-                    <Label
-                        Grid.Column="2"
-                        Content="UP" Margin="2,2,2,2"
-                        />
-                    <Label
-                        Grid.Column="2"
-                        Grid.Row="1"
-                        Content="OPEN" Margin="2,2,2,2"
+                    <Button 
+                        Grid.Row="3" 
+                        Grid.ColumnSpan="2" 
+                        Content="Home" 
+                        Margin="2,2,2,2" 
+                        Click="btn_Home_Click"
+                        Name="btn_Home"
                         />
                 </Grid>
             </Border>
             
             <!--Extra funcs-->
             <Border 
-                Grid.Row="3" 
-                Margin="2,1,2,1"
+                Grid.Row="2" 
+                Grid.ColumnSpan="2"
+                Margin="4,2,4,2"
                 BorderThickness="2" 
                 BorderBrush="Gray">
-                <Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0" Content="Piston:" />
-                    <Label Grid.Row="1" Content="Gripper:" />
+                <ScrollViewer CanContentScroll="True" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-                    <Button
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        Content="UP / down" Margin="2,2,2,2"
-                        />
-                    <Button
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Content="OPEN / close" Margin="2,2,2,2"
-                        />
+                        <!--Wait-->
+                        <Grid Grid.Row="0" Name="grid_Wait">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
 
-                    <Label
-                        Grid.Column="2"
-                        Content="UP" Margin="2,2,2,2"
-                        />
-                    <Label
-                        Grid.Column="2"
-                        Grid.Row="1"
-                        Content="OPEN" Margin="2,2,2,2"
-                        />
-                </Grid>
+                            <Label Content="Wait:" Margin="2,2,2,2" />
+                            <TextBox Grid.Column="1" Text="1000" Margin="2,2,2,2"/>
+                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" />
+                        </Grid>
+
+                        <!--ID-->
+                        <Grid Grid.Row="1" Name="grid_ID">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Content="ID:" Margin="2,2,2,2"/>
+                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" />
+                        </Grid>
+
+                        <!--Set Offset-->
+                        <Grid Grid.Row="2" Name="grid_SOffset">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Content="Offset:" Margin="2,2,2,2"/>
+                            <TextBox Grid.Column="1" Text="0" Margin="2,2,2,2"/>
+                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" />
+                        </Grid>
+
+                        <!--Read Offset-->
+                        <Grid Grid.Row="3" Name="grid_ROffset">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Content="R-Offset:" Margin="2,2,2,2"/>
+                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" />
+                        </Grid>
+
+                        <!--Read proximity-->
+                        <Grid Grid.Row="4" Name="grid_RProx">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Content="Prox:" Margin="2,2,2,2"/>
+                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" />
+                        </Grid>
+
+                        <!--Speedset-->
+                        <Grid Grid.Row="5" Name="grid_Speedset" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Content="Speedset:" Margin="2,2,2,2"/>
+                            <TextBox Grid.Column="1" Text="100" Margin="2,2,2,2"/>
+                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" />
+                        </Grid>
+                    </Grid>
+                </ScrollViewer>
             </Border>
         </Grid>
             
