@@ -74,8 +74,8 @@
         <!--Connection panel-->
         <Grid Grid.Row="1" Background="DodgerBlue">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
             <Label
@@ -93,7 +93,7 @@
                 Content="Connect" 
                 HorizontalAlignment="Stretch" 
                 VerticalAlignment="Stretch"
-                Margin="5,5,5,5"
+                Margin="2,2,2,2"
                 IsDefault="True"
                 />
         </Grid>
@@ -107,7 +107,7 @@
             Content="Offline"
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
-            Margin="5,5,5,5"
+            Margin="2,2,2,2"
         />
 
         <!--Inputs panel-->

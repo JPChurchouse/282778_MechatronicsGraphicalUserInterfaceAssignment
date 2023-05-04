@@ -108,7 +108,7 @@ namespace SCARA_GUI
             this.Dispatcher.Invoke(() =>
             {
                 Log.Debug($"rezize height: {this.Height} and width: {this.Width}");
-                int s = (int)this.Width * (int)this.Height / 70000 + 12;
+                int s = ( (int)this.Width/8 + (int)this.Height*4 ) / 100;
                 Log.Debug($"Size: {s}");
 
                 btn_Connect.FontSize = s;
