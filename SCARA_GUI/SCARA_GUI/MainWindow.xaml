@@ -65,12 +65,12 @@
                     <MenuItem Header="Transmit" IsCheckable="True" IsChecked="True" Name="menu_Outputs_Transmit" Click="menu_Out_Clicked"/>
                     <MenuItem Header="Receive" IsCheckable="True" IsChecked="True" Name="menu_Outputs_Receive" Click="menu_Out_Clicked"/>
                 </MenuItem>
-                <MenuItem Header="Air Parameters" Click="menu_Air_Clicked"/>
+                <MenuItem Header="Advanced" Click="menu_Advanced_Clicked"/>
             </MenuItem>
             <MenuItem Header="Help">
             </MenuItem>
         </Menu>
-        
+
         <!--Connection panel-->
         <Grid Grid.Row="1" Background="DodgerBlue">
             <Grid.ColumnDefinitions>
@@ -121,11 +121,10 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
-            
+
             <!--E-STOP-->
             <Button
                 Content="STOP"
-                Background="Red"
                 Margin="4,2,4,2"
                 FontSize="40"
                 FontWeight="Bold"
@@ -134,8 +133,16 @@
                 BorderThickness="2"
                 Grid.ColumnSpan="2"
                 Click="btn_Stop_Click"
-                Name="btn_EmergencyStop"
-                />
+                Name="btn_EmergencyStop" 
+                ToolTip="Emergency Stop"
+                >
+                <Button.Background>
+                    <RadialGradientBrush>
+                        <GradientStop Color="#FF9A0000" Offset="1"/>
+                        <GradientStop Color="Red"/>
+                    </RadialGradientBrush>
+                </Button.Background>
+            </Button>
 
             <!--Move func-->
             <Border 
@@ -145,8 +152,8 @@
                 BorderBrush="CornflowerBlue">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -161,9 +168,9 @@
 
                     <Button Grid.Row="3" Grid.ColumnSpan="2" Margin="2,2,2,2" Content="Move" Click="btn_Move_Click" Name="btn_MoveExecute"/>
 
-                    <TextBox Grid.Column="1" Grid.Row="0" Margin="2,2,2,2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="0" Name="txt_MoveW"/>
-                    <TextBox Grid.Column="1" Grid.Row="1" Margin="2,2,2,2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="0" Name="txt_MoveX"/>
-                    <TextBox Grid.Column="1" Grid.Row="2" Margin="2,2,2,2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="0" Name="txt_MoveY"/>
+                    <TextBox Grid.Column="1" Grid.Row="0" Margin="2,2,2,2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="0" Name="txt_MoveW" MaxLines="1" AcceptsTab="True"/>
+                    <TextBox Grid.Column="1" Grid.Row="1" Margin="2,2,2,2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="0" Name="txt_MoveX" MaxLines="1" AcceptsTab="True"/>
+                    <TextBox Grid.Column="1" Grid.Row="2" Margin="2,2,2,2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="0" Name="txt_MoveY" MaxLines="1" AcceptsTab="True"/>
                 </Grid>
             </Border>
 
@@ -176,8 +183,8 @@
                 BorderBrush="CornflowerBlue">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -191,7 +198,7 @@
 
                     <Button 
                         Grid.Column="1" 
-                        Content="UP / down" 
+                        Content="DOWN" 
                         Margin="2,2,2,2" 
                         Click="btn_Piston_Click"
                         Name="btn_Piston"
@@ -199,7 +206,7 @@
                     <Button 
                         Grid.Row="1" 
                         Grid.Column="1" 
-                        Content="OPEN / close" 
+                        Content="CLOSE" 
                         Click="btn_Gripper_Click"
                         Name="btn_Gripper"
                         Margin="2,2,2,2" 
@@ -214,7 +221,7 @@
                         />
                 </Grid>
             </Border>
-            
+
             <!--Extra funcs-->
             <Border 
                 Grid.Row="2" 
@@ -323,7 +330,7 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"/>
         </Grid>
-            <!--Output-->
+        <!--Output-->
         <TextBox 
             Grid.Column="2" 
             HorizontalAlignment="Stretch" 

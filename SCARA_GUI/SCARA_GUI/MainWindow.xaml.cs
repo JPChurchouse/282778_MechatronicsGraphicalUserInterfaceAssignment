@@ -46,6 +46,9 @@ namespace SCARA_GUI
             menu_Visibility_Speedset.IsChecked  = Settings.Default.vis_Spdst;
             menu_Visibility_Wait.IsChecked      = Settings.Default.vis_Wait;
 
+            this.Width = Settings.Default.window_Width;
+            this.Height = Settings.Default.window_Height;
+
             UpdateFontSize();
             UpdateUiConnectionStatus();
 
@@ -81,6 +84,9 @@ namespace SCARA_GUI
                 Settings.Default.vis_SOf = menu_Visibility_SOffset.IsChecked;
                 Settings.Default.vis_Spdst = menu_Visibility_Speedset.IsChecked;
                 Settings.Default.vis_Wait = menu_Visibility_Wait.IsChecked;
+
+                Settings.Default.window_Width = (int)this.Width;
+                Settings.Default.window_Height = (int)this.Height;
 
                 Settings.Default.Save();
                 Log.Information("Settings saved");

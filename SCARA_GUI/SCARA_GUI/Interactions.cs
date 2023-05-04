@@ -33,7 +33,7 @@ namespace SCARA_GUI
             text_OuputLog.Text = string.Empty;
         }
 
-        private void menu_Air_Clicked(object sender, EventArgs e)
+        private void menu_Advanced_Clicked(object sender, EventArgs e)
         {
             SettingsWindow settingsWindow = new SettingsWindow();
             settingsWindow.Show();

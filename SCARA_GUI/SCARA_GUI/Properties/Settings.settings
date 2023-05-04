@@ -50,5 +50,29 @@
     <Setting Name="air_DELAY_G" Type="System.String" Scope="User">
       <Value Profile="(Default)">500</Value>
     </Setting>
+    <Setting Name="max_W" Type="System.String" Scope="User">
+      <Value Profile="(Default)">180</Value>
+    </Setting>
+    <Setting Name="max_X" Type="System.String" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="max_Y" Type="System.String" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="min_W" Type="System.String" Scope="User">
+      <Value Profile="(Default)">-180</Value>
+    </Setting>
+    <Setting Name="min_X" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="min_Y" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="window_Height" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">450</Value>
+    </Setting>
+    <Setting Name="window_Width" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">600</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

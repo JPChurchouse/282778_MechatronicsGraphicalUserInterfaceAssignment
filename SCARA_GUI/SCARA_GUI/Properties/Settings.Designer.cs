@@ -214,5 +214,101 @@ namespace SCARA_GUI.Properties {
                 this["air_DELAY_G"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("180")]
+        public string max_W {
+            get {
+                return ((string)(this["max_W"]));
+            }
+            set {
+                this["max_W"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public string max_X {
+            get {
+                return ((string)(this["max_X"]));
+            }
+            set {
+                this["max_X"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public string max_Y {
+            get {
+                return ((string)(this["max_Y"]));
+            }
+            set {
+                this["max_Y"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-180")]
+        public string min_W {
+            get {
+                return ((string)(this["min_W"]));
+            }
+            set {
+                this["min_W"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string min_X {
+            get {
+                return ((string)(this["min_X"]));
+            }
+            set {
+                this["min_X"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string min_Y {
+            get {
+                return ((string)(this["min_Y"]));
+            }
+            set {
+                this["min_Y"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("450")]
+        public int window_Height {
+            get {
+                return ((int)(this["window_Height"]));
+            }
+            set {
+                this["window_Height"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("600")]
+        public int window_Width {
+            get {
+                return ((int)(this["window_Width"]));
+            }
+            set {
+                this["window_Width"] = value;
+            }
+        }
     }
 }
