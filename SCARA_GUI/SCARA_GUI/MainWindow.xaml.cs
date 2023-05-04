@@ -16,6 +16,7 @@ using Serilog;
 using System.IO.Ports;
 using System.IO;
 using System.Diagnostics;
+using SCARA_GUI.Properties;
 
 namespace SCARA_GUI
 {
@@ -24,46 +25,71 @@ namespace SCARA_GUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string LogFile;
+        // Init the UI
         public MainWindow()
         {
             InitializeComponent();
             InitLog();
+            InitSerial();
+            UpdateFontSize();
+            UpdateUiConnectionStatus();
+
+            menu_Outputs_Alert.IsChecked        = Settings.Default.out_Alrt;
+            menu_Outputs_Receive.IsChecked      = Settings.Default.out_Rx;
+            menu_Outputs_Transmit.IsChecked     = Settings.Default.out_Tx;
+            menu_Outputs_System.IsChecked       = Settings.Default.out_Sys;
+
+            menu_Visibility_ID.IsChecked        = Settings.Default.vis_ID;
+            menu_Visibility_Prox.IsChecked      = Settings.Default.vis_Prox;
+            menu_Visibility_ROffset.IsChecked   = Settings.Default.vis_ROf;
+            menu_Visibility_SOffset.IsChecked   = Settings.Default.vis_SOf;
+            menu_Visibility_Speedset.IsChecked  = Settings.Default.vis_Spdst;
+            menu_Visibility_Wait.IsChecked      = Settings.Default.vis_Wait;
+
+            Log.Information("Ready");
         }
 
-        // Initalise logging
-        private void InitLog()
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            string timenow = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
-            LogFile = $"logs\\{timenow}_SCARA_GUI.log";
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Verbose()
-                .WriteTo.Console()
-                .WriteTo.File(LogFile)
-                .CreateLogger();
-            Log.Information("This programme was developed by J. P. Churchouse");
-            Log.Information("Started programme at time: " + timenow);
+            if(SERIALPORT.IsOpen) { 
+                if (MessageBox.Show("Are you sure you want to close the programme?",
+                    "Close?", MessageBoxButton.YesNoCancel,
+                    MessageBoxImage.Question, MessageBoxResult.Cancel) != MessageBoxResult.Yes)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+            }
+
+            Disconnect();
+
+            Settings.Default.out_Alrt   = menu_Outputs_Alert.IsChecked;
+            Settings.Default.out_Rx     = menu_Outputs_Receive.IsChecked;
+            Settings.Default.out_Tx     = menu_Outputs_Transmit.IsChecked;
+            Settings.Default.out_Sys    = menu_Outputs_System.IsChecked;
+
+            Settings.Default.vis_ID     = menu_Visibility_ID.IsChecked;
+            Settings.Default.vis_Prox   = menu_Visibility_Prox.IsChecked;
+            Settings.Default.vis_ROf    = menu_Visibility_ROffset.IsChecked;
+            Settings.Default.vis_SOf    = menu_Visibility_SOffset.IsChecked;
+            Settings.Default.vis_Spdst  = menu_Visibility_Speedset.IsChecked;
+            Settings.Default.vis_Wait   = menu_Visibility_Wait.IsChecked;
+
+            Settings.Default.Save();
+            Log.Information("Settings saved");
+
+            Log.CloseAndFlush();
         }
 
-        // Add a line of text to the outputs log
-        public enum MsgType { UNK, ALT, SYS, RXD, TXD, RET}
-        public void LogMessage(string msg, MsgType type = MsgType.UNK)
+        private void UpdateUiConnectionStatus()
         {
-            string info = $"<{type}> {msg}";
-            Log.Information(info);
-
-            int go = 0;
-
-                 if (type == MsgType.ALT && menu_Outputs_Alert.IsChecked) go++;
-            else if (type == MsgType.SYS && menu_Outputs_System.IsChecked) go++;
-            else if (type == MsgType.RXD && menu_Outputs_Receive.IsChecked) go++;
-            else if (type == MsgType.TXD && menu_Outputs_Transmit.IsChecked) go++;
-            else if (type == MsgType.RET) go++;
-                 
-            if (go > 0) text_OuputLog.Text = info + "\r\n" + text_OuputLog.Text;
+            bool open = SERIALPORT.IsOpen;
+            panel_Inputs.IsEnabled = open;
+            btn_Connect.Content = open ? "DISCONNECT" : "CONNECT";
+            lbl_ConnectionStatus.Content = open ? $"Connected on {SERIALPORT.PortName}" : "Disconnected";
+            if (!open) lbl_DeviceStatus.Content = "Unavailable";
         }
-
-        public void WindowResized(object sender, EventArgs e)
+        private void UpdateFontSize()
         {
             Log.Debug($"rezize height: {this.Height} and width: {this.Width}");
             int s = (int)this.Width * (int)this.Height / 80000 + 12;
@@ -94,7 +120,7 @@ namespace SCARA_GUI
                 grid_ID.Visibility = Visibility.Visible;
             }
             else grid_ID.Visibility = Visibility.Collapsed;
-            
+
             if (menu_Visibility_Wait.IsChecked)
             {
                 count_extras++;
@@ -147,22 +173,8 @@ namespace SCARA_GUI
 
             btn_EmergencyStop.FontSize = s * 3;
 
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (MessageBox.Show("Are you sure you want to close the programme?",
-                "Close?", MessageBoxButton.YesNoCancel,
-                MessageBoxImage.Question, MessageBoxResult.Cancel) != MessageBoxResult.Yes)
-            {
-                e.Cancel = true;
-            }
-            else
-            {
-                // save settings
-                Disconnect(serialport);
-                Log.CloseAndFlush();
-            }
+            img_Placeholder.Visibility = count_extras == 0 ? Visibility.Visible : Visibility.Collapsed;
+            bor_Extras.Visibility = count_extras != 0 ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }

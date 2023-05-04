@@ -47,24 +47,22 @@
             HorizontalAlignment="Stretch" 
             >
             <MenuItem Header="File">
-                <MenuItem Header="Open Log File"/>
+                <MenuItem Header="Open Log File" Click="menu_OpenFile_Clicked"/>
             </MenuItem>
             <MenuItem Header="Options">
                 <MenuItem Header="Controls Visibility">
-                    <MenuItem Header="WAIT" IsCheckable="True" Name="menu_Visibility_Wait" Click="MenuItem_Click"/>
-                    <MenuItem Header="PING" IsCheckable="True" Name="menu_Visibility_Ping" Click="MenuItem_Click"/>
-                    <MenuItem Header="ID" IsCheckable="True" Name="menu_Visibility_ID"/>
-                    <MenuItem Header="SOFFSET" IsCheckable="True" Name="menu_Visibility_SOffset"/>
-                    <MenuItem Header="ROFFSET" IsCheckable="True" Name="menu_Visibility_ROffset"/>
-                    <MenuItem Header="PROX" IsCheckable="True" Name="menu_Visibility_Prox"/>
-                    <MenuItem Header="SPEEDSET" IsCheckable="True" Name="menu_Visibility_Speedset"/>
+                    <MenuItem Header="WAIT" IsCheckable="True" Name="menu_Visibility_Wait" Click="menu_Any_Clicked"/>
+                    <MenuItem Header="ID" IsCheckable="True" Name="menu_Visibility_ID" Click="menu_Any_Clicked"/>
+                    <MenuItem Header="SOFFSET" IsCheckable="True" Name="menu_Visibility_SOffset" Click="menu_Any_Clicked"/>
+                    <MenuItem Header="ROFFSET" IsCheckable="True" Name="menu_Visibility_ROffset" Click="menu_Any_Clicked"/>
+                    <MenuItem Header="PROX" IsCheckable="True" Name="menu_Visibility_Prox" Click="menu_Any_Clicked"/>
+                    <MenuItem Header="SPEEDSET" IsCheckable="True" Name="menu_Visibility_Speedset" Click="menu_Any_Clicked"/>
                 </MenuItem>
-                <MenuItem Header="Advanced Features" IsCheckable="True" IsEnabled="False"/>
                 <MenuItem Header="Outputs">
-                    <MenuItem Header="Alerts" IsChecked="True" IsEnabled="False" Name="menu_Outputs_Alert"/>
-                    <MenuItem Header="System" IsCheckable="True" IsChecked="False" Name="menu_Outputs_System"/>
-                    <MenuItem Header="Transmit" IsCheckable="True" IsChecked="True" Name="menu_Outputs_Transmit"/>
-                    <MenuItem Header="Receive" IsCheckable="True" IsChecked="True" Name="menu_Outputs_Receive"/>
+                    <MenuItem Header="Alerts" IsChecked="True" IsEnabled="False" Name="menu_Outputs_Alert" Click="menu_Any_Clicked"/>
+                    <MenuItem Header="System" IsCheckable="True" IsChecked="False" Name="menu_Outputs_System" Click="menu_Any_Clicked"/>
+                    <MenuItem Header="Transmit" IsCheckable="True" IsChecked="True" Name="menu_Outputs_Transmit" Click="menu_Any_Clicked"/>
+                    <MenuItem Header="Receive" IsCheckable="True" IsChecked="True" Name="menu_Outputs_Receive" Click="menu_Any_Clicked"/>
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="Help">
@@ -111,7 +109,7 @@
         />
 
         <!--Inputs panel-->
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Name="panel_Inputs">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -174,7 +172,7 @@
                 Margin="2,2,4,2"
                 BorderThickness="2" 
                 BorderBrush="Gray">
-                <Grid Grid.Row="2">
+                <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="2*"/>
@@ -221,17 +219,19 @@
                 Grid.ColumnSpan="2"
                 Margin="4,2,4,2"
                 BorderThickness="2" 
-                BorderBrush="Gray">
+                BorderBrush="Gray"
+                Name="bor_Extras">
+                
 
-                <ScrollViewer CanContentScroll="True" >
+                <ScrollViewer CanContentScroll="True">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
                         <!--Wait-->
@@ -310,10 +310,19 @@
                         </Grid>
                     </Grid>
                 </ScrollViewer>
+
             </Border>
+            <!--Placeholder-->
+            <Image 
+                Grid.Row="2" 
+                Name="img_Placeholder"
+                Source="Massey-University.png" 
+                Margin="4,4,4,4" 
+                Grid.ColumnSpan="2" 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"/>
         </Grid>
-            
-        <!--Output-->
+            <!--Output-->
         <TextBox 
             Grid.Column="2" 
             HorizontalAlignment="Stretch" 
@@ -324,6 +333,5 @@
             VerticalAlignment="Stretch"
             Name="text_OuputLog" IsReadOnly="True" MouseDoubleClick="LogBox_DoubleClicked"
             />
-
     </Grid>
 </Window>

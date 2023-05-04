@@ -87,6 +87,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Interactions.cs" />
+    <Compile Include="Logging.cs" />
     <Compile Include="SerialFunctions.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -122,6 +123,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="1701019.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Massey-University.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Serilog;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,13 +13,26 @@ namespace SCARA_GUI
 {
     public partial class MainWindow : Window
     {
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
+        private void WindowResized(object sender, EventArgs e) 
+        { 
+            UpdateFontSize(); 
         }
+
+        private void menu_OpenFile_Clicked(object sender, EventArgs args)
+        {
+            OpenLogFile();
+        }
+
+        private void menu_Any_Clicked(object sender, EventArgs e)
+        {
+            UpdateFontSize();
+        }
+
         private void btn_Connect_Click(object sender, RoutedEventArgs e)
         {
-
+            if (SERIALPORT.IsOpen) ScanAndConnect();
+            else Disconnect();
+            UpdateUiConnectionStatus();
         }
         private void btn_Stop_Click(object sender, RoutedEventArgs e)
         {
@@ -39,14 +54,9 @@ namespace SCARA_GUI
         {
 
         }
-        private void LogBox_DoubleClicked(object sender, MouseButtonEventArgs e)
-        {
-            string dire = Environment.CurrentDirectory;
-            try
-            {
-                Process.Start("explorer.exe", $"/select, {dire}\\{LogFile}");
-            }
-            catch { }
+        private void LogBox_DoubleClicked(object sender, MouseButtonEventArgs e) 
+        { 
+            OpenLogFile(); 
         }
 
     }
