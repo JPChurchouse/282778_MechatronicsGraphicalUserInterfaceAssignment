@@ -194,9 +194,9 @@ namespace SCARA_GUI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1000")]
-        public string air_DELAY_P {
+        public int air_DELAY_P {
             get {
-                return ((string)(this["air_DELAY_P"]));
+                return ((int)(this["air_DELAY_P"]));
             }
             set {
                 this["air_DELAY_P"] = value;
@@ -206,9 +206,9 @@ namespace SCARA_GUI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("500")]
-        public string air_DELAY_G {
+        public int air_DELAY_G {
             get {
-                return ((string)(this["air_DELAY_G"]));
+                return ((int)(this["air_DELAY_G"]));
             }
             set {
                 this["air_DELAY_G"] = value;
@@ -218,9 +218,9 @@ namespace SCARA_GUI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("180")]
-        public string max_W {
+        public int max_W {
             get {
-                return ((string)(this["max_W"]));
+                return ((int)(this["max_W"]));
             }
             set {
                 this["max_W"] = value;
@@ -230,9 +230,9 @@ namespace SCARA_GUI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("100")]
-        public string max_X {
+        public int max_X {
             get {
-                return ((string)(this["max_X"]));
+                return ((int)(this["max_X"]));
             }
             set {
                 this["max_X"] = value;
@@ -242,9 +242,9 @@ namespace SCARA_GUI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("100")]
-        public string max_Y {
+        public int max_Y {
             get {
-                return ((string)(this["max_Y"]));
+                return ((int)(this["max_Y"]));
             }
             set {
                 this["max_Y"] = value;
@@ -254,9 +254,9 @@ namespace SCARA_GUI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("-180")]
-        public string min_W {
+        public int min_W {
             get {
-                return ((string)(this["min_W"]));
+                return ((int)(this["min_W"]));
             }
             set {
                 this["min_W"] = value;
@@ -266,9 +266,9 @@ namespace SCARA_GUI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public string min_X {
+        public int min_X {
             get {
-                return ((string)(this["min_X"]));
+                return ((int)(this["min_X"]));
             }
             set {
                 this["min_X"] = value;
@@ -278,9 +278,9 @@ namespace SCARA_GUI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public string min_Y {
+        public int min_Y {
             get {
-                return ((string)(this["min_Y"]));
+                return ((int)(this["min_Y"]));
             }
             set {
                 this["min_Y"] = value;

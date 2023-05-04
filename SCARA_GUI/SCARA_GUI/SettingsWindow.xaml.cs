@@ -43,34 +43,34 @@ namespace SCARA_GUI
             //txt_PistonActive.Text = Settings.Default.air_DOWN;
             
             if (!Validate(txt_PistonDelay.Text,0,10000))
-                txt_PistonDelay.Text = Settings.Default.air_DELAY_P;
+                txt_PistonDelay.Text = Settings.Default.air_DELAY_P.ToString();
 
             // Gripper
             //txt_GripperInactive.Text = Settings.Default.air_OPEN;
             //txt_GripperActive.Text = Settings.Default.air_CLOSE;
 
             if (!Validate(txt_GripperDelay.Text, 0, 10000))
-                txt_GripperDelay.Text = Settings.Default.air_DELAY_G;
+                txt_GripperDelay.Text = Settings.Default.air_DELAY_G.ToString();
 
             // Maxes
             if (!Validate(txt_MaxW.Text, 0, 200))
-                txt_MaxW.Text = Settings.Default.max_W;
+                txt_MaxW.Text = Settings.Default.max_W.ToString();
 
             if (!Validate(txt_MaxX.Text, 0, 200))
-                txt_MaxX.Text = Settings.Default.max_X;
+                txt_MaxX.Text = Settings.Default.max_X.ToString();
 
             if (!Validate(txt_MaxY.Text, 0, 200))
-                txt_MaxY.Text = Settings.Default.max_Y;
+                txt_MaxY.Text = Settings.Default.max_Y.ToString();
 
             // Mins
             if (!Validate(txt_MinW.Text, -200, 0))
-                txt_MinW.Text = Settings.Default.min_W;
+                txt_MinW.Text = Settings.Default.min_W.ToString();
 
             if (!Validate(txt_MinX.Text, -200, 0))
-                txt_MinX.Text = Settings.Default.min_X;
+                txt_MinX.Text = Settings.Default.min_X.ToString();
 
             if (!Validate(txt_MinY.Text, -200, 0))
-                txt_MinY.Text = Settings.Default.min_Y;
+                txt_MinY.Text = Settings.Default.min_Y.ToString();
 
 
             UiToSettings();
@@ -80,40 +80,53 @@ namespace SCARA_GUI
         {
             txt_PistonInactive.Text = Settings.Default.air_UP;
             txt_PistonActive.Text = Settings.Default.air_DOWN;
-            txt_PistonDelay.Text = Settings.Default.air_DELAY_P;
+            txt_PistonDelay.Text = Settings.Default.air_DELAY_P.ToString();
 
             txt_GripperInactive.Text = Settings.Default.air_OPEN;
             txt_GripperActive.Text = Settings.Default.air_CLOSE;
-            txt_GripperDelay.Text = Settings.Default.air_DELAY_G;
+            txt_GripperDelay.Text = Settings.Default.air_DELAY_G.ToString();
 
-            txt_MaxW.Text = Settings.Default.max_W;
-            txt_MaxX.Text = Settings.Default.max_X;
-            txt_MaxY.Text = Settings.Default.max_Y;
+            txt_MaxW.Text = Settings.Default.max_W.ToString();
+            txt_MaxX.Text = Settings.Default.max_X.ToString();
+            txt_MaxY.Text = Settings.Default.max_Y.ToString();
 
-            txt_MinW.Text = Settings.Default.min_W;
-            txt_MinX.Text = Settings.Default.min_X;
-            txt_MinY.Text = Settings.Default.min_Y;
+            txt_MinW.Text = Settings.Default.min_W.ToString();
+            txt_MinX.Text = Settings.Default.min_X.ToString();
+            txt_MinY.Text = Settings.Default.min_Y.ToString();
         }
 
         private void UiToSettings() 
         {
-            Settings.Default.air_UP = txt_PistonInactive.Text;
-            Settings.Default.air_DOWN = txt_PistonActive.Text;
-            Settings.Default.air_DELAY_P = txt_PistonDelay.Text;
+            try
+            {
+                Settings.Default.air_UP = txt_PistonInactive.Text;
+                Settings.Default.air_DOWN = txt_PistonActive.Text;
+                Settings.Default.air_DELAY_P = StoI(txt_PistonDelay.Text);
 
-            Settings.Default.air_OPEN = txt_GripperInactive.Text;
-            Settings.Default.air_CLOSE = txt_GripperActive.Text;
-            Settings.Default.air_DELAY_G = txt_GripperDelay.Text;
+                Settings.Default.air_OPEN = txt_GripperInactive.Text;
+                Settings.Default.air_CLOSE = txt_GripperActive.Text;
+                Settings.Default.air_DELAY_G = StoI(txt_GripperDelay.Text);
 
-            Settings.Default.max_W = txt_MaxW.Text;
-            Settings.Default.max_X = txt_MaxX.Text;
-            Settings.Default.max_Y = txt_MaxY.Text;
+                Settings.Default.max_W = StoI(txt_MaxW.Text);
+                Settings.Default.max_X = StoI(txt_MaxX.Text);
+                Settings.Default.max_Y = StoI(txt_MaxY.Text);
 
-            Settings.Default.min_W = txt_MinW.Text;
-            Settings.Default.min_X = txt_MinX.Text;
-            Settings.Default.min_Y = txt_MinY.Text;
+                Settings.Default.min_W = StoI(txt_MinW.Text);
+                Settings.Default.min_X = StoI(txt_MinX.Text);
+                Settings.Default.min_Y = StoI(txt_MinY.Text);
+            }
+            catch 
+            {
+                MessageBox.Show("Error", "Unable to save one or more settings!");
+            }
 
             Settings.Default.Save();
+        }
+
+        private int StoI(string s)
+        {
+            if (Int32.TryParse(s, out int i)) return i;
+            else throw new Exception("Couldn't convert");
         }
     
         private bool Validate(string s, int min, int max)

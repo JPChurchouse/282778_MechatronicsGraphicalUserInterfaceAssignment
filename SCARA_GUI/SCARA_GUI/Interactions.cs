@@ -1,4 +1,5 @@
-﻿using Serilog;
+﻿using SCARA_GUI.Properties;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -51,15 +52,53 @@ namespace SCARA_GUI
         }
         private void btn_Move_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                Validate(txt_MoveW.Text, Settings.Default.min_W, Settings.Default.max_W, "W");
+                Validate(txt_MoveX.Text, Settings.Default.min_X, Settings.Default.max_X, "X");
+                Validate(txt_MoveY.Text, Settings.Default.min_Y, Settings.Default.max_Y, "Y");
+            }
+            catch (Exception exc)
+            {
+                LogMessage($"Invalid MOVE command: {exc.Message}",MsgType.ALT);
+                return;
+            }
             SendData($"MOVE,{txt_MoveX.Text},{txt_MoveY.Text},{txt_MoveW.Text}");
         }
+        private void Validate(string s, int min, int max, string ID)
+        {
+            if (Int32.TryParse(s, out int i))
+            {
+                if (i > max || i < min) throw new Exception(ID);
+            }
+            else throw new Exception(ID);
+        }
+
         private void btn_Piston_Click(object sender, RoutedEventArgs e)
         {
-
+            if (btn_Piston.Content.ToString().Contains("UP"))
+            {
+                btn_Piston.Content = "DOWN";
+                SendData($"AIR,{Settings.Default.air_UP}");
+            }
+            else
+            {
+                btn_Piston.Content = "UP";
+                SendData($"AIR,{Settings.Default.air_DOWN}");
+            }
         }
         private void btn_Gripper_Click(object sender, RoutedEventArgs e)
         {
-
+            if (btn_Gripper.Content.ToString().Contains("OPEN"))
+            {
+                btn_Gripper.Content = "CLOSE";
+                SendData($"AIR,{Settings.Default.air_OPEN}");
+            }
+            else
+            {
+                btn_Gripper.Content = "OPEN";
+                SendData($"AIR,{Settings.Default.air_CLOSE}");
+            }
         }
         private void btn_Home_Click(object sender, RoutedEventArgs e)
         {
