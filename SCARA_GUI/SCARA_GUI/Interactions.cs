@@ -35,7 +35,8 @@ namespace SCARA_GUI
 
         private void menu_Air_Clicked(object sender, EventArgs e)
         {
-            
+            SettingsWindow settingsWindow = new SettingsWindow();
+            settingsWindow.Show();
         }
 
 

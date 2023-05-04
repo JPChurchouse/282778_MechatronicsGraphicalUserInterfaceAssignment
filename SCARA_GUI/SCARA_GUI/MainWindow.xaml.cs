@@ -29,10 +29,10 @@ namespace SCARA_GUI
         public MainWindow()
         {
             InitializeComponent();
+            
+            lbl_DeviceStatus.Content = "Initalising...";
             InitLog();
             InitSerial();
-            UpdateFontSize();
-            UpdateUiConnectionStatus();
 
             menu_Outputs_Alert.IsChecked        = Settings.Default.out_Alrt;
             menu_Outputs_Receive.IsChecked      = Settings.Default.out_Rx;
@@ -46,23 +46,27 @@ namespace SCARA_GUI
             menu_Visibility_Speedset.IsChecked  = Settings.Default.vis_Spdst;
             menu_Visibility_Wait.IsChecked      = Settings.Default.vis_Wait;
 
+            UpdateFontSize();
+            UpdateUiConnectionStatus();
+
             Log.Information("Ready");
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             this.Dispatcher.Invoke(() =>
             {
                 if (SERIALPORT.IsOpen)
                 {
-                    if (MessageBox.Show("Are you sure you want to close the programme?",
-                        "Close?", MessageBoxButton.YesNoCancel,
+                    if (MessageBox.Show("The device is still connected, are you sure you want to close the programme?",
+                        "Close programme?", MessageBoxButton.YesNoCancel,
                         MessageBoxImage.Question, MessageBoxResult.Cancel) != MessageBoxResult.Yes)
                     {
                         e.Cancel = true;
                         return;
                     }
                 }
+                lbl_DeviceStatus.Content = "Closing Down...";
 
                 Disconnect();
 
@@ -95,7 +99,7 @@ namespace SCARA_GUI
                 btn_Connect.IsEnabled = true;
                 this.Cursor = null;
                 lbl_ConnectionStatus.Content = open ? $"Connected on {SERIALPORT.PortName}" : "Disconnected";
-                if (!open) lbl_DeviceStatus.Content = "Unavailable";
+                lbl_DeviceStatus.Content = open ? "Ready": "Offline";
                 menu_Outputs.IsEnabled = !open;
             });
         }
@@ -104,7 +108,7 @@ namespace SCARA_GUI
             this.Dispatcher.Invoke(() =>
             {
                 Log.Debug($"rezize height: {this.Height} and width: {this.Width}");
-                int s = (int)this.Width * (int)this.Height / 80000 + 12;
+                int s = (int)this.Width * (int)this.Height / 70000 + 12;
                 Log.Debug($"Size: {s}");
 
                 btn_Connect.FontSize = s;

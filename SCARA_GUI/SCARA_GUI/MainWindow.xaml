@@ -13,7 +13,7 @@
         MinHeight="450" 
         MinWidth="600" Icon="/1701019.ico"
         SizeChanged="WindowResized"
-        Closing="Window_Closing">
+        Closing="MainWindow_Closing">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -60,10 +60,10 @@
                 </MenuItem>
                 <MenuItem Header="Outputs" Name="menu_Outputs">
                     <MenuItem Header="Clear" Name="menu_Outputs_Clear" Click="menu_Out_Clicked"/>
-                    <MenuItem Header="Alerts" IsChecked="True" IsEnabled="False" Name="menu_Outputs_Alert"/>
-                    <MenuItem Header="System" IsCheckable="True" IsChecked="False" Name="menu_Outputs_System"/>
-                    <MenuItem Header="Transmit" IsCheckable="True" IsChecked="True" Name="menu_Outputs_Transmit"/>
-                    <MenuItem Header="Receive" IsCheckable="True" IsChecked="True" Name="menu_Outputs_Receive"/>
+                    <MenuItem Header="Alerts" IsChecked="True" IsEnabled="False" Name="menu_Outputs_Alert" Click="menu_Out_Clicked"/>
+                    <MenuItem Header="System" IsCheckable="True" IsChecked="False" Name="menu_Outputs_System" Click="menu_Out_Clicked"/>
+                    <MenuItem Header="Transmit" IsCheckable="True" IsChecked="True" Name="menu_Outputs_Transmit" Click="menu_Out_Clicked"/>
+                    <MenuItem Header="Receive" IsCheckable="True" IsChecked="True" Name="menu_Outputs_Receive" Click="menu_Out_Clicked"/>
                 </MenuItem>
                 <MenuItem Header="Air Parameters" Click="menu_Air_Clicked"/>
             </MenuItem>
@@ -72,7 +72,7 @@
         </Menu>
         
         <!--Connection panel-->
-        <Grid Grid.Row="1" Background="AliceBlue">
+        <Grid Grid.Row="1" Background="DodgerBlue">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
@@ -84,7 +84,7 @@
                 Content="Status: Disconnected"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Stretch"
-                Margin="5,5,5,5"
+                Margin="10,2,2,2"
                 />
             <Button
                 Name="btn_Connect"
@@ -99,7 +99,7 @@
         </Grid>
 
         <!--Status panel-->
-        <Grid Grid.Row="1" Grid.Column="2" Background="AliceBlue"/>
+        <Grid Grid.Row="1" Grid.Column="2" Background="DodgerBlue"/>
         <Label 
             Name="lbl_DeviceStatus"
             Grid.Column="2" 
@@ -142,7 +142,7 @@
                 Grid.Row="1" 
                 Margin="4,2,2,2"
                 BorderThickness="2" 
-                BorderBrush="Gray">
+                BorderBrush="CornflowerBlue">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -155,15 +155,15 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0" Margin="2,2,2,2" MinHeight="40" Content="W:" Name="lbl_MoveW"/>
-                    <Label Grid.Row="1" Margin="2,2,2,2" MinHeight="40" Content="X:" Name="lbl_MoveX"/>
-                    <Label Grid.Row="2" Margin="2,2,2,2" MinHeight="40" Content="Y:" Name="lbl_MoveY"/>
+                    <Label Grid.Row="0" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Left" Content="W:" Name="lbl_MoveW"/>
+                    <Label Grid.Row="1" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Left" Content="X:" Name="lbl_MoveX"/>
+                    <Label Grid.Row="2" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Y:" Name="lbl_MoveY"/>
 
                     <Button Grid.Row="3" Grid.ColumnSpan="2" Margin="2,2,2,2" Content="Move" Click="btn_Move_Click" Name="btn_MoveExecute"/>
 
-                    <TextBox Grid.Column="1" Grid.Row="0" Margin="2,2,2,2" Text="0" Name="txt_MoveW"/>
-                    <TextBox Grid.Column="1" Grid.Row="1" Margin="2,2,2,2" Text="0" Name="txt_MoveX"/>
-                    <TextBox Grid.Column="1" Grid.Row="2" Margin="2,2,2,2" Text="0" Name="txt_MoveY"/>
+                    <TextBox Grid.Column="1" Grid.Row="0" Margin="2,2,2,2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="0" Name="txt_MoveW"/>
+                    <TextBox Grid.Column="1" Grid.Row="1" Margin="2,2,2,2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="0" Name="txt_MoveX"/>
+                    <TextBox Grid.Column="1" Grid.Row="2" Margin="2,2,2,2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="0" Name="txt_MoveY"/>
                 </Grid>
             </Border>
 
@@ -173,7 +173,7 @@
                 Grid.Column="1"
                 Margin="2,2,4,2"
                 BorderThickness="2" 
-                BorderBrush="Gray">
+                BorderBrush="CornflowerBlue">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -186,8 +186,8 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0" Content="Piston:" Name="lbl_Piston"/>
-                    <Label Grid.Row="1" Content="Gripper:" Name="lbl_Gripper"/>
+                    <Label Grid.Row="0" Content="Piston:" Name="lbl_Piston" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <Label Grid.Row="1" Content="Gripper:" Name="lbl_Gripper" VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
                     <Button 
                         Grid.Column="1" 
@@ -221,9 +221,8 @@
                 Grid.ColumnSpan="2"
                 Margin="4,2,4,2"
                 BorderThickness="2" 
-                BorderBrush="Gray"
+                BorderBrush="CornflowerBlue"
                 Name="bor_Extras">
-                
 
                 <ScrollViewer CanContentScroll="True">
                     <Grid>
@@ -330,10 +329,14 @@
             HorizontalAlignment="Stretch" 
             Margin="5,5,5,5" 
             Grid.Row="2" 
+            BorderBrush="CornflowerBlue"
+            BorderThickness="3"
             TextWrapping="NoWrap"
             Text="" 
             VerticalAlignment="Stretch"
-            Name="text_OuputLog" IsReadOnly="True" MouseDoubleClick="LogBox_DoubleClicked"
+            Name="text_OuputLog" 
+            IsReadOnly="True" 
+            MouseDoubleClick="LogBox_DoubleClicked"
             />
     </Grid>
 </Window>

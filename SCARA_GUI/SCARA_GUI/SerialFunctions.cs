@@ -58,6 +58,7 @@ namespace SCARA_GUI
 
                 // Update labels
                 LogMessage("Setting up Serial Port", MsgType.SYS);
+                lbl_DeviceStatus.Content = "Connecting...";
 
                 // Update UI availibility for this function
                 btn_Connect.IsEnabled = false;
@@ -141,26 +142,28 @@ namespace SCARA_GUI
             if (!SERIALPORT.IsOpen)
             {
                 LogMessage("Not connected", MsgType.ALT);
-                UpdateUiConnectionStatus();
-                return;
             }
-            if (data == null || data == "")
+
+            else if (data == null || data == "")
             {
                 LogMessage("Not content to send", MsgType.SYS);
-                UpdateUiConnectionStatus();
-                return;
             }
-            
-            LogMessage($"Sending: {data}", MsgType.TXD);
-            try
-            {
-                SERIALPORT.WriteLine(data);
+
+            else 
+            { 
+                LogMessage($"Sending: {data}", MsgType.TXD);
+                try
+                {
+                    SERIALPORT.WriteLine(data);
+                }
+                catch (Exception ex)
+                {
+                    LogMessage("Unable to send command", MsgType.ALT);
+                    Log.Error(ex.ToString());
+                }
             }
-            catch (Exception ex)
-            {
-                LogMessage("Unable to send command", MsgType.ALT);
-                Log.Error(ex.ToString());
-            }
+
+            UpdateUiConnectionStatus();
         }
 
         private string ParsePortInfo(string info)

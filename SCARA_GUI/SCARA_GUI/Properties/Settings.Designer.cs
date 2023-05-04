@@ -194,9 +194,9 @@ namespace SCARA_GUI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1000")]
-        public int air_DELAY_P {
+        public string air_DELAY_P {
             get {
-                return ((int)(this["air_DELAY_P"]));
+                return ((string)(this["air_DELAY_P"]));
             }
             set {
                 this["air_DELAY_P"] = value;
@@ -206,9 +206,9 @@ namespace SCARA_GUI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("500")]
-        public int air_DELAY_G {
+        public string air_DELAY_G {
             get {
-                return ((int)(this["air_DELAY_G"]));
+                return ((string)(this["air_DELAY_G"]));
             }
             set {
                 this["air_DELAY_G"] = value;

@@ -1,0 +1,53 @@
+﻿<Window x:Class="SCARA_GUI.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SCARA_GUI"
+        mc:Ignorable="d"
+        Title="SCARA Controller - Settings" 
+        Height="250" 
+        Width="400" 
+        MinHeight="250" 
+        MinWidth="400" 
+        WindowState="Normal" 
+        ResizeMode="CanResize" 
+        Icon="/1701019.ico"
+        Closing="SettingsWindow_Closing">
+    
+    <Viewbox>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            
+            <!--Top labels-->
+            <Label Grid.Column="1" Content="Inactive" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center"/>
+            <Label Grid.Column="2" Content="Active" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center"/>
+            <Label Grid.Column="3" Content="Delay" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center"/>
+            
+            <!--Side labels-->
+            <Label Grid.Row="1" Content="Piston"  HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center"/>
+            <Label Grid.Row="2" Content="Gripper" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center"/>
+            
+            <!--Piston-->
+            <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_PistonInactive"/>
+            <TextBox Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_PistonActive"/>
+            <TextBox Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_PistonDelay"/>
+
+            <!--Gripper-->
+            <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_GripperInactive"/>
+            <TextBox Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_GripperActive"/>
+            <TextBox Grid.Row="2" Grid.Column="3" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_GripperDelay"/>
+
+        </Grid>
+    </Viewbox>
+</Window>

@@ -44,10 +44,10 @@
     <Setting Name="air_CLOSE" Type="System.String" Scope="User">
       <Value Profile="(Default)">B</Value>
     </Setting>
-    <Setting Name="air_DELAY_P" Type="System.Int32" Scope="User">
+    <Setting Name="air_DELAY_P" Type="System.String" Scope="User">
       <Value Profile="(Default)">1000</Value>
     </Setting>
-    <Setting Name="air_DELAY_G" Type="System.Int32" Scope="User">
+    <Setting Name="air_DELAY_G" Type="System.String" Scope="User">
       <Value Profile="(Default)">500</Value>
     </Setting>
   </Settings>
