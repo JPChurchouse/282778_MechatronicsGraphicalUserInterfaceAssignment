@@ -23,24 +23,34 @@ namespace SCARA_GUI
             OpenLogFile();
         }
 
-        private void menu_Any_Clicked(object sender, EventArgs e)
+        private void menu_Vis_Clicked(object sender, EventArgs e)
         {
             UpdateFontSize();
         }
 
+        private void menu_Out_Clicked(object sender, EventArgs e)
+        {
+            text_OuputLog.Text = string.Empty;
+        }
+
+        private void menu_Air_Clicked(object sender, EventArgs e)
+        {
+            
+        }
+
+
         private void btn_Connect_Click(object sender, RoutedEventArgs e)
         {
-            if (SERIALPORT.IsOpen) ScanAndConnect();
+            if (!SERIALPORT.IsOpen) ScanAndConnect();
             else Disconnect();
-            UpdateUiConnectionStatus();
         }
         private void btn_Stop_Click(object sender, RoutedEventArgs e)
         {
-
+            SendData("STOP");
         }
         private void btn_Move_Click(object sender, RoutedEventArgs e)
         {
-
+            SendData($"MOVE,{txt_MoveX.Text},{txt_MoveY.Text},{txt_MoveW.Text}");
         }
         private void btn_Piston_Click(object sender, RoutedEventArgs e)
         {
@@ -52,7 +62,7 @@ namespace SCARA_GUI
         }
         private void btn_Home_Click(object sender, RoutedEventArgs e)
         {
-
+            SendData("HOME");
         }
         private void LogBox_DoubleClicked(object sender, MouseButtonEventArgs e) 
         { 

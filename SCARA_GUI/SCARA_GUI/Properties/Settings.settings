@@ -32,5 +32,23 @@
     <Setting Name="vis_Wait" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="air_UP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D</Value>
+    </Setting>
+    <Setting Name="air_DOWN" Type="System.String" Scope="User">
+      <Value Profile="(Default)">U</Value>
+    </Setting>
+    <Setting Name="air_OPEN" Type="System.String" Scope="User">
+      <Value Profile="(Default)">V</Value>
+    </Setting>
+    <Setting Name="air_CLOSE" Type="System.String" Scope="User">
+      <Value Profile="(Default)">B</Value>
+    </Setting>
+    <Setting Name="air_DELAY_P" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="air_DELAY_G" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

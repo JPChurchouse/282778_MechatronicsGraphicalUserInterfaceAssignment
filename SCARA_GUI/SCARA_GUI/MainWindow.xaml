@@ -51,19 +51,21 @@
             </MenuItem>
             <MenuItem Header="Options">
                 <MenuItem Header="Controls Visibility">
-                    <MenuItem Header="WAIT" IsCheckable="True" Name="menu_Visibility_Wait" Click="menu_Any_Clicked"/>
-                    <MenuItem Header="ID" IsCheckable="True" Name="menu_Visibility_ID" Click="menu_Any_Clicked"/>
-                    <MenuItem Header="SOFFSET" IsCheckable="True" Name="menu_Visibility_SOffset" Click="menu_Any_Clicked"/>
-                    <MenuItem Header="ROFFSET" IsCheckable="True" Name="menu_Visibility_ROffset" Click="menu_Any_Clicked"/>
-                    <MenuItem Header="PROX" IsCheckable="True" Name="menu_Visibility_Prox" Click="menu_Any_Clicked"/>
-                    <MenuItem Header="SPEEDSET" IsCheckable="True" Name="menu_Visibility_Speedset" Click="menu_Any_Clicked"/>
+                    <MenuItem Header="WAIT" IsCheckable="True" Name="menu_Visibility_Wait" Click="menu_Vis_Clicked"/>
+                    <MenuItem Header="ID" IsCheckable="True" Name="menu_Visibility_ID" Click="menu_Vis_Clicked"/>
+                    <MenuItem Header="SOFFSET" IsCheckable="True" Name="menu_Visibility_SOffset" Click="menu_Vis_Clicked"/>
+                    <MenuItem Header="ROFFSET" IsCheckable="True" Name="menu_Visibility_ROffset" Click="menu_Vis_Clicked"/>
+                    <MenuItem Header="PROX" IsCheckable="True" Name="menu_Visibility_Prox" Click="menu_Vis_Clicked"/>
+                    <MenuItem Header="SPEEDSET" IsCheckable="True" Name="menu_Visibility_Speedset" Click="menu_Vis_Clicked"/>
                 </MenuItem>
-                <MenuItem Header="Outputs">
-                    <MenuItem Header="Alerts" IsChecked="True" IsEnabled="False" Name="menu_Outputs_Alert" Click="menu_Any_Clicked"/>
-                    <MenuItem Header="System" IsCheckable="True" IsChecked="False" Name="menu_Outputs_System" Click="menu_Any_Clicked"/>
-                    <MenuItem Header="Transmit" IsCheckable="True" IsChecked="True" Name="menu_Outputs_Transmit" Click="menu_Any_Clicked"/>
-                    <MenuItem Header="Receive" IsCheckable="True" IsChecked="True" Name="menu_Outputs_Receive" Click="menu_Any_Clicked"/>
+                <MenuItem Header="Outputs" Name="menu_Outputs">
+                    <MenuItem Header="Clear" Name="menu_Outputs_Clear" Click="menu_Out_Clicked"/>
+                    <MenuItem Header="Alerts" IsChecked="True" IsEnabled="False" Name="menu_Outputs_Alert"/>
+                    <MenuItem Header="System" IsCheckable="True" IsChecked="False" Name="menu_Outputs_System"/>
+                    <MenuItem Header="Transmit" IsCheckable="True" IsChecked="True" Name="menu_Outputs_Transmit"/>
+                    <MenuItem Header="Receive" IsCheckable="True" IsChecked="True" Name="menu_Outputs_Receive"/>
                 </MenuItem>
+                <MenuItem Header="Air Parameters" Click="menu_Air_Clicked"/>
             </MenuItem>
             <MenuItem Header="Help">
             </MenuItem>

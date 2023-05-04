@@ -29,18 +29,21 @@ namespace SCARA_GUI
         public enum MsgType { UNK, ALT, SYS, RXD, TXD, RET }
         public void LogMessage(string msg, MsgType type = MsgType.UNK)
         {
-            string info = $"<{type}> {msg}";
-            Log.Information(info);
+            this.Dispatcher.Invoke(() =>
+            {
+                string info = $"<{type}> {msg}";
+                Log.Information(info);
 
-            int go = 0;
+                int go = 0;
 
-            if (type == MsgType.ALT && menu_Outputs_Alert.IsChecked) go++;
-            else if (type == MsgType.SYS && menu_Outputs_System.IsChecked) go++;
-            else if (type == MsgType.RXD && menu_Outputs_Receive.IsChecked) go++;
-            else if (type == MsgType.TXD && menu_Outputs_Transmit.IsChecked) go++;
-            else if (type == MsgType.RET) go++;
+                if (type == MsgType.ALT && menu_Outputs_Alert.IsChecked) go++;
+                else if (type == MsgType.SYS && menu_Outputs_System.IsChecked) go++;
+                else if (type == MsgType.RXD && menu_Outputs_Receive.IsChecked) go++;
+                else if (type == MsgType.TXD && menu_Outputs_Transmit.IsChecked) go++;
+                else if (type == MsgType.RET) go++;
 
-            if (go > 0) text_OuputLog.Text = info + "\r\n" + text_OuputLog.Text;
+                if (go > 0) text_OuputLog.Text = info + "\r\n" + text_OuputLog.Text;
+            });
         }
         public void OpenLogFile()
         {

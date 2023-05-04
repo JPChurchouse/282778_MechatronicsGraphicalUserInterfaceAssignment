@@ -31,81 +31,92 @@ namespace SCARA_GUI
 
         private void SERIALPORT_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
         {
-            throw new NotImplementedException();
+            UpdateUiConnectionStatus();
         }
 
         private void SERIALPORT_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (SERIALPORT.BytesToRead == 0) return;
+            
+            string data = SERIALPORT.ReadLine();
+            data = data.Replace("\r", "");
+            data = data.Replace("\n", "");
+            Log.Information($"Received: \"{data}\"");
+
+            LogMessage(data, MsgType.RXD);
         }
 
         // Scan for ports and connect to them
         private void ScanAndConnect()
         {
-            bool port_connected = SERIALPORT.IsOpen;
-
-            // If connected, return
-            if (port_connected) return;
-
-            // Update labels
-            LogMessage("Setting up Serial Port", MsgType.SYS);
-
-            // Update UI availibility for this function
-            btn_Connect.IsEnabled = false;
-            this.Cursor = Cursors.Wait;
-
-
-            // Connect to ports
-            try
+            this.Dispatcher.Invoke(() =>
             {
-                ManagementObjectSearcher searcher = new ManagementObjectSearcher("Select * From Win32_PnPEntity WHERE Caption LIKE '% (COM%'");
-                ManagementObjectCollection devices = searcher.Get();
+                bool port_connected = SERIALPORT.IsOpen;
 
-                if (devices.Count == 0) throw new Exception("No devices found");
+                // If connected, return
+                if (port_connected) return;
 
-                foreach (var dev in devices)
+                // Update labels
+                LogMessage("Setting up Serial Port", MsgType.SYS);
+
+                // Update UI availibility for this function
+                btn_Connect.IsEnabled = false;
+                this.Cursor = Cursors.Wait;
+
+
+                // Connect to ports
+                try
                 {
-                    string caption = dev.GetPropertyValue("Caption").ToString();
-                    Log.Debug($"Found device: {caption}");
+                    ManagementObjectSearcher searcher = new ManagementObjectSearcher("Select * From Win32_PnPEntity WHERE Caption LIKE '% (COM%'");
+                    ManagementObjectCollection devices = searcher.Get();
 
-                    // If not connected and port is an Uno or Due
-                    if (caption.Contains("Arduino Uno") || caption.Contains("Arduino Due") || caption.Contains("CH340"))
+                    if (devices.Count == 0) throw new Exception("No devices found");
+
+                    foreach (var dev in devices)
                     {
-                        SERIALPORT.PortName = ParsePortInfo(caption);
+                        string caption = dev.GetPropertyValue("Caption").ToString();
+                        Log.Debug($"Found device: {caption}");
 
-                        LogMessage("Attempting to open Serial Port", MsgType.SYS);
-                        try { SERIALPORT.Open(); }
-                        catch { }
+                        // If not connected and port is an Uno or Due
+                        if (caption.Contains("Arduino Uno") || caption.Contains("Arduino Due") || caption.Contains("CH340"))
+                        {
+                            SERIALPORT.PortName = ParsePortInfo(caption);
 
-                        port_connected = SERIALPORT.IsOpen;
-                        LogMessage($"Connection {(port_connected ? "OPEN" : "FAILED")}", MsgType.SYS);
+                            LogMessage("Attempting to open Serial Port", MsgType.SYS);
+                            try { SERIALPORT.Open(); }
+                            catch { }
+
+                            port_connected = SERIALPORT.IsOpen;
+                            LogMessage($"Connection {(port_connected ? "OPEN" : "FAILED")}", MsgType.SYS);
+                        }
                     }
                 }
-            }
-            catch (Exception ex) { Log.Error(ex.Message); }
+                catch (Exception ex) { Log.Error(ex.Message); }
 
-            if (port_connected)
-            {
-                // Show warning
-                WMPLib.WindowsMediaPlayer player = new WMPLib.WindowsMediaPlayer();
-                player.URL = "alarm.mp3";
-                player.controls.play();
+                if (port_connected)
+                {
+                    // Show warning
+                    WMPLib.WindowsMediaPlayer player = new WMPLib.WindowsMediaPlayer();
+                    player.URL = "alarm.mp3";
+                    player.controls.play();
 
-                LogMessage("WARNING - SCARA ACTIVE", MsgType.ALT);
-                MessageBox.Show(
-                    "The SCARA is about to become active. Press \"OK\" to proceed when the area is safe.",
-                    "⚠️ WARNING ⚠️");
+                    LogMessage("WARNING - SCARA ACTIVE", MsgType.ALT);
+                    MessageBox.Show(
+                        "The SCARA is about to become active. Press \"OK\" to proceed when the area is safe.",
+                        "⚠️ WARNING ⚠️");
 
-                player.close();
+                    player.close();
 
-                // Home all axies
-                SendData("ECHO,1");
-                SendData("HOME");
+                    // Home all axies
+                    SendData("ECHO,1");
+                    SendData("HOME");
 
-                //this.AcceptButton = button_AutoManual;
-            }
+                    //this.AcceptButton = button_AutoManual;
+                }
 
-            this.Cursor = null;
+                UpdateUiConnectionStatus();
+                this.Cursor = null;
+            });
         }
 
         // Disconnect all ports
@@ -117,7 +128,11 @@ namespace SCARA_GUI
                 SendData("STOP");
                 SERIALPORT.Close();
             }
-            else LogMessage("Serial Port already closed", MsgType.SYS);
+            else
+            {
+                LogMessage("Serial Port already closed", MsgType.SYS);
+            }
+            UpdateUiConnectionStatus();
         }
 
         // Process sending data
@@ -132,6 +147,7 @@ namespace SCARA_GUI
             if (data == null || data == "")
             {
                 LogMessage("Not content to send", MsgType.SYS);
+                UpdateUiConnectionStatus();
                 return;
             }
             

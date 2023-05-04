@@ -142,5 +142,77 @@ namespace SCARA_GUI.Properties {
                 this["vis_Wait"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D")]
+        public string air_UP {
+            get {
+                return ((string)(this["air_UP"]));
+            }
+            set {
+                this["air_UP"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("U")]
+        public string air_DOWN {
+            get {
+                return ((string)(this["air_DOWN"]));
+            }
+            set {
+                this["air_DOWN"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("V")]
+        public string air_OPEN {
+            get {
+                return ((string)(this["air_OPEN"]));
+            }
+            set {
+                this["air_OPEN"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("B")]
+        public string air_CLOSE {
+            get {
+                return ((string)(this["air_CLOSE"]));
+            }
+            set {
+                this["air_CLOSE"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        public int air_DELAY_P {
+            get {
+                return ((int)(this["air_DELAY_P"]));
+            }
+            set {
+                this["air_DELAY_P"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("500")]
+        public int air_DELAY_G {
+            get {
+                return ((int)(this["air_DELAY_G"]));
+            }
+            set {
+                this["air_DELAY_G"] = value;
+            }
+        }
     }
 }
