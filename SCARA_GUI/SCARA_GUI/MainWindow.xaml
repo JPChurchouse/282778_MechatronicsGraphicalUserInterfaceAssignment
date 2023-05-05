@@ -248,7 +248,7 @@
 
                             <Label Content="Wait:" Margin="2,2,2,2" Name="lbl_Wait"/>
                             <TextBox Grid.Column="1" Text="1000" Margin="2,2,2,2" Name="txt_Wait"/>
-                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" Name="btn_Wait"/>
+                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" Name="btn_Wait" Click="btn_Wait_Click"/>
                         </Grid>
 
                         <!--ID-->
@@ -260,7 +260,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Content="ID:" Margin="2,2,2,2" Name="lbl_ID"/>
-                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" Name="btn_ID"/>
+                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" Name="btn_ID" Click="btn_ID_Click"/>
                         </Grid>
 
                         <!--Set Offset-->
@@ -273,7 +273,7 @@
 
                             <Label Content="Offset:" Margin="2,2,2,2" Name="lbl_SOffset"/>
                             <TextBox Grid.Column="1" Text="0" Margin="2,2,2,2" Name="txt_SOffset"/>
-                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" Name="btn_SOffset"/>
+                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" Name="btn_SOffset" Click="btn_SOffset_Click"/>
                         </Grid>
 
                         <!--Read Offset-->
@@ -285,7 +285,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Content="R-Offset:" Margin="2,2,2,2" Name="lbl_ROffset"/>
-                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" Name="btn_ROffset"/>
+                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" Name="btn_ROffset" Click="btn_ROffset_Click"/>
                         </Grid>
 
                         <!--Read proximity-->
@@ -297,7 +297,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Content="Prox:" Margin="2,2,2,2" Name="lbl_Prox"/>
-                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" Name="btn_Prox"/>
+                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" Name="btn_Prox" Click="btn_Prox_Click"/>
                         </Grid>
 
                         <!--Speedset-->
@@ -310,7 +310,7 @@
 
                             <Label Content="Speedset:" Margin="2,2,2,2" Name="lbl_Speedset"/>
                             <TextBox Grid.Column="1" Text="100" Margin="2,2,2,2" Name="txt_Speedset"/>
-                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" Name="btn_Speedset"/>
+                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" Name="btn_Speedset" Click="btn_Speedset_Click"/>
                         </Grid>
                     </Grid>
                 </ScrollViewer>

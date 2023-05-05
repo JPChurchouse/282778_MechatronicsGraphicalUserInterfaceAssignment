@@ -115,7 +115,7 @@ void process_orders(String content)
     }
     Serial.println(message);
   }
-  else if (CurrentCommand[0] == "OFFSET") // Sets the offsets for the three stepper axes
+  else if (CurrentCommand[0] == "SOFFSET") // Sets the offsets for the three stepper axes
   {
     Serial.println("OFFSET," + String("~~~")); // Return the offset
   }

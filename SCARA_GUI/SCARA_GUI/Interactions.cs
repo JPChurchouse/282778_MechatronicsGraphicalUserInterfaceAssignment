@@ -39,7 +39,6 @@ namespace SCARA_GUI
             catch { }
         }
 
-
         // If not connected, connect, otherwise disconnect
         private void btn_Connect_Click(object sender, RoutedEventArgs e)
         {
@@ -95,5 +94,47 @@ namespace SCARA_GUI
         private void btn_Home_Click(object sender, RoutedEventArgs e) { SendData("HOME"); }
         
         private void LogBox_DoubleClicked(object sender, MouseButtonEventArgs e) { OpenLogFile(); }
+
+        private void btn_Wait_Click(object sender, RoutedEventArgs e)
+        {
+            if (Validate(txt_Wait.Text, 0, 999999999))
+            {
+                SendData($"WAIT,{txt_Wait.Text}");
+            }
+            else
+            {
+                LogMessage("WAIT invalid", MsgType.ALT);
+            }
+        }
+
+        private void btn_ID_Click(object sender, RoutedEventArgs e) { SendData($"ID");}
+
+        private void btn_SOffset_Click(object sender, RoutedEventArgs e)
+        {
+            if (Validate(txt_SOffset.Text, 0, 999999999))
+            {
+                SendData($"SOFFSET,{txt_SOffset.Text}");
+            }
+            else
+            {
+                LogMessage("SOFFSET invalid", MsgType.ALT);
+            }
+        }
+
+        private void btn_ROffset_Click(object sender, RoutedEventArgs e) { SendData($"ROFFSET"); }
+
+        private void btn_Prox_Click(object sender, RoutedEventArgs e) { SendData($"PROX"); }
+
+        private void btn_Speedset_Click(object sender, RoutedEventArgs e)
+        {
+            if (Validate(txt_Speedset.Text, 0, 200))
+            {
+                SendData($"SPEEDSET,{txt_Speedset.Text},{txt_Speedset.Text}");
+            }
+            else
+            {
+                LogMessage("SPEEDSET invalid", MsgType.ALT);
+            }
+        }
     }
 }
