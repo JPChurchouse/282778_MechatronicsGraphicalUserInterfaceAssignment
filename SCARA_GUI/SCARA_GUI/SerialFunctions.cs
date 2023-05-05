@@ -42,6 +42,7 @@ namespace SCARA_GUI
             data = data.Replace("\r", "");
             data = data.Replace("\n", "");
             Log.Information($"Received: \"{data}\"");
+            if (data.Contains("RECEIVED")) return;// Don't show the user the ECHO rx cmds
 
             LogMessage(data, MsgType.RXD);
         }
@@ -59,6 +60,7 @@ namespace SCARA_GUI
                 // Update labels
                 LogMessage("Setting up Serial Port", MsgType.SYS);
                 lbl_DeviceStatus.Content = "Connecting...";
+                btn_Connect.Content = "Connecting...";
 
                 // Update UI availibility for this function
                 btn_Connect.IsEnabled = false;
@@ -113,6 +115,10 @@ namespace SCARA_GUI
                     SendData("HOME");
 
                     //this.AcceptButton = button_AutoManual;
+                }
+                else
+                {
+                    LogMessage("Unable to connect to device", MsgType.SYS);
                 }
 
                 UpdateUiConnectionStatus();

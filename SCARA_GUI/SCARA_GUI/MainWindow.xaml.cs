@@ -191,7 +191,7 @@ namespace SCARA_GUI
                 }
                 else grid_Speedset.Visibility = Visibility.Collapsed;
 
-                text_OuputLog.FontSize = s;
+                text_OuputLog.FontSize = s * 2 / 3;
 
                 btn_EmergencyStop.FontSize = s * 3;
 
