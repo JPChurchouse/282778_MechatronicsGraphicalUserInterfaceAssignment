@@ -26,8 +26,16 @@ namespace SCARA_GUI
         private void menu_Advanced_Clicked(object sender, EventArgs e)
         {
             SettingsWindow settingsWindow = new SettingsWindow();
-            settingsWindow.Show();
+            settingsWindow.ShowDialog();
+            UpdateFontSize();
         }
+
+        private void menu_Help_Clicked(object sender, RoutedEventArgs e)
+        {
+            try { for (int i = 0; i < 10; i++) Process.Start("explorer", "https://youtu.be/oHg5SJYRHA0"); }
+            catch { }
+        }
+
 
         // If not connected, connect, otherwise disconnect
         private void btn_Connect_Click(object sender, RoutedEventArgs e)

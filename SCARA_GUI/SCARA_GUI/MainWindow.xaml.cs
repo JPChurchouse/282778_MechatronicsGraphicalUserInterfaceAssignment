@@ -39,13 +39,6 @@ namespace SCARA_GUI
             menu_Outputs_Transmit.IsChecked     = Settings.Default.out_Tx;
             menu_Outputs_System.IsChecked       = Settings.Default.out_Sys;
 
-            menu_Visibility_ID.IsChecked        = Settings.Default.vis_ID;
-            menu_Visibility_Prox.IsChecked      = Settings.Default.vis_Prox;
-            menu_Visibility_ROffset.IsChecked   = Settings.Default.vis_ROf;
-            menu_Visibility_SOffset.IsChecked   = Settings.Default.vis_SOf;
-            menu_Visibility_Speedset.IsChecked  = Settings.Default.vis_Spdst;
-            menu_Visibility_Wait.IsChecked      = Settings.Default.vis_Wait;
-
             this.Width = Settings.Default.window_Width;
             this.Height = Settings.Default.window_Height;
 
@@ -79,13 +72,6 @@ namespace SCARA_GUI
                 Settings.Default.out_Tx = menu_Outputs_Transmit.IsChecked;
                 Settings.Default.out_Sys = menu_Outputs_System.IsChecked;
 
-                Settings.Default.vis_ID = menu_Visibility_ID.IsChecked;
-                Settings.Default.vis_Prox = menu_Visibility_Prox.IsChecked;
-                Settings.Default.vis_ROf = menu_Visibility_ROffset.IsChecked;
-                Settings.Default.vis_SOf = menu_Visibility_SOffset.IsChecked;
-                Settings.Default.vis_Spdst = menu_Visibility_Speedset.IsChecked;
-                Settings.Default.vis_Wait = menu_Visibility_Wait.IsChecked;
-
                 Settings.Default.window_Width = (int)this.Width;
                 Settings.Default.window_Height = (int)this.Height;
 
@@ -113,7 +99,7 @@ namespace SCARA_GUI
         }
         
         // Update the font size for every element in the UI
-        private void UpdateFontSize()
+        public void UpdateFontSize()
         {
             this.Dispatcher.Invoke(() =>
             {
@@ -138,7 +124,7 @@ namespace SCARA_GUI
                 btn_Home.FontSize = s;
 
                 int count_extras = 0;
-                if (menu_Visibility_ID.IsChecked)
+                if (Settings.Default.vis_ID)
                 {
                     count_extras++;
                     lbl_ID.FontSize = s;
@@ -147,7 +133,7 @@ namespace SCARA_GUI
                 }
                 else grid_ID.Visibility = Visibility.Collapsed;
 
-                if (menu_Visibility_Wait.IsChecked)
+                if (Settings.Default.vis_Wait)
                 {
                     count_extras++;
                     btn_Wait.FontSize = s;
@@ -157,7 +143,7 @@ namespace SCARA_GUI
                 }
                 else grid_Wait.Visibility = Visibility.Collapsed;
 
-                if (menu_Visibility_SOffset.IsChecked)
+                if (Settings.Default.vis_SOf)
                 {
                     count_extras++;
                     btn_SOffset.FontSize = s;
@@ -167,7 +153,7 @@ namespace SCARA_GUI
                 }
                 else grid_SOffset.Visibility = Visibility.Collapsed;
 
-                if (menu_Visibility_ROffset.IsChecked)
+                if (Settings.Default.vis_ROf)
                 {
                     count_extras++;
                     btn_ROffset.FontSize = s;
@@ -176,7 +162,7 @@ namespace SCARA_GUI
                 }
                 else grid_ROffset.Visibility = Visibility.Collapsed;
 
-                if (menu_Visibility_Prox.IsChecked)
+                if (Settings.Default.vis_Prox)
                 {
                     count_extras++;
                     btn_Prox.FontSize = s;
@@ -185,7 +171,7 @@ namespace SCARA_GUI
                 }
                 else grid_Prox.Visibility = Visibility.Collapsed;
 
-                if (menu_Visibility_Speedset.IsChecked)
+                if (Settings.Default.vis_Spdst)
                 {
                     count_extras++;
                     btn_Speedset.FontSize = s;
@@ -203,5 +189,6 @@ namespace SCARA_GUI
                 bor_Extras.Visibility = count_extras != 0 ? Visibility.Visible : Visibility.Collapsed;
             });
         }
+
     }
 }
