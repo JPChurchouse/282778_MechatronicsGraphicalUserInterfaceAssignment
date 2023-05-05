@@ -11,15 +11,15 @@ namespace SCARA_GUI
 {
     public partial class MainWindow : Window
     {
-        private string LogFile;
+        private string file_Logging;
         private void InitLog()
         {
             string timenow = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
-            LogFile = $"logs\\{timenow}_SCARA_GUI.log";
+            file_Logging = $"logs\\{timenow}_SCARA_GUI.log";
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
                 .WriteTo.Console()
-                .WriteTo.File(LogFile)
+                .WriteTo.File(file_Logging)
                 .CreateLogger();
             Log.Information("This programme was developed by J. P. Churchouse");
             Log.Information("Started programme at time: " + timenow);
@@ -48,7 +48,7 @@ namespace SCARA_GUI
         public void OpenLogFile()
         {
             string dire = Environment.CurrentDirectory;
-            try { Process.Start("explorer.exe", $"/select, {dire}\\{LogFile}"); }
+            try { Process.Start("explorer.exe", $"/select, {dire}\\{file_Logging}"); }
             catch { }
         }
     }

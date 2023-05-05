@@ -190,5 +190,29 @@ namespace SCARA_GUI
             });
         }
 
+        // MOVE validation function
+        private bool Validate(string s, int min, int max)
+        {
+            if (Int32.TryParse(s, out int i))
+            {
+                if (i <= max && i >= min) return true;
+            }
+            return false;
+        }
+
+        // Generate MOVE cmd
+        private string ParseUiToMoveCmd()
+        {
+            string issues = "";
+            if (!Validate(txt_MoveW.Text, Settings.Default.min_W, Settings.Default.max_W)) issues += "W";
+            if (!Validate(txt_MoveX.Text, Settings.Default.min_X, Settings.Default.max_X)) issues += "X";
+            if (!Validate(txt_MoveY.Text, Settings.Default.min_Y, Settings.Default.max_Y)) issues += "Y";
+        
+            // All valid
+            if (issues == "") return $"MOVE,{txt_MoveX.Text},{txt_MoveY.Text},{txt_MoveW.Text}";
+            
+            // Invalid
+            throw new Exception($"MOVE invalid: {issues}");
+        }
     }
 }

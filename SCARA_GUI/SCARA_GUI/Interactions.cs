@@ -54,25 +54,12 @@ namespace SCARA_GUI
         {
             try
             {
-                Validate(txt_MoveW.Text, Settings.Default.min_W, Settings.Default.max_W, "W");
-                Validate(txt_MoveX.Text, Settings.Default.min_X, Settings.Default.max_X, "X");
-                Validate(txt_MoveY.Text, Settings.Default.min_Y, Settings.Default.max_Y, "Y");
+                SendData(ParseUiToMoveCmd());
             }
             catch (Exception exc)
             {
-                LogMessage($"Invalid MOVE command: {exc.Message}",MsgType.ALT);
-                return;
+                LogMessage(exc.Message, MsgType.ALT);
             }
-            SendData($"MOVE,{txt_MoveX.Text},{txt_MoveY.Text},{txt_MoveW.Text}");
-        }
-        // MOVE validation function
-        private void Validate(string s, int min, int max, string ID)
-        {
-            if (Int32.TryParse(s, out int i))
-            {
-                if (i > max || i < min) throw new Exception(ID);
-            }
-            else throw new Exception(ID);
         }
 
         // Piston cmd
