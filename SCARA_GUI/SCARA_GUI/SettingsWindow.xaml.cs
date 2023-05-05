@@ -38,41 +38,78 @@ namespace SCARA_GUI
 
         private void ValidateAndSave()
         {
+            int changes = 0;
             // Piston
             //txt_PistonInactive.Text = Settings.Default.air_UP;
             //txt_PistonActive.Text = Settings.Default.air_DOWN;
             
-            if (!Validate(txt_PistonDelay.Text,0,10000))
+            if (!Validate(txt_PistonDelay.Text, 0, 10000))
+            {
                 txt_PistonDelay.Text = Settings.Default.air_DELAY_P.ToString();
+                changes++;
+            }
 
             // Gripper
             //txt_GripperInactive.Text = Settings.Default.air_OPEN;
             //txt_GripperActive.Text = Settings.Default.air_CLOSE;
 
             if (!Validate(txt_GripperDelay.Text, 0, 10000))
+            {
                 txt_GripperDelay.Text = Settings.Default.air_DELAY_G.ToString();
+                changes++;
+            }
 
             // Maxes
             if (!Validate(txt_MaxW.Text, 0, 200))
+            {
                 txt_MaxW.Text = Settings.Default.max_W.ToString();
+                changes++;
+            }
 
             if (!Validate(txt_MaxX.Text, 0, 200))
+            {
                 txt_MaxX.Text = Settings.Default.max_X.ToString();
+                changes++;
+            }
 
             if (!Validate(txt_MaxY.Text, 0, 200))
+            {
                 txt_MaxY.Text = Settings.Default.max_Y.ToString();
+                changes++;
+            }
 
             // Mins
             if (!Validate(txt_MinW.Text, -200, 0))
+            {
                 txt_MinW.Text = Settings.Default.min_W.ToString();
+                changes++;
+            }
 
             if (!Validate(txt_MinX.Text, -200, 0))
+            {
                 txt_MinX.Text = Settings.Default.min_X.ToString();
+                changes++;
+            }
 
             if (!Validate(txt_MinY.Text, -200, 0))
+            {
                 txt_MinY.Text = Settings.Default.min_Y.ToString();
+                changes++;
+            }
 
 
+            if (MessageBox.Show(
+                (changes > 0 ? $"{changes} settings were outside of parameters and reverted.\n":"") +
+                "Are you sure you want to save these settings?\n" +
+                "The manufacturer takes no responsibility for any dammages as a result of changed settings.",
+                "Save settings?",
+                MessageBoxButton.YesNoCancel,
+                MessageBoxImage.Question,
+                MessageBoxResult.Cancel)
+                != MessageBoxResult.Yes)
+            {
+                return;
+            }
             UiToSettings();
         }
 
