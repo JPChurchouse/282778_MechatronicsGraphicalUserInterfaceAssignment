@@ -14,42 +14,31 @@ namespace SCARA_GUI
 {
     public partial class MainWindow : Window
     {
-        private void WindowResized(object sender, EventArgs e) 
-        { 
-            UpdateFontSize(); 
-        }
+        private void WindowResized(object sender, EventArgs e)  { UpdateFontSize(); }
 
-        private void menu_OpenFile_Clicked(object sender, EventArgs args)
-        {
-            OpenLogFile();
-        }
+        private void menu_OpenFile_Clicked(object sender, EventArgs args) { OpenLogFile(); }
 
-        private void menu_Vis_Clicked(object sender, EventArgs e)
-        {
-            UpdateFontSize();
-        }
+        private void menu_Vis_Clicked(object sender, EventArgs e) { UpdateFontSize(); }
 
-        private void menu_Out_Clicked(object sender, EventArgs e)
-        {
-            text_OuputLog.Text = string.Empty;
-        }
+        private void menu_Out_Clicked(object sender, EventArgs e) { text_OuputLog.Text = string.Empty; }
 
+        // Show the advaced settings window
         private void menu_Advanced_Clicked(object sender, EventArgs e)
         {
             SettingsWindow settingsWindow = new SettingsWindow();
             settingsWindow.Show();
         }
 
-
+        // If not connected, connect, otherwise disconnect
         private void btn_Connect_Click(object sender, RoutedEventArgs e)
         {
             if (!SERIALPORT.IsOpen) ScanAndConnect();
             else Disconnect();
         }
-        private void btn_Stop_Click(object sender, RoutedEventArgs e)
-        {
-            SendData("STOP");
-        }
+
+        private void btn_Stop_Click(object sender, RoutedEventArgs e) { SendData("STOP"); }
+        
+        // Validate the inputs and send MOVE command
         private void btn_Move_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -65,6 +54,7 @@ namespace SCARA_GUI
             }
             SendData($"MOVE,{txt_MoveX.Text},{txt_MoveY.Text},{txt_MoveW.Text}");
         }
+        // MOVE validation function
         private void Validate(string s, int min, int max, string ID)
         {
             if (Int32.TryParse(s, out int i))
@@ -74,6 +64,7 @@ namespace SCARA_GUI
             else throw new Exception(ID);
         }
 
+        // Piston cmd
         private void btn_Piston_Click(object sender, RoutedEventArgs e)
         {
             if (btn_Piston.Content.ToString().Contains("UP"))
@@ -87,6 +78,8 @@ namespace SCARA_GUI
                 SendData($"AIR,{Settings.Default.air_DOWN}");
             }
         }
+
+        // Gripper cmd
         private void btn_Gripper_Click(object sender, RoutedEventArgs e)
         {
             if (btn_Gripper.Content.ToString().Contains("OPEN"))
@@ -100,14 +93,9 @@ namespace SCARA_GUI
                 SendData($"AIR,{Settings.Default.air_CLOSE}");
             }
         }
-        private void btn_Home_Click(object sender, RoutedEventArgs e)
-        {
-            SendData("HOME");
-        }
-        private void LogBox_DoubleClicked(object sender, MouseButtonEventArgs e) 
-        { 
-            OpenLogFile(); 
-        }
-
+        
+        private void btn_Home_Click(object sender, RoutedEventArgs e) { SendData("HOME"); }
+        
+        private void LogBox_DoubleClicked(object sender, MouseButtonEventArgs e) { OpenLogFile(); }
     }
 }

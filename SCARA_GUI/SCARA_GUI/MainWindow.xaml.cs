@@ -55,6 +55,7 @@ namespace SCARA_GUI
             Log.Information("Ready");
         }
 
+        // Confirm closure, save settings
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             this.Dispatcher.Invoke(() =>
@@ -95,6 +96,7 @@ namespace SCARA_GUI
             });
         }
 
+        // Update the status panel's elements to match current connection status
         private void UpdateUiConnectionStatus()
         {
             this.Dispatcher.Invoke(() =>
@@ -109,13 +111,15 @@ namespace SCARA_GUI
                 menu_Outputs.IsEnabled = !open;
             });
         }
+        
+        // Update the font size for every element in the UI
         private void UpdateFontSize()
         {
             this.Dispatcher.Invoke(() =>
             {
-                Log.Debug($"rezize height: {this.Height} and width: {this.Width}");
+                // Calculate the new font size
                 int s = ( (int)this.Width/8 + (int)this.Height*4 ) / 100;
-                Log.Debug($"Size: {s}");
+                Log.Debug($"Resize - H: {this.Height} W: {this.Width} S: {s}");
 
                 btn_Connect.FontSize = s;
                 lbl_ConnectionStatus.FontSize = s;

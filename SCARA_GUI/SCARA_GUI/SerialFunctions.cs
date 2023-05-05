@@ -13,6 +13,7 @@ namespace SCARA_GUI
 {
     public partial class MainWindow : Window
     {
+        // The global SerialPort object
         private SerialPort SERIALPORT = new SerialPort();
 
         // Initalise serial ports
@@ -29,11 +30,13 @@ namespace SCARA_GUI
             SERIALPORT.ErrorReceived += SERIALPORT_ErrorReceived;
         }
 
+        // Serial Port error handler
         private void SERIALPORT_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
         {
             UpdateUiConnectionStatus();
         }
 
+        // Serial Port RX handler
         private void SERIALPORT_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             if (SERIALPORT.BytesToRead == 0) return;
@@ -47,7 +50,7 @@ namespace SCARA_GUI
             LogMessage(data, MsgType.RXD);
         }
 
-        // Scan for ports and connect to them
+        // Scan for the right device and connect to it
         private void ScanAndConnect()
         {
             this.Dispatcher.Invoke(() =>
@@ -126,7 +129,7 @@ namespace SCARA_GUI
             });
         }
 
-        // Disconnect all ports
+        // Disconnect Serial Port
         private void Disconnect()
         {
             if (SERIALPORT.IsOpen)
@@ -142,12 +145,12 @@ namespace SCARA_GUI
             UpdateUiConnectionStatus();
         }
 
-        // Process sending data
+        // Process sending data on the Serial Port
         private void SendData(string data)
         {
             if (!SERIALPORT.IsOpen)
             {
-                LogMessage("Not connected", MsgType.ALT);
+                LogMessage("Connection error", MsgType.ALT);
             }
 
             else if (data == null || data == "")
@@ -172,9 +175,7 @@ namespace SCARA_GUI
             UpdateUiConnectionStatus();
         }
 
-        private string ParsePortInfo(string info)
-        {
-            return info.Substring(info.LastIndexOf("(COM")).Replace("(", string.Empty).Replace(")", string.Empty);
-        }
+        // Convert the COM Port message to a "COM x" string
+        private string ParsePortInfo(string info) { return info.Substring(info.LastIndexOf("(COM")).Replace("(", string.Empty).Replace(")", string.Empty); }
     }
 }

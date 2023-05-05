@@ -85,6 +85,8 @@
                 VerticalAlignment="Center"
                 HorizontalAlignment="Stretch"
                 Margin="10,2,2,2"
+                Foreground="White"
+                FontWeight="Bold"
                 />
             <Button
                 Name="btn_Connect"
@@ -108,6 +110,8 @@
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
             Margin="2,2,2,2"
+            Foreground="White"
+            FontWeight="Bold"
         />
 
         <!--Inputs panel-->
