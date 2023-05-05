@@ -32,7 +32,10 @@ namespace SCARA_GUI
 
         private void menu_Help_Clicked(object sender, RoutedEventArgs e)
         {
-            try { for (int i = 0; i < 10; i++) Process.Start("explorer", "https://youtu.be/oHg5SJYRHA0"); }
+            try 
+            { 
+                for (int i = 0; i < 10; i++) Process.Start("explorer", "https://youtu.be/oHg5SJYRHA0"); 
+            }
             catch { }
         }
 

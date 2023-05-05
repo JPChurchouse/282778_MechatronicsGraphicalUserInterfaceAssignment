@@ -208,7 +208,7 @@
                         Margin="2,2,2,2" 
                         />
                     <Button 
-                        Grid.Row="3" 
+                        Grid.Row="2" 
                         Grid.ColumnSpan="2" 
                         Content="Home" 
                         Margin="2,2,2,2" 

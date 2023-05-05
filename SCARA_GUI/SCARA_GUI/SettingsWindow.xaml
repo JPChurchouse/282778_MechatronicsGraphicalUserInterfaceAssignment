@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SCARA_GUI"
         mc:Ignorable="d"
         Title="SCARA Controller - Settings" 
-        Height="200" 
+        Height="300" 
         Width="300" 
         WindowState="Normal" 
         ResizeMode="NoResize" 
@@ -28,16 +28,17 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="143*"/>
+                        <ColumnDefinition Width="57*"/>
+                        <ColumnDefinition Width="86*"/>
                     </Grid.ColumnDefinitions>
-                    
-                    <CheckBox Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_Wait" Content="Wait"/>
-                    <CheckBox Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_ROf" Content="Read Offset"/>
-                    <CheckBox Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_SOf" Content="Set Offset"/>
-                    <CheckBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_Spd" Content="Speedset"/>
-                    <CheckBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_Prox" Content="Proximity"/>
-                    <CheckBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_ID" Content="ID"/>
+
+                    <CheckBox Grid.Row="0" Grid.Column="0" Margin="4,0,4,0" VerticalAlignment="Center" Name="txt_Wait" Content="Wait" Click="Any_Changed"/>
+                    <CheckBox Grid.Row="1" Grid.Column="0" Margin="4,0,4,0" VerticalAlignment="Center" Name="txt_ROf" Content="Read Offset" Click="Any_Changed"/>
+                    <CheckBox Grid.Row="2" Grid.Column="0" Margin="4,0,4,0" VerticalAlignment="Center" Name="txt_SOf" Content="Set Offset" Click="Any_Changed"/>
+                    <CheckBox Grid.Row="0" Grid.Column="1" Margin="4,0,4,0" VerticalAlignment="Center" Name="txt_Spd" Content="Speedset" Click="Any_Changed"/>
+                    <CheckBox Grid.Row="1" Grid.Column="1" Margin="4,0,4,0" VerticalAlignment="Center" Name="txt_Prox" Content="Proximity" Click="Any_Changed"/>
+                    <CheckBox Grid.Row="2" Grid.Column="1" Margin="4,0,4,0" VerticalAlignment="Center" Name="txt_ID" Content="ID" Click="Any_Changed"/>
                 </Grid>
             </TabItem>
             <!--Air-->
@@ -65,14 +66,14 @@
                     <Label Grid.Row="2" Content="Gripper" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center"/>
 
                     <!--Piston-->
-                    <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_PistonInactive"/>
-                    <TextBox Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_PistonActive"/>
-                    <TextBox Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_PistonDelay"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_PistonInactive" LostFocus="Any_Changed"/>
+                    <TextBox Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_PistonActive" LostFocus="Any_Changed"/>
+                    <TextBox Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_PistonDelay" LostFocus="Any_Changed"/>
 
                     <!--Gripper-->
-                    <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_GripperInactive"/>
-                    <TextBox Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_GripperActive"/>
-                    <TextBox Grid.Row="2" Grid.Column="3" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_GripperDelay"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_GripperInactive" LostFocus="Any_Changed"/>
+                    <TextBox Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_GripperActive" LostFocus="Any_Changed"/>
+                    <TextBox Grid.Row="2" Grid.Column="3" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_GripperDelay" LostFocus="Any_Changed"/>
                 </Grid>
             </TabItem>
             <!--Mins and Maxes-->
@@ -99,14 +100,14 @@
                     <Label Grid.Row="2" Content="Max" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center"/>
 
                     <!--Mins-->
-                    <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_MinW"/>
-                    <TextBox Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_MinX"/>
-                    <TextBox Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_MinY"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_MinW" LostFocus="Any_Changed"/>
+                    <TextBox Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_MinX" LostFocus="Any_Changed"/>
+                    <TextBox Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_MinY" LostFocus="Any_Changed"/>
 
                     <!--Maxes-->
-                    <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_MaxW"/>
-                    <TextBox Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_MaxX"/>
-                    <TextBox Grid.Row="2" Grid.Column="3" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_MaxY"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_MaxW" LostFocus="Any_Changed"/>
+                    <TextBox Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_MaxX" LostFocus="Any_Changed"/>
+                    <TextBox Grid.Row="2" Grid.Column="3" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_MaxY" LostFocus="Any_Changed"/>
                 </Grid>
             </TabItem>
             <!--Serial-->
@@ -126,8 +127,8 @@
                     <Label Grid.Row="1" Content="Timeout:" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center"/>
 
                     <!--Mins-->
-                    <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_Baudrate"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_Timout"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_Baudrate" LostFocus="Any_Changed"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_Timeout" LostFocus="Any_Changed"/>
                 </Grid>
             </TabItem>
 

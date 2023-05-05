@@ -310,5 +310,29 @@ namespace SCARA_GUI.Properties {
                 this["window_Width"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("115200")]
+        public int ser_Baud {
+            get {
+                return ((int)(this["ser_Baud"]));
+            }
+            set {
+                this["ser_Baud"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("500")]
+        public int ser_Tim {
+            get {
+                return ((int)(this["ser_Tim"]));
+            }
+            set {
+                this["ser_Tim"] = value;
+            }
+        }
     }
 }

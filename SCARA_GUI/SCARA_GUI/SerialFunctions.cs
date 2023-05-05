@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
 using System.Management;
+using SCARA_GUI.Properties;
 
 namespace SCARA_GUI
 {
@@ -69,6 +70,10 @@ namespace SCARA_GUI
                 btn_Connect.IsEnabled = false;
                 this.Cursor = Cursors.Wait;
 
+                // Apply user settings
+                SERIALPORT.ReadTimeout = Settings.Default.ser_Tim;
+                SERIALPORT.WriteTimeout = Settings.Default.ser_Tim;
+                SERIALPORT.BaudRate = Settings.Default.ser_Baud;
 
                 // Connect to ports
                 try

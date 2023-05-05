@@ -21,24 +21,34 @@ namespace SCARA_GUI
     /// </summary>
     public partial class SettingsWindow : Window
     {
+        private bool unsaved = false;
         public SettingsWindow()
         {
             InitializeComponent();
             SettingsToUi();
         }
 
+        private void Any_Changed(object sender, EventArgs e)
+        {
+            unsaved = true;
+            btn_Confirm.IsEnabled = unsaved;
+        }
+
         private void SettingsWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            ValidateAndSave();
+            ValidateAll();
         }
         private void Confirm_Click(object sender, EventArgs e)
         {
-            ValidateAndSave();
+            ValidateAll();
         }
 
-        private void ValidateAndSave()
+        private void ValidateAll()
         {
+            if (!unsaved) return;
+
             int changes = 0;
+
             // Piston
             //txt_PistonInactive.Text = Settings.Default.air_UP;
             //txt_PistonActive.Text = Settings.Default.air_DOWN;
@@ -97,6 +107,18 @@ namespace SCARA_GUI
                 changes++;
             }
 
+            // Serial
+            if (!Validate(txt_Baudrate.Text, 0, 999999999))
+            {
+                txt_MinY.Text = Settings.Default.ser_Baud.ToString();
+                changes++;
+            }
+            if (!Validate(txt_Timeout.Text, 0, 2000))
+            {
+                txt_MinY.Text = Settings.Default.ser_Tim.ToString();
+                changes++;
+            }
+
 
             if (MessageBox.Show(
                 (changes > 0 ? $"{changes} settings were outside of parameters and reverted.\n":"") +
@@ -142,6 +164,10 @@ namespace SCARA_GUI
             txt_SOf.IsChecked   = Settings.Default.vis_SOf;
             txt_Spd.IsChecked   = Settings.Default.vis_Spdst;
             txt_Wait.IsChecked  = Settings.Default.vis_Wait;
+
+            // Serial
+            txt_Baudrate.Text = Settings.Default.ser_Baud.ToString();
+            txt_Timeout.Text = Settings.Default.ser_Tim.ToString();
         }
 
         private void UiToSettings() 
@@ -175,6 +201,10 @@ namespace SCARA_GUI
                 Settings.Default.vis_SOf    = (bool)txt_SOf.IsChecked;
                 Settings.Default.vis_Spdst  = (bool)txt_Spd.IsChecked;
                 Settings.Default.vis_Wait   = (bool)txt_Wait.IsChecked;
+
+                // Serial
+                Settings.Default.ser_Baud = StoI(txt_Baudrate.Text);
+                Settings.Default.ser_Tim = StoI(txt_Timeout.Text);
             }
             catch 
             {
@@ -182,6 +212,9 @@ namespace SCARA_GUI
             }
 
             Settings.Default.Save();
+
+            unsaved = false;
+            btn_Confirm.IsEnabled = unsaved;
         }
 
         private int StoI(string s)
