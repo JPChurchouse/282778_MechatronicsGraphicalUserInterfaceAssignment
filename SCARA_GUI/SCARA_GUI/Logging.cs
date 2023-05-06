@@ -47,8 +47,12 @@ namespace SCARA_GUI
         }
         public void OpenLogFile()
         {
-            string dire = Environment.CurrentDirectory;
-            try { Process.Start("explorer.exe", $"/select, {dire}\\{file_Logging}"); }
+            try { Process.Start("explorer.exe", $"/select, {Environment.CurrentDirectory}\\{file_Logging}"); }
+            catch { }
+        }
+        public void OpenHelpFile()
+        {
+            try { Process.Start("explorer.exe", "SCARA_GUI_Help.pdf"); }
             catch { }
         }
     }

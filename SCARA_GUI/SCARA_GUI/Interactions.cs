@@ -30,14 +30,7 @@ namespace SCARA_GUI
             UpdateFontSize();
         }
 
-        private void menu_Help_Clicked(object sender, RoutedEventArgs e)
-        {
-            try 
-            { 
-                for (int i = 0; i < 10; i++) Process.Start("explorer", "https://youtu.be/oHg5SJYRHA0"); 
-            }
-            catch { }
-        }
+        private void menu_Help_Clicked(object sender, RoutedEventArgs e) { OpenHelpFile(); }
 
         // If not connected, connect, otherwise disconnect
         private void btn_Connect_Click(object sender, RoutedEventArgs e)
