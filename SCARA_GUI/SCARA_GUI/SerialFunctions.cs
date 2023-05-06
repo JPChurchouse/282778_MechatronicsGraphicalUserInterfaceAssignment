@@ -100,12 +100,15 @@ namespace SCARA_GUI
                             port_connected = SERIALPORT.IsOpen;
                             LogMessage($"Connection {(port_connected ? "OPEN" : "FAILED")}", MsgType.SYS);
                         }
+                        if (port_connected) break;
                     }
                 }
                 catch (Exception ex) { Log.Error(ex.Message); }
 
                 if (port_connected)
                 {
+                    Log.Debug($"Baudrate: {SERIALPORT.BaudRate}");
+
                     // Show warning
                     WMPLib.WindowsMediaPlayer player = new WMPLib.WindowsMediaPlayer();
                     player.URL = "alarm.mp3";
