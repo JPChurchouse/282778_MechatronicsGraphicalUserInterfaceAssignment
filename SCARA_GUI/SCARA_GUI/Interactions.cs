@@ -60,12 +60,12 @@ namespace SCARA_GUI
             if (btn_Piston.Content.ToString().Contains("UP"))
             {
                 btn_Piston.Content = "DOWN";
-                SendData($"AIR,{Settings.Default.air_UP}");
+                SendData($"AIR,{Settings.Default.air_UP},{Settings.Default.air_DELAY_P}");
             }
             else
             {
                 btn_Piston.Content = "UP";
-                SendData($"AIR,{Settings.Default.air_DOWN}");
+                SendData($"AIR,{Settings.Default.air_DOWN},{Settings.Default.air_DELAY_P}");
             }
         }
 
@@ -75,12 +75,12 @@ namespace SCARA_GUI
             if (btn_Gripper.Content.ToString().Contains("OPEN"))
             {
                 btn_Gripper.Content = "CLOSE";
-                SendData($"AIR,{Settings.Default.air_OPEN}");
+                SendData($"AIR,{Settings.Default.air_OPEN},{Settings.Default.air_DELAY_G}");
             }
             else
             {
                 btn_Gripper.Content = "OPEN";
-                SendData($"AIR,{Settings.Default.air_CLOSE}");
+                SendData($"AIR,{Settings.Default.air_CLOSE},{Settings.Default.air_DELAY_G}");
             }
         }
         

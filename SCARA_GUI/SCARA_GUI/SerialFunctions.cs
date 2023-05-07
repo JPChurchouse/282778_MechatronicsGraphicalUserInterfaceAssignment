@@ -40,15 +40,22 @@ namespace SCARA_GUI
         // Serial Port RX handler
         private void SERIALPORT_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            if (SERIALPORT.BytesToRead == 0) return;
+            try
+            {
+                if (SERIALPORT.BytesToRead == 0) return;
             
-            string data = SERIALPORT.ReadLine();
-            data = data.Replace("\r", "");
-            data = data.Replace("\n", "");
-            Log.Information($"Received: \"{data}\"");
-            if (data.Contains("RECEIVED")) return;// Don't show the user the ECHO rx cmds
+                string data = SERIALPORT.ReadLine();
+                data = data.Replace("\r", "");
+                data = data.Replace("\n", "");
+                Log.Information($"Received: \"{data}\"");
+                if (data.Contains("RECEIVED")) return;// Don't show the user the ECHO rx cmds
 
-            LogMessage(data, MsgType.RXD);
+                LogMessage(data, MsgType.RXD);
+            }
+            catch (Exception exc)
+            {
+                Log.Debug($"Failed to read serial: {exc.ToString()}");
+            }
         }
 
         // Scan for the right device and connect to it
