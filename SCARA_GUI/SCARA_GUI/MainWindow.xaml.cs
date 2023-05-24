@@ -105,7 +105,7 @@ namespace SCARA_GUI
             {
                 // Calculate the new font size
                 int s = ( (int)this.Width/8 + (int)this.Height*4 ) / 100;
-                Log.Debug($"Resize - H: {this.Height} W: {this.Width} S: {s}");
+                Log.Debug($"Resize H: {this.Height} W: {this.Width} S: {s}");
 
                 btn_Connect.FontSize = s;
                 lbl_ConnectionStatus.FontSize = s;

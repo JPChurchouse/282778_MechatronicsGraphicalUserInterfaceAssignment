@@ -14,7 +14,7 @@ namespace SCARA_GUI
 {
     public partial class MainWindow : Window
     {
-        private void WindowResized(object sender, EventArgs e)  { UpdateFontSize(); }
+        private void WindowResized(object sender, EventArgs e) { UpdateFontSize(); }
 
         private void menu_OpenFile_Clicked(object sender, EventArgs args) { OpenLogFile(); }
 
@@ -39,7 +39,10 @@ namespace SCARA_GUI
             else Disconnect();
         }
 
-        private void btn_Stop_Click(object sender, RoutedEventArgs e) { SendData("STOP"); }
+        private void btn_Stop_Click(object sender, RoutedEventArgs e) 
+        { 
+            Disconnect();
+        }
         
         // Validate the inputs and send MOVE command
         private void btn_Move_Click(object sender, RoutedEventArgs e)

@@ -48,11 +48,18 @@ void loop()
     if (CB_ReadIndex  >= CommandBufferSize) CB_ReadIndex  = 0;
 
     String rx = Serial.readStringUntil('\n');
-    if (rx.indexOf("STOP") == -1) CommandBuffer[CB_WriteIndex++] = rx;
+    // "STOP" does NOT exist in the string
+    if (rx.indexOf("STOP") == -1) 
+    {
+      CommandBuffer[CB_WriteIndex++] = rx;
+      digitalWrite(led, LOW);
+    }
+    // "STOP" DOES exist in the string
     else
     {
       Serial.println("STOPPED");
       ClearBuffer();
+      digitalWrite(led, HIGH);
     }
 
     if (echo_commands) Serial.println("RECEIVED: " + rx);

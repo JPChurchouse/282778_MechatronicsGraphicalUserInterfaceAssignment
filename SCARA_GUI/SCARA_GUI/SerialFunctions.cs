@@ -149,8 +149,8 @@ namespace SCARA_GUI
         {
             if (SERIALPORT.IsOpen)
             {
-                LogMessage("Closing Serial Port", MsgType.SYS);
                 SendData("STOP");
+                LogMessage("Closing Serial Port", MsgType.SYS);
                 SERIALPORT.Close();
             }
             else

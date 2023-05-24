@@ -13,7 +13,8 @@
         MinHeight="450" 
         MinWidth="600" Icon="/1701019.ico"
         SizeChanged="WindowResized"
-        Closing="MainWindow_Closing">
+        Closing="MainWindow_Closing" 
+        StateChanged="WindowResized">
 
     <Grid>
         <Grid.RowDefinitions>
