@@ -132,5 +132,29 @@ namespace SCARA_GUI
                 LogMessage("SPEEDSET invalid", MsgType.ALT);
             }
         }
+
+        private void btn_JogAny_Click(object sender, RoutedEventArgs e)
+        {
+            Log.Debug($"dragging: {sld_MoveW.Value}");
+        }
+
+
+        private void sld_MoveW_Dragging(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
+        {
+            Log.Debug($"dragging: {sld_MoveW.Value}");
+        }
+        private void sld_MoveX_Dragging(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
+        {
+            Log.Debug($"dragging: {sld_MoveW.Value}");
+        }
+        private void sld_MoveY_Dragging(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
+        {
+            Log.Debug($"dragging: {sld_MoveW.Value}");
+        }
+
+        private void sld_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        {
+            Log.Debug($"drag completed: {sld_MoveW.Value}");
+        }
     }
 }

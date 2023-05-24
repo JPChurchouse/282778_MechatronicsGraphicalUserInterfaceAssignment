@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Massey Univeristy - School of Food and Advanced Technology - SCARA 🦾" 
         Height="450" 
-        Width="600" 
+        Width="800" 
         WindowState="Normal" 
         ResizeMode="CanResize" 
         MinHeight="450" 
@@ -23,7 +23,7 @@
             <RowDefinition Name="Body" Height="10*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Name="Controls" Width="2*" MinWidth="300"/>
+            <ColumnDefinition Name="Controls" Width="3*" MinWidth="400"/>
             <ColumnDefinition Name="Border" Width="Auto"/>
             <ColumnDefinition Name="Output" Width="*" MinWidth="150"/>
         </Grid.ColumnDefinitions>
@@ -110,7 +110,7 @@
         <!--Inputs panel-->
         <Grid Grid.Row="2" Name="panel_Inputs">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -149,8 +149,11 @@
                 BorderBrush="CornflowerBlue">
                 <Grid>
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -159,15 +162,37 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
+                    <!--Labels-->
                     <Label Grid.Row="0" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Left" Content="W:" Name="lbl_MoveW"/>
                     <Label Grid.Row="1" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Left" Content="X:" Name="lbl_MoveX"/>
                     <Label Grid.Row="2" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Y:" Name="lbl_MoveY"/>
 
+                    <!--MOVE button-->
                     <Button Grid.Row="3" Grid.ColumnSpan="2" Margin="2,2,2,2" Content="Move" Click="btn_Move_Click" Name="btn_MoveExecute"/>
 
+                    <!--Text boxes-->
                     <TextBox Grid.Column="1" Grid.Row="0" Margin="2,2,2,2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="0" Name="txt_MoveW" MaxLines="1" AcceptsTab="True"/>
                     <TextBox Grid.Column="1" Grid.Row="1" Margin="2,2,2,2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="0" Name="txt_MoveX" MaxLines="1" AcceptsTab="True"/>
                     <TextBox Grid.Column="1" Grid.Row="2" Margin="2,2,2,2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="0" Name="txt_MoveY" MaxLines="1" AcceptsTab="True"/>
+
+                    <!--Jog down-->
+                    <Button Grid.Row="0" Grid.Column="2" Margin="8,8,8,8" Content="-" Click="btn_JogAny_Click" Name="btn_MoveWJogDown"/>
+                    <Button Grid.Row="1" Grid.Column="2" Margin="8,8,8,8" Content="-" Click="btn_JogAny_Click" Name="btn_MoveXJogDown"/>
+                    <Button Grid.Row="2" Grid.Column="2" Margin="8,8,8,8" Content="-" Click="btn_JogAny_Click" Name="btn_MoveYJogDown"/>
+
+                    <!--Jog up-->
+                    <Button Grid.Row="0" Grid.Column="4" Margin="8,8,8,8" Content="+" Click="btn_JogAny_Click" Name="btn_MoveWJogUp"/>
+                    <Button Grid.Row="1" Grid.Column="4" Margin="8,8,8,8" Content="+" Click="btn_JogAny_Click" Name="btn_MoveXJogUp"/>
+                    <Button Grid.Row="2" Grid.Column="4" Margin="8,8,8,8" Content="+" Click="btn_JogAny_Click" Name="btn_MoveYJogUp"/>
+
+                    <!--Sliders-->
+                    <Slider Grid.Column="3" Grid.Row="0" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="sld_MoveW" IsSelectionRangeEnabled="True" 
+                            SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True" Thumb.DragCompleted="sld_DragCompleted" Thumb.DragDelta="sld_MoveW_Dragging"/>
+                    <Slider Grid.Column="3" Grid.Row="1" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="sld_MoveX" IsSelectionRangeEnabled="True" 
+                            SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True" Thumb.DragCompleted="sld_DragCompleted" Thumb.DragDelta="sld_MoveX_Dragging"/>
+                    <Slider Grid.Column="3" Grid.Row="2" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="sld_MoveY" IsSelectionRangeEnabled="True" 
+                            SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True" Thumb.DragCompleted="sld_DragCompleted" Thumb.DragDelta="sld_MoveY_Dragging"/>
+
                 </Grid>
             </Border>
 

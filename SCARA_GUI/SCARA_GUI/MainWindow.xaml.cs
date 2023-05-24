@@ -230,5 +230,6 @@ namespace SCARA_GUI
             // Invalid
             throw new Exception($"MOVE invalid: {issues}");
         }
+
     }
 }
