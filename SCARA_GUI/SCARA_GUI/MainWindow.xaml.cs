@@ -125,6 +125,12 @@ namespace SCARA_GUI
                 btn_Piston.FontSize = s;
                 btn_Gripper.FontSize = s;
                 btn_Home.FontSize = s;
+                btn_MoveWJogDown.FontSize = s;
+                btn_MoveWJogUp.FontSize = s;
+                btn_MoveXJogDown.FontSize = s;
+                btn_MoveXJogUp.FontSize = s;
+                btn_MoveYJogDown.FontSize = s;
+                btn_MoveYJogUp.FontSize = s;
 
                 int count_extras = 0;
                 if (Settings.Default.vis_ID)

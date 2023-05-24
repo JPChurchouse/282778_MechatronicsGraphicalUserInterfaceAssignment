@@ -86,7 +86,19 @@ namespace SCARA_GUI
             }
         }
         
-        private void btn_Home_Click(object sender, RoutedEventArgs e) { SendData("HOME"); pose.Home(); }
+        private void btn_Home_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SendData("HOME"); pose.Home(); 
+                pose.Home();
+                Ui_UpdateMoveParams();
+            }
+            catch 
+            {
+                LogMessage("Unable to HOME", MsgType.ALT);
+            }
+        }
         
         private void LogBox_DoubleClicked(object sender, MouseButtonEventArgs e) { OpenLogFile(); }
 
