@@ -14,11 +14,11 @@ namespace SCARA_GUI
 {
     public partial class MainWindow : Window
     {
-        private void WindowResized(object sender, EventArgs e) { UpdateFontSize(); }
+        private void WindowResized(object sender, EventArgs e) { Ui_UpdateFontSize(); }
 
         private void menu_OpenFile_Clicked(object sender, EventArgs args) { OpenLogFile(); }
 
-        private void menu_Vis_Clicked(object sender, EventArgs e) { UpdateFontSize(); }
+        private void menu_Vis_Clicked(object sender, EventArgs e) { Ui_UpdateFontSize(); }
 
         private void menu_Out_Clicked(object sender, EventArgs e) { text_OuputLog.Text = string.Empty; }
 
@@ -27,7 +27,7 @@ namespace SCARA_GUI
         {
             SettingsWindow settingsWindow = new SettingsWindow();
             settingsWindow.ShowDialog();
-            UpdateFontSize();
+            Ui_UpdateFontSize();
         }
 
         private void menu_Help_Clicked(object sender, RoutedEventArgs e) { OpenHelpFile(); }

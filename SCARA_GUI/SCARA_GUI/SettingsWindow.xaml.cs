@@ -110,12 +110,17 @@ namespace SCARA_GUI
             // Serial
             if (!Validate(txt_Baudrate.Text, 0, 999999999))
             {
-                txt_MinY.Text = Settings.Default.ser_Baud.ToString();
+                txt_Baudrate.Text = Settings.Default.ser_Baud.ToString();
                 changes++;
             }
             if (!Validate(txt_Timeout.Text, 0, 2000))
             {
-                txt_MinY.Text = Settings.Default.ser_Tim.ToString();
+                txt_Timeout.Text = Settings.Default.ser_Tim.ToString();
+                changes++;
+            }
+            if (!Validate(txt_Lockout.Text, 0, 5000))
+            {
+                txt_Lockout.Text = Settings.Default.ser_Tim.ToString();
                 changes++;
             }
 
@@ -168,6 +173,7 @@ namespace SCARA_GUI
             // Serial
             txt_Baudrate.Text = Settings.Default.ser_Baud.ToString();
             txt_Timeout.Text = Settings.Default.ser_Tim.ToString();
+            txt_Lockout.Text = Settings.Default.lockout.ToString();
         }
 
         private void UiToSettings() 
@@ -205,6 +211,7 @@ namespace SCARA_GUI
                 // Serial
                 Settings.Default.ser_Baud = StoI(txt_Baudrate.Text);
                 Settings.Default.ser_Tim = StoI(txt_Timeout.Text);
+                Settings.Default.lockout = StoI(txt_Lockout.Text);
             }
             catch 
             {

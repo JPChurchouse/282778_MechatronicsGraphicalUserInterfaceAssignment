@@ -125,10 +125,12 @@
                     <!--Side labels-->
                     <Label Grid.Row="0" Content="Baudrate:"  HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center"/>
                     <Label Grid.Row="1" Content="Timeout:" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center"/>
+                    <Label Grid.Row="2" Content="Lockout:" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center"/>
 
                     <!--Mins-->
                     <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_Baudrate" LostFocus="Any_Changed"/>
                     <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_Timeout" LostFocus="Any_Changed"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_Lockout" LostFocus="Any_Changed"/>
                 </Grid>
             </TabItem>
 

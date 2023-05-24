@@ -34,7 +34,7 @@ namespace SCARA_GUI
         // Serial Port error handler
         private void SERIALPORT_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
         {
-            UpdateUiConnectionStatus();
+            Ui_UpdateConnectionStatus();
         }
 
         // Serial Port RX handler
@@ -48,7 +48,12 @@ namespace SCARA_GUI
                 data = data.Replace("\r", "");
                 data = data.Replace("\n", "");
                 Log.Information($"Received: \"{data}\"");
-                if (data.Contains("RECEIVED")) return;// Don't show the user the ECHO rx cmds
+
+                if (data.Contains("RECEIVED")) 
+                {
+                    LockoutEnd();
+                    return;
+                }// Don't show the user the ECHO rx cmds
 
                 LogMessage(data, MsgType.RXD);
             }
@@ -139,7 +144,7 @@ namespace SCARA_GUI
                     LogMessage("Unable to connect to device", MsgType.SYS);
                 }
 
-                UpdateUiConnectionStatus();
+                Ui_UpdateConnectionStatus();
                 this.Cursor = null;
             });
         }
@@ -149,7 +154,8 @@ namespace SCARA_GUI
         {
             if (SERIALPORT.IsOpen)
             {
-                SendData("STOP");
+                for (int i = 0; i < 5; i++) SendData("STOP");
+                
                 LogMessage("Closing Serial Port", MsgType.SYS);
                 SERIALPORT.Close();
             }
@@ -157,7 +163,7 @@ namespace SCARA_GUI
             {
                 LogMessage("Serial Port already closed", MsgType.SYS);
             }
-            UpdateUiConnectionStatus();
+            Ui_UpdateConnectionStatus();
         }
 
         // Process sending data on the Serial Port
@@ -179,6 +185,7 @@ namespace SCARA_GUI
                 try
                 {
                     SERIALPORT.WriteLine(data);
+                    LockoutStart();
                 }
                 catch (Exception ex)
                 {
@@ -187,10 +194,34 @@ namespace SCARA_GUI
                 }
             }
 
-            UpdateUiConnectionStatus();
+            Ui_UpdateConnectionStatus();
         }
 
         // Convert the COM Port message to a "COM x" string
         private string ParsePortInfo(string info) { return info.Substring(info.LastIndexOf("(COM")).Replace("(", string.Empty).Replace(")", string.Empty); }
+
+
+        // LOCKOUT
+
+        System.Timers.Timer timer_lockout = new System.Timers.Timer();
+        private void LockoutStart()
+        {
+            long tim = Settings.Default.lockout;
+            if (tim <= 0) return;
+
+            Ui_SetControlsEnabled(false);
+            timer_lockout.Interval = tim;
+            timer_lockout.Elapsed += timer_lockout_elapsed;
+            timer_lockout.Start();
+        }
+        private void LockoutEnd()
+        {
+            timer_lockout.Stop();
+            Ui_SetControlsEnabled(true);
+        }
+
+        private void timer_lockout_elapsed(object sender, System.Timers.ElapsedEventArgs e) { LockoutEnd(); }
+        
+
     }
 }

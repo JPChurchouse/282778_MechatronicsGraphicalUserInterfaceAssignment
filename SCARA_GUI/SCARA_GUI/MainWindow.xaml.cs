@@ -42,8 +42,8 @@ namespace SCARA_GUI
             this.Width = Settings.Default.window_Width;
             this.Height = Settings.Default.window_Height;
 
-            UpdateFontSize();
-            UpdateUiConnectionStatus();
+            Ui_UpdateFontSize();
+            Ui_UpdateConnectionStatus();
 
             Log.Information("Ready");
         }
@@ -83,23 +83,39 @@ namespace SCARA_GUI
         }
 
         // Update the status panel's elements to match current connection status
-        private void UpdateUiConnectionStatus()
+        private void Ui_UpdateConnectionStatus()
         {
             this.Dispatcher.Invoke(() =>
             {
                 bool open = SERIALPORT.IsOpen;
-                panel_Inputs.IsEnabled = open;
+
+                // Unexpected disconnect flag, device thinks its online, but connection is closed
+                bool unex_disc = !lbl_DeviceStatus.Content.ToString().Contains("Offline") && !open;
+
                 btn_Connect.Content = open ? "DISCONNECT" : "CONNECT";
-                btn_Connect.IsEnabled = true;
-                this.Cursor = null;
                 lbl_ConnectionStatus.Content = open ? $"Connected on {SERIALPORT.PortName}" : "Disconnected";
                 lbl_DeviceStatus.Content = open ? "Ready": "Offline";
                 menu_Outputs.IsEnabled = !open;
+
+                Ui_SetControlsEnabled(open);
+
+                if (unex_disc) LogMessage("Unexpected disconnection",MsgType.ALT);
+            });
+        }
+        private void Ui_SetControlsEnabled(bool enabled = false)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                Log.Debug($"Set enabled: {enabled}");
+                panel_Inputs.IsEnabled = enabled;
+                btn_Connect.IsEnabled = true;
+
+                this.Cursor = null;
             });
         }
         
         // Update the font size for every element in the UI
-        public void UpdateFontSize()
+        public void Ui_UpdateFontSize()
         {
             this.Dispatcher.Invoke(() =>
             {
