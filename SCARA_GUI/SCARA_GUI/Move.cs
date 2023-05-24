@@ -10,11 +10,16 @@ namespace SCARA_GUI
 {
     public partial class MainWindow : Window
     {
-        private bool Validate(string s, int min, int max)
+        private bool Validate(string s, int min, int max, out int out_)
         {
+            out_ = int.MinValue;
             if (Int32.TryParse(s, out int i))
             {
-                if (i <= max && i >= min) return true;
+                if (i <= max && i >= min)
+                {
+                    out_ = i;
+                    return true;
+                }
             }
             return false;
         }
@@ -22,15 +27,7 @@ namespace SCARA_GUI
         void MovementHandler()
         {
             Ui_UpdateMoveParams();
-
-            try
-            {
-                SendData(pose.Move());
-            }
-            catch (Exception exc)
-            {
-                LogMessage(exc.Message, MsgType.ALT);
-            }
+            SendData(pose.Move());
         }
         void MovementHandler(Pose.Axis axis, string val)
         {

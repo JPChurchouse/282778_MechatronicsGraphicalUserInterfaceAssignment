@@ -79,7 +79,7 @@ namespace SCARA_GUI
 
                 btn_Connect.Content = open ? "DISCONNECT" : "CONNECT";
                 lbl_ConnectionStatus.Content = open ? $"Connected on {SERIALPORT.PortName}" : "Disconnected";
-                lbl_DeviceStatus.Content = open ? "Available": "Offline";
+                lbl_DeviceStatus.Content = open ? "System Online": "Offline";
                 menu_Outputs.IsEnabled = !open;
 
                 Ui_SetControlsEnabled(open);
@@ -136,18 +136,16 @@ namespace SCARA_GUI
                 if (Settings.Default.vis_ID)
                 {
                     count_extras++;
-                    lbl_ID.FontSize = s;
                     btn_ID.FontSize = s;
-                    grid_ID.Visibility = Visibility.Visible;
+                    btn_ID.Visibility = Visibility.Visible;
                 }
-                else grid_ID.Visibility = Visibility.Collapsed;
+                else btn_ID.Visibility = Visibility.Collapsed;
 
                 if (Settings.Default.vis_Wait)
                 {
                     count_extras++;
                     btn_Wait.FontSize = s;
                     txt_Wait.FontSize = s;
-                    lbl_Wait.FontSize = s;
                     grid_Wait.Visibility = Visibility.Visible;
                 }
                 else grid_Wait.Visibility = Visibility.Collapsed;
@@ -157,7 +155,6 @@ namespace SCARA_GUI
                     count_extras++;
                     btn_SOffset.FontSize = s;
                     txt_SOffset.FontSize = s;
-                    lbl_SOffset.FontSize = s;
                     grid_SOffset.Visibility = Visibility.Visible;
                 }
                 else grid_SOffset.Visibility = Visibility.Collapsed;
@@ -166,26 +163,25 @@ namespace SCARA_GUI
                 {
                     count_extras++;
                     btn_ROffset.FontSize = s;
-                    lbl_ROffset.FontSize = s;
-                    grid_ROffset.Visibility = Visibility.Visible;
+                    btn_ROffset.Visibility = Visibility.Visible;
                 }
-                else grid_ROffset.Visibility = Visibility.Collapsed;
+                else btn_ROffset.Visibility = Visibility.Collapsed;
 
                 if (Settings.Default.vis_Prox)
                 {
                     count_extras++;
                     btn_Prox.FontSize = s;
-                    lbl_Prox.FontSize = s;
-                    grid_Prox.Visibility = Visibility.Visible;
+                    btn_Prox.Visibility = Visibility.Visible;
                 }
-                else grid_Prox.Visibility = Visibility.Collapsed;
+                else btn_Prox.Visibility = Visibility.Collapsed;
 
                 if (Settings.Default.vis_Spdst)
                 {
                     count_extras++;
-                    btn_Speedset.FontSize = s;
-                    lbl_Speedset.FontSize = s;
-                    txt_Speedset.FontSize = s;
+                    btn_SpeedSet.FontSize = s;
+                    txt_SpeedSet.FontSize = s;
+                    btn_AccelSet.FontSize = s;
+                    txt_AccelSet.FontSize = s;
                     grid_Speedset.Visibility = Visibility.Visible;
                 }
                 else grid_Speedset.Visibility = Visibility.Collapsed;
@@ -219,5 +215,6 @@ namespace SCARA_GUI
             sld_MoveY.Minimum = Settings.Default.min_Y;
             sld_MoveY.Value = Y;
         }
+
     }
 }

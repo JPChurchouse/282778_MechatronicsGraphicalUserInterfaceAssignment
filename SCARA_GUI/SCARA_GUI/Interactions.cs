@@ -14,6 +14,7 @@ namespace SCARA_GUI
 {
     public partial class MainWindow : Window
     {
+        #region Window and Menu
         private void WindowResized(object sender, EventArgs e) { Ui_UpdateFontSize(); }
 
         private void menu_OpenFile_Clicked(object sender, EventArgs args) { OpenLogFile(); }
@@ -31,7 +32,12 @@ namespace SCARA_GUI
         }
 
         private void menu_Help_Clicked(object sender, RoutedEventArgs e) { OpenHelpFile(); }
+        
+        // Log box double clicked
+        private void LogBox_DoubleClicked(object sender, MouseButtonEventArgs e) { OpenLogFile(); }
+        #endregion
 
+        #region Main Buttons
         // If not connected, connect, otherwise disconnect
         private void btn_Connect_Click(object sender, RoutedEventArgs e)
         {
@@ -86,64 +92,59 @@ namespace SCARA_GUI
             }
         }
         
+        // Home button
         private void btn_Home_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                SendData("HOME"); pose.Home(); 
-                pose.Home();
-                Ui_UpdateMoveParams();
-            }
-            catch 
-            {
-                LogMessage("Unable to HOME", MsgType.ALT);
-            }
+            SendData("HOME");
+            pose.Home();
+            Ui_UpdateMoveParams();
         }
-        
-        private void LogBox_DoubleClicked(object sender, MouseButtonEventArgs e) { OpenLogFile(); }
+        #endregion
 
-        private void btn_Wait_Click(object sender, RoutedEventArgs e)
-        {
-            if (Validate(txt_Wait.Text, 0, 999999999))
-            {
-                SendData($"WAIT,{txt_Wait.Text}");
-            }
-            else
-            {
-                LogMessage("WAIT invalid", MsgType.ALT);
-            }
-        }
+        #region Extra functions
+        // Extra functions
+        private void btn_Wait_Click(object sender, RoutedEventArgs e) { SendData($"WAIT,{sld_Wait.Value}"); }
 
         private void btn_ID_Click(object sender, RoutedEventArgs e) { SendData($"ID");}
 
-        private void btn_SOffset_Click(object sender, RoutedEventArgs e)
-        {
-            if (Validate(txt_SOffset.Text, 0, 999999999))
-            {
-                SendData($"SOFFSET,{txt_SOffset.Text}");
-            }
-            else
-            {
-                LogMessage("SOFFSET invalid", MsgType.ALT);
-            }
-        }
+        private void btn_SOffset_Click(object sender, RoutedEventArgs e) { SendData($"SOFFSET,{sld_SOffset.Value}"); }
 
         private void btn_ROffset_Click(object sender, RoutedEventArgs e) { SendData($"ROFFSET"); }
 
         private void btn_Prox_Click(object sender, RoutedEventArgs e) { SendData($"PROX"); }
 
-        private void btn_Speedset_Click(object sender, RoutedEventArgs e)
+        private void btn_AccelSet_Click(object sender, RoutedEventArgs args) { DoSpeedSet(); }
+        private void btn_SpeedSet_Click(object sender, RoutedEventArgs args) { DoSpeedSet(); }
+        private void DoSpeedSet()
         {
-            if (Validate(txt_Speedset.Text, 0, 200))
+            if (Validate(txt_AccelSet.Text, 0, 100, out int acc))
             {
-                SendData($"SPEEDSET,{txt_Speedset.Text},{txt_Speedset.Text}");
-            }
-            else
-            {
-                LogMessage("SPEEDSET invalid", MsgType.ALT);
+                if (Validate(txt_SpeedSet.Text, 0, 100, out int vel))
+                {
+                    SendData($"SPEEDSET,{vel},{acc}");
+                }
             }
         }
 
+        private void sld_Wait_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e) { txt_Wait.Text = sld_Wait.Value.ToString(); }
+        private void sld_Wait_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e) { txt_Wait.Text = sld_Wait.Value.ToString(); }
+        private void txt_Wait_LostFocus(object sender, RoutedEventArgs e) { if (Int32.TryParse(txt_Wait.Text, out int i)) sld_Wait.Value = i; }
+
+        private void sld_SpeedSet_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e) { txt_SpeedSet.Text = sld_SpeedSet.Value.ToString(); }
+        private void sld_SpeedSet_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e) { txt_SpeedSet.Text = sld_SpeedSet.Value.ToString(); }
+        private void txt_SpeedSet_LostFocus(object sender, RoutedEventArgs e) { if (Int32.TryParse(txt_SpeedSet.Text, out int i)) sld_SpeedSet.Value = i; }
+
+        private void sld_AccelSet_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e) { txt_AccelSet.Text = sld_AccelSet.Value.ToString(); }
+        private void sld_AccelSet_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e) { txt_AccelSet.Text = sld_AccelSet.Value.ToString(); }
+        private void txt_AccelSet_LostFocus(object sender, RoutedEventArgs e) { if (Int32.TryParse(txt_AccelSet.Text, out int i)) sld_AccelSet.Value = i; }
+
+        private void sld_SOffset_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e) { txt_SOffset.Text = sld_SOffset.Value.ToString(); }
+        private void sld_SOffset_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e) { txt_SOffset.Text = sld_SOffset.Value.ToString(); }
+        private void txt_SOffset_LostFocus(object sender, RoutedEventArgs e) { if (Int32.TryParse(txt_SOffset.Text, out int i)) sld_SOffset.Value = i; }
+        
+        #endregion
+
+        #region Movement handlers
 
         // Jog buttons
         private void btn_JogIncW_Click(object sender, RoutedEventArgs e) { MovementHandler(Pose.Axis.W, +1); }
@@ -180,5 +181,6 @@ namespace SCARA_GUI
         {
             MovementHandler(Pose.Axis.Y, 0, (int)sld_MoveY.Value);
         }
+        #endregion
     }
 }

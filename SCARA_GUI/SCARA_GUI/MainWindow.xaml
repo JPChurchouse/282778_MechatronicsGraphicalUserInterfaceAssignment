@@ -254,6 +254,8 @@
                 Name="bor_Extras">
 
                 <ScrollViewer CanContentScroll="True">
+
+                    <!--Variable inputs-->
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -267,76 +269,70 @@
                         <!--Wait-->
                         <Grid Grid.Row="0" Name="grid_Wait">
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Label Content="Wait:" Margin="2,2,2,2" Name="lbl_Wait"/>
-                            <TextBox Grid.Column="1" Text="1000" Margin="2,2,2,2" Name="txt_Wait"/>
-                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" Name="btn_Wait" Click="btn_Wait_Click"/>
+                            <Slider Grid.Column="0" Maximum="5000" Minimum="0" Margin="2,2,2,2" TickFrequency="1" IsSnapToTickEnabled="True" Value="1000"
+                                        Name="sld_Wait" Thumb.DragCompleted="sld_Wait_DragCompleted" Thumb.DragDelta="sld_Wait_DragDelta"/>
+                            <TextBox Grid.Column="1" Text="1000" Margin="2,2,2,2" Name="txt_Wait" LostFocus="txt_Wait_LostFocus"/>
+                            <Button Grid.Column="2" Content="Wait" Margin="2,2,2,2" Name="btn_Wait" Click="btn_Wait_Click"/>
                         </Grid>
 
-                        <!--ID-->
-                        <Grid Grid.Row="1" Name="grid_ID" >
+                        <!--Speedset-->
+                        <Grid Grid.Row="1" Name="grid_Speedset" >
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-                            <Label Content="ID:" Margin="2,2,2,2" Name="lbl_ID"/>
-                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" Name="btn_ID" Click="btn_ID_Click"/>
+                            <Slider Grid.Column="0" Maximum="100" Minimum="0" Margin="2,2,2,2" TickFrequency="1" IsSnapToTickEnabled="True" Value="100"
+                                        Name="sld_SpeedSet" Thumb.DragCompleted="sld_SpeedSet_DragCompleted" Thumb.DragDelta="sld_SpeedSet_DragDelta"/>
+                            <TextBox Grid.Column="1" Text="100" Margin="2,2,2,2" Name="txt_SpeedSet" LostFocus="txt_SpeedSet_LostFocus"/>
+                            <Button Grid.Column="2" Content="Velocity" Margin="2,2,2,2" Name="btn_SpeedSet" Click="btn_SpeedSet_Click"/>
+
+                            <Slider Grid.Column="0" Grid.Row="1" Maximum="100" Minimum="0" Margin="2,2,2,2" TickFrequency="1" IsSnapToTickEnabled="True" Value="100"
+                                        Name="sld_AccelSet" Thumb.DragCompleted="sld_AccelSet_DragCompleted" Thumb.DragDelta="sld_AccelSet_DragDelta"/>
+                            <TextBox Grid.Column="1" Grid.Row="1" Text="100" Margin="2,2,2,2" Name="txt_AccelSet" LostFocus="txt_AccelSet_LostFocus"/>
+                            <Button Grid.Column="2" Grid.Row="1" Content="Acceleration" Margin="2,2,2,2" Name="btn_AccelSet" Click="btn_AccelSet_Click"/>
                         </Grid>
 
                         <!--Set Offset-->
                         <Grid Grid.Row="2" Name="grid_SOffset">
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Label Content="Offset:" Margin="2,2,2,2" Name="lbl_SOffset"/>
-                            <TextBox Grid.Column="1" Text="0" Margin="2,2,2,2" Name="txt_SOffset"/>
-                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" Name="btn_SOffset" Click="btn_SOffset_Click"/>
+                            <Slider Grid.Column="0" Maximum="100" Minimum="0" Margin="2,2,2,2" TickFrequency="1" IsSnapToTickEnabled="True" Value="0"
+                                        Name="sld_SOffset" Thumb.DragCompleted="sld_SOffset_DragCompleted" Thumb.DragDelta="sld_SOffset_DragDelta"/>
+                            <TextBox Grid.Column="1" Text="0" Margin="2,2,2,2" Name="txt_SOffset" LostFocus="txt_SOffset_LostFocus"/>
+                            <Button Grid.Column="2" Content="Offset" Margin="2,2,2,2" Name="btn_SOffset" Click="btn_SOffset_Click"/>
                         </Grid>
 
-                        <!--Read Offset-->
-                        <Grid Grid.Row="3" Name="grid_ROffset">
+                        <!--Read buttons-->
+                        <Grid Grid.Row="3" Name="grid_Read">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="2*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Label Content="R-Offset:" Margin="2,2,2,2" Name="lbl_ROffset"/>
-                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" Name="btn_ROffset" Click="btn_ROffset_Click"/>
-                        </Grid>
-
-                        <!--Read proximity-->
-                        <Grid Grid.Row="4" Name="grid_Prox">
-                            <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="2*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Label Content="Prox:" Margin="2,2,2,2" Name="lbl_Prox"/>
-                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" Name="btn_Prox" Click="btn_Prox_Click"/>
-                        </Grid>
-
-                        <!--Speedset-->
-                        <Grid Grid.Row="5" Name="grid_Speedset" >
-                            <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
+                        
+                            <!--Read proximity-->
+                            <Button Grid.Column="0" Content="Proximity" Margin="2,2,2,2" Name="btn_Prox" Click="btn_Prox_Click"/>
 
-                            <Label Content="Speedset:" Margin="2,2,2,2" Name="lbl_Speedset"/>
-                            <TextBox Grid.Column="1" Text="100" Margin="2,2,2,2" Name="txt_Speedset"/>
-                            <Button Grid.Column="2" Content="Send" Margin="2,2,2,2" Name="btn_Speedset" Click="btn_Speedset_Click"/>
+                            <!--Read Offset-->
+                            <Button Grid.Column="1" Content="Offset" Margin="2,2,2,2" Name="btn_ROffset" Click="btn_ROffset_Click"/>
+
+                            <!-- Read ID-->
+                            <Button Grid.Column="2" Content="ID" Margin="2,2,2,2" Name="btn_ID" Click="btn_ID_Click"/>
                         </Grid>
                     </Grid>
                 </ScrollViewer>
