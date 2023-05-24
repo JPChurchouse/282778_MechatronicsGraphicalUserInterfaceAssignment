@@ -221,7 +221,5 @@ namespace SCARA_GUI
         }
 
         private void timer_lockout_elapsed(object sender, System.Timers.ElapsedEventArgs e) { LockoutEnd(); }
-        
-
     }
 }

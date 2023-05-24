@@ -47,14 +47,13 @@ namespace SCARA_GUI
         // Validate the inputs and send MOVE command
         private void btn_Move_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                SendData(ParseUiToMoveCmd());
-            }
-            catch (Exception exc)
-            {
-                LogMessage(exc.Message, MsgType.ALT);
-            }
+            bool valid = 
+                pose.Nudge(Pose.Axis.W, txt_MoveW.Text) &&
+                pose.Nudge(Pose.Axis.X, txt_MoveX.Text) &&
+                pose.Nudge(Pose.Axis.Y, txt_MoveY.Text);
+
+            if (valid) MovementHandler();
+            else LogMessage("Invlid MOVE parameters", MsgType.ALT);
         }
 
         // Piston cmd
@@ -87,7 +86,7 @@ namespace SCARA_GUI
             }
         }
         
-        private void btn_Home_Click(object sender, RoutedEventArgs e) { SendData("HOME"); }
+        private void btn_Home_Click(object sender, RoutedEventArgs e) { SendData("HOME"); pose.Home(); }
         
         private void LogBox_DoubleClicked(object sender, MouseButtonEventArgs e) { OpenLogFile(); }
 
@@ -133,28 +132,41 @@ namespace SCARA_GUI
             }
         }
 
-        private void btn_JogAny_Click(object sender, RoutedEventArgs e)
-        {
-            Log.Debug($"dragging: {sld_MoveW.Value}");
-        }
+
+        // Jog buttons
+        private void btn_JogIncW_Click(object sender, RoutedEventArgs e) { MovementHandler(Pose.Axis.W, +1); }
+        private void btn_JogIncX_Click(object sender, RoutedEventArgs e) { MovementHandler(Pose.Axis.X, +1); }
+        private void btn_JogIncY_Click(object sender, RoutedEventArgs e) { MovementHandler(Pose.Axis.Y, +1); }
+        private void btn_JogDecW_Click(object sender, RoutedEventArgs e) { MovementHandler(Pose.Axis.W, -1); }
+        private void btn_JogDecX_Click(object sender, RoutedEventArgs e) { MovementHandler(Pose.Axis.X, -1); }
+        private void btn_JogDecY_Click(object sender, RoutedEventArgs e) { MovementHandler(Pose.Axis.Y, -1); }
 
 
+        // Sliders
         private void sld_MoveW_Dragging(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
         {
-            Log.Debug($"dragging: {sld_MoveW.Value}");
+            txt_MoveW.Text = sld_MoveW.Value.ToString();
         }
         private void sld_MoveX_Dragging(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
         {
-            Log.Debug($"dragging: {sld_MoveW.Value}");
+            txt_MoveX.Text = sld_MoveX.Value.ToString();
         }
         private void sld_MoveY_Dragging(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
         {
-            Log.Debug($"dragging: {sld_MoveW.Value}");
+            txt_MoveY.Text = sld_MoveY.Value.ToString();
         }
 
-        private void sld_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        private void sld_MoveW_Release(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
         {
-            Log.Debug($"drag completed: {sld_MoveW.Value}");
+            MovementHandler(Pose.Axis.W, 0, (int)sld_MoveW.Value);
+        }
+        private void sld_MoveX_Release(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        {
+            MovementHandler(Pose.Axis.X, 0, (int)sld_MoveX.Value);
+        }
+        private void sld_MoveY_Release(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        {
+            MovementHandler(Pose.Axis.Y, 0, (int)sld_MoveY.Value);
         }
     }
 }

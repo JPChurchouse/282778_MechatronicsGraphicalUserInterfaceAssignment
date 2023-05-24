@@ -1,22 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using SCARA_GUI.Properties;
 using Serilog;
-using System.IO.Ports;
-using System.IO;
-using System.Diagnostics;
-using SCARA_GUI.Properties;
+using System.Windows;
 
 namespace SCARA_GUI
 {
@@ -44,6 +28,7 @@ namespace SCARA_GUI
 
             Ui_UpdateFontSize();
             Ui_UpdateConnectionStatus();
+            Ui_UpdateMoveParams();
 
             Log.Information("Ready");
         }
@@ -102,6 +87,8 @@ namespace SCARA_GUI
                 if (unex_disc) LogMessage("Unexpected disconnection",MsgType.ALT);
             });
         }
+        
+        // Set the enabled state of the controls
         private void Ui_SetControlsEnabled(bool enabled = false)
         {
             this.Dispatcher.Invoke(() =>
@@ -206,30 +193,25 @@ namespace SCARA_GUI
             });
         }
 
-        // MOVE validation function
-        private bool Validate(string s, int min, int max)
+        public void Ui_UpdateMoveParams()
         {
-            if (Int32.TryParse(s, out int i))
-            {
-                if (i <= max && i >= min) return true;
-            }
-            return false;
-        }
+            int W = pose.Read(Pose.Axis.W);
+            txt_MoveW.Text = W.ToString();
+            sld_MoveW.Maximum = Settings.Default.max_W;
+            sld_MoveW.Minimum = Settings.Default.min_W;
+            sld_MoveW.Value = W;
 
-        // Generate MOVE cmd
-        private string ParseUiToMoveCmd()
-        {
-            string issues = "";
-            if (!Validate(txt_MoveW.Text, Settings.Default.min_W, Settings.Default.max_W)) issues += "W";
-            if (!Validate(txt_MoveX.Text, Settings.Default.min_X, Settings.Default.max_X)) issues += "X";
-            if (!Validate(txt_MoveY.Text, Settings.Default.min_Y, Settings.Default.max_Y)) issues += "Y";
-        
-            // All valid
-            if (issues == "") return $"MOVE,{txt_MoveX.Text},{txt_MoveY.Text},{txt_MoveW.Text}";
-            
-            // Invalid
-            throw new Exception($"MOVE invalid: {issues}");
-        }
+            int X = pose.Read(Pose.Axis.X);
+            txt_MoveX.Text = X.ToString();
+            sld_MoveX.Maximum = Settings.Default.max_X;
+            sld_MoveX.Minimum = Settings.Default.min_X;
+            sld_MoveX.Value = X;
 
+            int Y = pose.Read(Pose.Axis.Y);
+            txt_MoveY.Text = Y.ToString();
+            sld_MoveY.Maximum = Settings.Default.max_Y;
+            sld_MoveY.Minimum = Settings.Default.min_Y;
+            sld_MoveY.Value = Y;
+        }
     }
 }

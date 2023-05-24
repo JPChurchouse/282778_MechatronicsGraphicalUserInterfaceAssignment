@@ -175,23 +175,23 @@
                     <TextBox Grid.Column="1" Grid.Row="1" Margin="2,2,2,2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="0" Name="txt_MoveX" MaxLines="1" AcceptsTab="True"/>
                     <TextBox Grid.Column="1" Grid.Row="2" Margin="2,2,2,2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="0" Name="txt_MoveY" MaxLines="1" AcceptsTab="True"/>
 
-                    <!--Jog down-->
-                    <Button Grid.Row="0" Grid.Column="2" Margin="8,8,8,8" Content="-" Click="btn_JogAny_Click" Name="btn_MoveWJogDown"/>
-                    <Button Grid.Row="1" Grid.Column="2" Margin="8,8,8,8" Content="-" Click="btn_JogAny_Click" Name="btn_MoveXJogDown"/>
-                    <Button Grid.Row="2" Grid.Column="2" Margin="8,8,8,8" Content="-" Click="btn_JogAny_Click" Name="btn_MoveYJogDown"/>
+                    <!--Jog decrease-->
+                    <Button Grid.Row="0" Grid.Column="2" Margin="8,8,8,8" Content="-" Click="btn_JogDecW_Click" Name="btn_MoveWJogDown"/>
+                    <Button Grid.Row="1" Grid.Column="2" Margin="8,8,8,8" Content="-" Click="btn_JogDecX_Click" Name="btn_MoveXJogDown"/>
+                    <Button Grid.Row="2" Grid.Column="2" Margin="8,8,8,8" Content="-" Click="btn_JogDecY_Click" Name="btn_MoveYJogDown"/>
 
-                    <!--Jog up-->
-                    <Button Grid.Row="0" Grid.Column="4" Margin="8,8,8,8" Content="+" Click="btn_JogAny_Click" Name="btn_MoveWJogUp"/>
-                    <Button Grid.Row="1" Grid.Column="4" Margin="8,8,8,8" Content="+" Click="btn_JogAny_Click" Name="btn_MoveXJogUp"/>
-                    <Button Grid.Row="2" Grid.Column="4" Margin="8,8,8,8" Content="+" Click="btn_JogAny_Click" Name="btn_MoveYJogUp"/>
+                    <!--Jog increase-->
+                    <Button Grid.Row="0" Grid.Column="4" Margin="8,8,8,8" Content="+" Click="btn_JogIncW_Click" Name="btn_MoveWJogUp"/>
+                    <Button Grid.Row="1" Grid.Column="4" Margin="8,8,8,8" Content="+" Click="btn_JogIncX_Click" Name="btn_MoveXJogUp"/>
+                    <Button Grid.Row="2" Grid.Column="4" Margin="8,8,8,8" Content="+" Click="btn_JogIncY_Click" Name="btn_MoveYJogUp"/>
 
                     <!--Sliders-->
                     <Slider Grid.Column="3" Grid.Row="0" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="sld_MoveW" IsSelectionRangeEnabled="True" 
-                            SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True" Thumb.DragCompleted="sld_DragCompleted" Thumb.DragDelta="sld_MoveW_Dragging"/>
+                            SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True" Thumb.DragCompleted="sld_MoveW_Release" Thumb.DragDelta="sld_MoveW_Dragging"/>
                     <Slider Grid.Column="3" Grid.Row="1" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="sld_MoveX" IsSelectionRangeEnabled="True" 
-                            SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True" Thumb.DragCompleted="sld_DragCompleted" Thumb.DragDelta="sld_MoveX_Dragging"/>
+                            SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True" Thumb.DragCompleted="sld_MoveX_Release" Thumb.DragDelta="sld_MoveX_Dragging"/>
                     <Slider Grid.Column="3" Grid.Row="2" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="sld_MoveY" IsSelectionRangeEnabled="True" 
-                            SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True" Thumb.DragCompleted="sld_DragCompleted" Thumb.DragDelta="sld_MoveY_Dragging"/>
+                            SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True" Thumb.DragCompleted="sld_MoveY_Release" Thumb.DragDelta="sld_MoveY_Dragging"/>
 
                 </Grid>
             </Border>
