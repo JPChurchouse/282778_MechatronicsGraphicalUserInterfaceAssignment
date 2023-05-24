@@ -90,11 +90,11 @@ namespace SCARA_GUI
                 bool open = SERIALPORT.IsOpen;
 
                 // Unexpected disconnect flag, device thinks its online, but connection is closed
-                bool unex_disc = !lbl_DeviceStatus.Content.ToString().Contains("Offline") && !open;
+                bool unex_disc = lbl_DeviceStatus.Content.ToString().Contains("Available") && !open;
 
                 btn_Connect.Content = open ? "DISCONNECT" : "CONNECT";
                 lbl_ConnectionStatus.Content = open ? $"Connected on {SERIALPORT.PortName}" : "Disconnected";
-                lbl_DeviceStatus.Content = open ? "Ready": "Offline";
+                lbl_DeviceStatus.Content = open ? "Available": "Offline";
                 menu_Outputs.IsEnabled = !open;
 
                 Ui_SetControlsEnabled(open);
