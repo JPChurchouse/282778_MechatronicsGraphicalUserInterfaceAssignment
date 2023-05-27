@@ -19,7 +19,7 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <TabControl BorderBrush="Black" BorderThickness="1">
-            <!--Serial-->
+            <!--Visibility-->
             <TabItem Header="Visibility">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -28,17 +28,16 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="143*"/>
-                        <ColumnDefinition Width="57*"/>
-                        <ColumnDefinition Width="86*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
 
-                    <CheckBox Grid.Row="0" Grid.Column="0" Margin="4,0,4,0" VerticalAlignment="Center" Name="txt_Wait" Content="Wait" Click="Any_Changed"/>
-                    <CheckBox Grid.Row="1" Grid.Column="0" Margin="4,0,4,0" VerticalAlignment="Center" Name="txt_ROf" Content="Read Offset" Click="Any_Changed"/>
-                    <CheckBox Grid.Row="2" Grid.Column="0" Margin="4,0,4,0" VerticalAlignment="Center" Name="txt_SOf" Content="Set Offset" Click="Any_Changed"/>
-                    <CheckBox Grid.Row="0" Grid.Column="1" Margin="4,0,4,0" VerticalAlignment="Center" Name="txt_Spd" Content="Speedset" Click="Any_Changed"/>
-                    <CheckBox Grid.Row="1" Grid.Column="1" Margin="4,0,4,0" VerticalAlignment="Center" Name="txt_Prox" Content="Proximity" Click="Any_Changed"/>
-                    <CheckBox Grid.Row="2" Grid.Column="1" Margin="4,0,4,0" VerticalAlignment="Center" Name="txt_ID" Content="ID" Click="Any_Changed"/>
+                    <CheckBox Grid.Row="0" Grid.Column="0" Margin="4,0,4,0" VerticalAlignment="Center" Name="chk_Wait" Content="Wait" Click="Any_Changed"/>
+                    <CheckBox Grid.Row="1" Grid.Column="0" Margin="4,0,4,0" VerticalAlignment="Center" Name="chk_ROf" Content="Read Offset" Click="Any_Changed"/>
+                    <CheckBox Grid.Row="2" Grid.Column="0" Margin="4,0,4,0" VerticalAlignment="Center" Name="chk_SOf" Content="Set Offset" Click="Any_Changed"/>
+                    <CheckBox Grid.Row="0" Grid.Column="1" Margin="4,0,4,0" VerticalAlignment="Center" Name="chk_Spd" Content="Speedset" Click="Any_Changed"/>
+                    <CheckBox Grid.Row="1" Grid.Column="1" Margin="4,0,4,0" VerticalAlignment="Center" Name="chk_Prox" Content="Proximity" Click="Any_Changed"/>
+                    <CheckBox Grid.Row="2" Grid.Column="1" Margin="4,0,4,0" VerticalAlignment="Center" Name="chk_ID" Content="ID" Click="Any_Changed"/>
                 </Grid>
             </TabItem>
             <!--Air-->
@@ -131,6 +130,22 @@
                     <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_Baudrate" LostFocus="Any_Changed"/>
                     <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_Timeout" LostFocus="Any_Changed"/>
                     <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_Lockout" LostFocus="Any_Changed"/>
+                </Grid>
+            </TabItem>
+            <!--Misc-->
+            <TabItem Header="Misc">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <CheckBox Grid.Row="0" Grid.Column="0" Margin="4,0,4,0" VerticalAlignment="Center" Name="chk_Alarm" Content="Alarm" Click="Any_Changed"/>
                 </Grid>
             </TabItem>
 

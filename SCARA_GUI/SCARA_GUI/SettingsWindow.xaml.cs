@@ -1,18 +1,6 @@
 ﻿using SCARA_GUI.Properties;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Configuration;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SCARA_GUI
 {
@@ -41,6 +29,7 @@ namespace SCARA_GUI
         private void Confirm_Click(object sender, EventArgs e)
         {
             ValidateAll();
+            this.Close();
         }
 
         private void ValidateAll()
@@ -163,17 +152,20 @@ namespace SCARA_GUI
             txt_MinY.Text = Settings.Default.min_Y.ToString();
 
             // Visibililty
-            txt_ID.IsChecked    = Settings.Default.vis_ID;
-            txt_Prox.IsChecked  = Settings.Default.vis_Prox;
-            txt_ROf.IsChecked   = Settings.Default.vis_ROf;
-            txt_SOf.IsChecked   = Settings.Default.vis_SOf;
-            txt_Spd.IsChecked   = Settings.Default.vis_Spdst;
-            txt_Wait.IsChecked  = Settings.Default.vis_Wait;
+            chk_ID.IsChecked    = Settings.Default.vis_ID;
+            chk_Prox.IsChecked  = Settings.Default.vis_Prox;
+            chk_ROf.IsChecked   = Settings.Default.vis_ROf;
+            chk_SOf.IsChecked   = Settings.Default.vis_SOf;
+            chk_Spd.IsChecked   = Settings.Default.vis_Spdst;
+            chk_Wait.IsChecked  = Settings.Default.vis_Wait;
 
             // Serial
             txt_Baudrate.Text = Settings.Default.ser_Baud.ToString();
             txt_Timeout.Text = Settings.Default.ser_Tim.ToString();
             txt_Lockout.Text = Settings.Default.lockout.ToString();
+
+            // Misc
+            chk_Alarm.IsChecked = Settings.Default.alarm;
         }
 
         private void UiToSettings() 
@@ -181,37 +173,40 @@ namespace SCARA_GUI
             try
             {
                 // Piston
-                Settings.Default.air_UP = txt_PistonInactive.Text;
-                Settings.Default.air_DOWN = txt_PistonActive.Text;
+                Settings.Default.air_UP      = txt_PistonInactive.Text;
+                Settings.Default.air_DOWN    = txt_PistonActive.Text;
                 Settings.Default.air_DELAY_P = StoI(txt_PistonDelay.Text);
 
                 // Gripper
-                Settings.Default.air_OPEN = txt_GripperInactive.Text;
-                Settings.Default.air_CLOSE = txt_GripperActive.Text;
+                Settings.Default.air_OPEN    = txt_GripperInactive.Text;
+                Settings.Default.air_CLOSE   = txt_GripperActive.Text;
                 Settings.Default.air_DELAY_G = StoI(txt_GripperDelay.Text);
 
                 // Max
-                Settings.Default.max_W = StoI(txt_MaxW.Text);
-                Settings.Default.max_X = StoI(txt_MaxX.Text);
-                Settings.Default.max_Y = StoI(txt_MaxY.Text);
+                Settings.Default.max_W      = StoI(txt_MaxW.Text);
+                Settings.Default.max_X      = StoI(txt_MaxX.Text);
+                Settings.Default.max_Y      = StoI(txt_MaxY.Text);
 
                 // Min
-                Settings.Default.min_W = StoI(txt_MinW.Text);
-                Settings.Default.min_X = StoI(txt_MinX.Text);
-                Settings.Default.min_Y = StoI(txt_MinY.Text);
+                Settings.Default.min_W      = StoI(txt_MinW.Text);
+                Settings.Default.min_X      = StoI(txt_MinX.Text);
+                Settings.Default.min_Y      = StoI(txt_MinY.Text);
 
                 // Visibility
-                Settings.Default.vis_ID     = (bool)txt_ID.IsChecked;
-                Settings.Default.vis_Prox   = (bool)txt_Prox.IsChecked;
-                Settings.Default.vis_ROf    = (bool)txt_ROf.IsChecked;
-                Settings.Default.vis_SOf    = (bool)txt_SOf.IsChecked;
-                Settings.Default.vis_Spdst  = (bool)txt_Spd.IsChecked;
-                Settings.Default.vis_Wait   = (bool)txt_Wait.IsChecked;
+                Settings.Default.vis_ID     = (bool)chk_ID.IsChecked;
+                Settings.Default.vis_Prox   = (bool)chk_Prox.IsChecked;
+                Settings.Default.vis_ROf    = (bool)chk_ROf.IsChecked;
+                Settings.Default.vis_SOf    = (bool)chk_SOf.IsChecked;
+                Settings.Default.vis_Spdst  = (bool)chk_Spd.IsChecked;
+                Settings.Default.vis_Wait   = (bool)chk_Wait.IsChecked;
 
                 // Serial
-                Settings.Default.ser_Baud = StoI(txt_Baudrate.Text);
-                Settings.Default.ser_Tim = StoI(txt_Timeout.Text);
-                Settings.Default.lockout = StoI(txt_Lockout.Text);
+                Settings.Default.ser_Baud   = StoI(txt_Baudrate.Text);
+                Settings.Default.ser_Tim    = StoI(txt_Timeout.Text);
+                Settings.Default.lockout    = StoI(txt_Lockout.Text);
+
+                // Misc
+                Settings.Default.alarm      = (bool)chk_Alarm.IsChecked;
             }
             catch 
             {

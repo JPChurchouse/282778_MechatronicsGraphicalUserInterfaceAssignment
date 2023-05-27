@@ -34,6 +34,7 @@ namespace SCARA_GUI
         // Serial Port error handler
         private void SERIALPORT_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
         {
+            LogMessage("Serial Port Error", MsgType.ALT);
             Ui_UpdateConnectionStatus();
         }
 
@@ -121,11 +122,16 @@ namespace SCARA_GUI
                 {
                     Log.Debug($"Baudrate: {SERIALPORT.BaudRate}");
 
-                    // Show warning
+                    
+                    // Play alarm
                     WMPLib.WindowsMediaPlayer player = new WMPLib.WindowsMediaPlayer();
-                    player.URL = "alarm.mp3";
-                    player.controls.play();
+                    if (Settings.Default.alarm) 
+                    {
+                        player.URL = "alarm.mp3";
+                        player.controls.play();
+                    }
 
+                    // Show warning
                     LogMessage("WARNING - SCARA ACTIVE", MsgType.ALT);
                     MessageBox.Show(
                         "The SCARA is about to become active. Press \"OK\" to proceed when the area is safe.",
@@ -135,9 +141,8 @@ namespace SCARA_GUI
 
                     // Home all axies
                     SendData("ECHO,1");
+                    SendData("CLEAR");
                     SendData("HOME");
-
-                    //this.AcceptButton = button_AutoManual;
                 }
                 else
                 {
@@ -150,20 +155,35 @@ namespace SCARA_GUI
         }
 
         // Disconnect Serial Port
-        private void Disconnect()
+        private async void Disconnect()
         {
-            if (SERIALPORT.IsOpen)
+            try
             {
-                for (int i = 0; i < 5; i++) SendData("STOP");
-                
-                LogMessage("Closing Serial Port", MsgType.SYS);
-                SERIALPORT.Close();
+                if (SERIALPORT.IsOpen)
+                {
+                    LogMessage("Closing Serial Port", MsgType.SYS);
+
+                    SendData("STOP");
+                    await Task.Delay(100);
+                    SendData("CLEAR");
+                    await Task.Delay(100);
+
+                    SERIALPORT.Close();
+                }
+                else
+                {
+                    LogMessage("Serial Port already closed", MsgType.SYS);
+                }
             }
-            else
+            catch (Exception exc)
             {
-                LogMessage("Serial Port already closed", MsgType.SYS);
+                Log.Error(exc.Message);
             }
-            Ui_UpdateConnectionStatus();
+            finally
+            {
+                await Task.Delay(500);
+                Ui_UpdateConnectionStatus();
+            }
         }
 
         // Process sending data on the Serial Port
@@ -176,7 +196,7 @@ namespace SCARA_GUI
 
             else if (data == null || data == "")
             {
-                LogMessage("Not content to send", MsgType.SYS);
+                LogMessage("Not content to send", MsgType.ALT);
             }
 
             else 
@@ -202,7 +222,6 @@ namespace SCARA_GUI
 
 
         // LOCKOUT
-
         System.Timers.Timer timer_lockout = new System.Timers.Timer();
         private void LockoutStart()
         {

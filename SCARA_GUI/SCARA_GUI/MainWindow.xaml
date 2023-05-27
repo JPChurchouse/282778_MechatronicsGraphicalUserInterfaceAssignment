@@ -131,7 +131,7 @@
                 Grid.ColumnSpan="2"
                 Click="btn_Stop_Click"
                 Name="btn_EmergencyStop" 
-                ToolTip="Emergency Stop"
+                ToolTip="Emergency Stop" IsDefault="True"
                 >
                 <Button.Background>
                     <RadialGradientBrush>

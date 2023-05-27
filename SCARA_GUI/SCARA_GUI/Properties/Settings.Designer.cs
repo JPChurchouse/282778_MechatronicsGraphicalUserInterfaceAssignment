@@ -346,5 +346,17 @@ namespace SCARA_GUI.Properties {
                 this["lockout"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool alarm {
+            get {
+                return ((bool)(this["alarm"]));
+            }
+            set {
+                this["alarm"] = value;
+            }
+        }
     }
 }
