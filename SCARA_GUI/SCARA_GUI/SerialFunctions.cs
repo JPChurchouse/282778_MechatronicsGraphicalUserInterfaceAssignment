@@ -169,6 +169,8 @@ namespace SCARA_GUI
                     await Task.Delay(100);
 
                     SERIALPORT.Close();
+
+                    LogMessage("Serial Port closed", MsgType.SYS);
                 }
                 else
                 {
@@ -178,6 +180,7 @@ namespace SCARA_GUI
             catch (Exception exc)
             {
                 Log.Error(exc.Message);
+                LogMessage("Error while closing Serial Port", MsgType.SYS);
             }
             finally
             {
