@@ -116,6 +116,19 @@ namespace SCARA_GUI
                 return false;
             }
 
+            // Limits have been updated
+            public void LimitsUpdated()
+            {
+                if      (W > BoundOf(Axis.W, Bound.max)) W = BoundOf(Axis.W, Bound.max);
+                else if (W < BoundOf(Axis.W, Bound.min)) W = BoundOf(Axis.W, Bound.min);
+
+                if (X > BoundOf(Axis.X, Bound.max)) X = BoundOf(Axis.X, Bound.max);
+                else if (X < BoundOf(Axis.X, Bound.min)) X = BoundOf(Axis.X, Bound.min);
+
+                if (Y > BoundOf(Axis.Y, Bound.max)) Y = BoundOf(Axis.Y, Bound.max);
+                else if (Y < BoundOf(Axis.Y, Bound.min)) Y = BoundOf(Axis.Y, Bound.min);
+            }
+
             // PRIVATE METHODS
             // Check that a given value is within bounds
             private bool Validate(Axis axis, int target)

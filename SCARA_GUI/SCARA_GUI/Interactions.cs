@@ -27,7 +27,15 @@ namespace SCARA_GUI
         private void menu_Advanced_Clicked(object sender, EventArgs e)
         {
             SettingsWindow settingsWindow = new SettingsWindow();
+            settingsWindow.Closing += SettingsWindow_Closing;
             settingsWindow.ShowDialog();
+            
+        }
+
+        private void SettingsWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            pose.LimitsUpdated();
+            Ui_UpdateMoveParams();
             Ui_UpdateFontSize();
         }
 
