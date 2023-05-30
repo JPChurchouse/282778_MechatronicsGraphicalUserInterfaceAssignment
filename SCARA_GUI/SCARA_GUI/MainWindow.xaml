@@ -241,6 +241,14 @@
                         Click="btn_Home_Click"
                         Name="btn_Home"
                         />
+                    <Button 
+                        Grid.Row="3" 
+                        Grid.ColumnSpan="2" 
+                        Content="Preset" 
+                        Margin="2,2,2,2" 
+                        Click="btn_Preset_Click"
+                        Name="btn_Preset"
+                        />
                 </Grid>
             </Border>
 

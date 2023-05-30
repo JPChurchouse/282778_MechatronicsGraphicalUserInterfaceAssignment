@@ -125,6 +125,7 @@ namespace SCARA_GUI
                 btn_Piston.FontSize = s;
                 btn_Gripper.FontSize = s;
                 btn_Home.FontSize = s;
+                btn_Preset.FontSize = s;
                 btn_MoveWJogDown.FontSize = s;
                 btn_MoveWJogUp.FontSize = s;
                 btn_MoveXJogDown.FontSize = s;
@@ -215,6 +216,5 @@ namespace SCARA_GUI
             sld_MoveY.Minimum = Settings.Default.min_Y;
             sld_MoveY.Value = Y;
         }
-
     }
 }

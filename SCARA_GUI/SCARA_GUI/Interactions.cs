@@ -29,7 +29,6 @@ namespace SCARA_GUI
             SettingsWindow settingsWindow = new SettingsWindow();
             settingsWindow.Closing += SettingsWindow_Closing;
             settingsWindow.ShowDialog();
-            
         }
 
         private void SettingsWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -106,6 +105,13 @@ namespace SCARA_GUI
             SendData("HOME");
             pose.Home();
             Ui_UpdateMoveParams();
+        }
+
+        // Presets window
+        private void btn_Preset_Click(object sender, RoutedEventArgs e)
+        {
+            Window win = new PresetsWindow();
+            win.ShowDialog();
         }
         #endregion
 
