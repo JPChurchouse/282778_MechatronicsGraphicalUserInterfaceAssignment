@@ -60,6 +60,11 @@
                 </MenuItem>
                 <MenuItem Header="Advanced" Click="menu_Advanced_Clicked"/>
             </MenuItem>
+            <MenuItem Header="Presets">
+                <MenuItem Header="Save Current" IsEnabled="False" Name="menu_Presets_Save" Click="menu_Presets_Save_Click"/>
+                <MenuItem Header="View All" Name="menu_Presets_View" Click="menu_Presets_View_Click"/>
+                <MenuItem Header="Edit File" Name="menu_Presets_Edit" Click="menu_Presets_Edit_Click"/>
+            </MenuItem>
             <MenuItem Header="Help" Click="menu_Help_Clicked">
             </MenuItem>
         </Menu>

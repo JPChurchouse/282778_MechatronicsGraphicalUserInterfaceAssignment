@@ -5,10 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SCARA_GUI"
         mc:Ignorable="d"
-        Title="PresetsWindow" Height="450" Width="800">
+        Title="PresetsWindow" Height="450" Width="300">
     <Grid>
-        <ListView
-            
-            />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.ColumnSpan="2">
+            <ListView Name="lst_PresetViewer" MouseDoubleClick="lst_Viewer_MouseDoubleClick"/>
+        </ScrollViewer>
+        <Button Grid.Row="1" Content="Cancel" Name="btn_Cancel" Click="btn_Cancel_Click" Margin="4,4,4,4"/>
+        <Button Grid.Row="1" Grid.Column="2" Content="Execute" Name="btn_Execute" Click="btn_Execute_Click" IsDefault="True" Margin="4,4,4,4"/>
+
     </Grid>
 </Window>

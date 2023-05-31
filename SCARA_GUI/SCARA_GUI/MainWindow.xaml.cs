@@ -81,6 +81,7 @@ namespace SCARA_GUI
                 lbl_ConnectionStatus.Content = open ? $"Connected on {SERIALPORT.PortName}" : "Disconnected";
                 lbl_DeviceStatus.Content = open ? "System Online": "Offline";
                 menu_Outputs.IsEnabled = !open;
+                menu_Presets_Save.IsEnabled = open;
 
                 Ui_SetControlsEnabled(open);
 
@@ -216,5 +217,7 @@ namespace SCARA_GUI
             sld_MoveY.Minimum = Settings.Default.min_Y;
             sld_MoveY.Value = Y;
         }
+
+        
     }
 }

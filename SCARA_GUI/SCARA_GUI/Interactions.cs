@@ -39,7 +39,22 @@ namespace SCARA_GUI
         }
 
         private void menu_Help_Clicked(object sender, RoutedEventArgs e) { OpenHelpFile(); }
-        
+
+        private void menu_Presets_Save_Click(object sender, RoutedEventArgs e)
+        {
+            NewPreset();
+        }
+
+        private void menu_Presets_View_Click(object sender, RoutedEventArgs e)
+        {
+            LaunchPresets();
+        }
+        private void menu_Presets_Edit_Click(object sender, RoutedEventArgs e)
+        {
+            OpenPresetsFile();
+        }
+
+
         // Log box double clicked
         private void LogBox_DoubleClicked(object sender, MouseButtonEventArgs e) { OpenLogFile(); }
         #endregion
@@ -110,8 +125,7 @@ namespace SCARA_GUI
         // Presets window
         private void btn_Preset_Click(object sender, RoutedEventArgs e)
         {
-            Window win = new PresetsWindow();
-            win.ShowDialog();
+            LaunchPresets();
         }
         #endregion
 
