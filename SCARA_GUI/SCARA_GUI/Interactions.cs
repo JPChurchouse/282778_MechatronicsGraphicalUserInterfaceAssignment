@@ -42,15 +42,21 @@ namespace SCARA_GUI
 
         private void menu_Presets_Save_Click(object sender, RoutedEventArgs e)
         {
+            LogMessage("Feature coming soon!", MsgType.ALT);
+            return;
             NewPreset();
         }
 
         private void menu_Presets_View_Click(object sender, RoutedEventArgs e)
         {
+            LogMessage("Feature coming soon!", MsgType.ALT);
+            return;
             LaunchPresets();
         }
         private void menu_Presets_Edit_Click(object sender, RoutedEventArgs e)
         {
+            LogMessage("Feature coming soon!", MsgType.ALT);
+            return;
             OpenPresetsFile();
         }
 
