@@ -216,5 +216,29 @@ namespace SCARA_GUI
             sld_MoveY.Value = Y;
         }
 
+    private void btn_NewScript_Click(object sender, RoutedEventArgs e)
+    {
+
     }
+
+    private void btn_SelectScript_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void btn_RunScript_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void btn_RemovePose_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void btn_DeleteScript_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+  }
 }
