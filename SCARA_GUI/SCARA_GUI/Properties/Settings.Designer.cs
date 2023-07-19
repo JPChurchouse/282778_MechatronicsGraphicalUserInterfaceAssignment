@@ -73,78 +73,6 @@ namespace SCARA_GUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool vis_ID {
-            get {
-                return ((bool)(this["vis_ID"]));
-            }
-            set {
-                this["vis_ID"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool vis_Prox {
-            get {
-                return ((bool)(this["vis_Prox"]));
-            }
-            set {
-                this["vis_Prox"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool vis_ROf {
-            get {
-                return ((bool)(this["vis_ROf"]));
-            }
-            set {
-                this["vis_ROf"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool vis_SOf {
-            get {
-                return ((bool)(this["vis_SOf"]));
-            }
-            set {
-                this["vis_SOf"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool vis_Spdst {
-            get {
-                return ((bool)(this["vis_Spdst"]));
-            }
-            set {
-                this["vis_Spdst"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool vis_Wait {
-            get {
-                return ((bool)(this["vis_Wait"]));
-            }
-            set {
-                this["vis_Wait"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("D")]
         public string air_UP {
             get {
@@ -356,6 +284,30 @@ namespace SCARA_GUI.Properties {
             }
             set {
                 this["alarm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public int spd_Vel {
+            get {
+                return ((int)(this["spd_Vel"]));
+            }
+            set {
+                this["spd_Vel"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public int spd_Acc {
+            get {
+                return ((int)(this["spd_Acc"]));
+            }
+            set {
+                this["spd_Acc"] = value;
             }
         }
     }

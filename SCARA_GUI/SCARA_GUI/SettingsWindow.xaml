@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         <TabControl BorderBrush="Black" BorderThickness="1">
             <!--Visibility-->
-            <TabItem Header="Visibility">
+            <TabItem Header="Speed">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -32,13 +32,12 @@
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
 
-                    <CheckBox Grid.Row="0" Grid.Column="0" Margin="4,0,4,0" VerticalAlignment="Center" Name="chk_Wait" Content="Wait" Click="Any_Changed"/>
-                    <CheckBox Grid.Row="1" Grid.Column="0" Margin="4,0,4,0" VerticalAlignment="Center" Name="chk_ROf" Content="Read Offset" Click="Any_Changed"/>
-                    <CheckBox Grid.Row="2" Grid.Column="0" Margin="4,0,4,0" VerticalAlignment="Center" Name="chk_SOf" Content="Set Offset" Click="Any_Changed"/>
-                    <CheckBox Grid.Row="0" Grid.Column="1" Margin="4,0,4,0" VerticalAlignment="Center" Name="chk_Spd" Content="Speedset" Click="Any_Changed"/>
-                    <CheckBox Grid.Row="1" Grid.Column="1" Margin="4,0,4,0" VerticalAlignment="Center" Name="chk_Prox" Content="Proximity" Click="Any_Changed"/>
-                    <CheckBox Grid.Row="2" Grid.Column="1" Margin="4,0,4,0" VerticalAlignment="Center" Name="chk_ID" Content="ID" Click="Any_Changed"/>
-                </Grid>
+                    <Label Content="Speed" Grid.Column="0" Grid.Row="0"/>
+                    <Label Content="Acceleration" Grid.Column="0" Grid.Row="1"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_Speed" LostFocus="Any_Changed"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" VerticalAlignment="Center" Name="txt_Acceleration" LostFocus="Any_Changed"/>
+
+        </Grid>
             </TabItem>
             <!--Air-->
             <TabItem Header="Pneumatics">
