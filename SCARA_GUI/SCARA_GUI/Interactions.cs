@@ -49,7 +49,7 @@ namespace SCARA_GUI
         // If not connected, connect, otherwise disconnect
         private void btn_Connect_Click(object sender, RoutedEventArgs e)
         {
-            if (!SERIALPORT.IsOpen) ScanAndConnect();
+            if (!SERIALPORT_SCARA.IsOpen) ScanAndConnect();
             else Disconnect();
         }
 
@@ -76,12 +76,12 @@ namespace SCARA_GUI
             if (btn_Piston.Content.ToString().Contains("UP"))
             {
                 btn_Piston.Content = "DOWN";
-                SendData($"AIR,{Settings.Default.air_UP},{Settings.Default.air_DELAY_P}");
+                PORT_SCARA_Send($"AIR,{Settings.Default.air_UP},{Settings.Default.air_DELAY_P}");
             }
             else
             {
                 btn_Piston.Content = "UP";
-                SendData($"AIR,{Settings.Default.air_DOWN},{Settings.Default.air_DELAY_P}");
+                PORT_SCARA_Send($"AIR,{Settings.Default.air_DOWN},{Settings.Default.air_DELAY_P}");
             }
         }
 
@@ -91,19 +91,19 @@ namespace SCARA_GUI
             if (btn_Gripper.Content.ToString().Contains("OPEN"))
             {
                 btn_Gripper.Content = "CLOSE";
-                SendData($"AIR,{Settings.Default.air_OPEN},{Settings.Default.air_DELAY_G}");
+                PORT_SCARA_Send($"AIR,{Settings.Default.air_OPEN},{Settings.Default.air_DELAY_G}");
             }
             else
             {
                 btn_Gripper.Content = "OPEN";
-                SendData($"AIR,{Settings.Default.air_CLOSE},{Settings.Default.air_DELAY_G}");
+                PORT_SCARA_Send($"AIR,{Settings.Default.air_CLOSE},{Settings.Default.air_DELAY_G}");
             }
         }
         
         // Home button
         private void btn_Home_Click(object sender, RoutedEventArgs e)
         {
-            SendData("HOME");
+            PORT_SCARA_Send("HOME");
             pose.Home();
             Ui_UpdateMoveParams();
         }
@@ -111,15 +111,15 @@ namespace SCARA_GUI
 
         #region Extra functions
         // Extra functions
-        private void btn_Wait_Click(object sender, RoutedEventArgs e) { SendData($"WAIT,{sld_Wait.Value}"); }
+        private void btn_Wait_Click(object sender, RoutedEventArgs e) { PORT_SCARA_Send($"WAIT,{sld_Wait.Value}"); }
 
-        private void btn_ID_Click(object sender, RoutedEventArgs e) { SendData($"ID");}
+        private void btn_ID_Click(object sender, RoutedEventArgs e) { PORT_SCARA_Send($"ID");}
 
-        private void btn_SOffset_Click(object sender, RoutedEventArgs e) { SendData($"SOFFSET,{sld_SOffset.Value}"); }
+        private void btn_SOffset_Click(object sender, RoutedEventArgs e) { PORT_SCARA_Send($"SOFFSET,{sld_SOffset.Value}"); }
 
-        private void btn_ROffset_Click(object sender, RoutedEventArgs e) { SendData($"ROFFSET"); }
+        private void btn_ROffset_Click(object sender, RoutedEventArgs e) { PORT_SCARA_Send($"ROFFSET"); }
 
-        private void btn_Prox_Click(object sender, RoutedEventArgs e) { SendData($"PROX"); }
+        private void btn_Prox_Click(object sender, RoutedEventArgs e) { PORT_SCARA_Send($"PROX"); }
 
         private void btn_AccelSet_Click(object sender, RoutedEventArgs args) { DoSpeedSet(); }
         private void btn_SpeedSet_Click(object sender, RoutedEventArgs args) { DoSpeedSet(); }
@@ -129,7 +129,7 @@ namespace SCARA_GUI
             {
                 if (Validate(txt_SpeedSet.Text, 0, 100, out int vel))
                 {
-                    SendData($"SPEEDSET,{vel},{acc}");
+                    PORT_SCARA_Send($"SPEEDSET,{vel},{acc}");
                 }
             }
         }

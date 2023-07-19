@@ -38,7 +38,7 @@ namespace SCARA_GUI
         {
             this.Dispatcher.Invoke(() =>
             {
-                if (SERIALPORT.IsOpen)
+                if (SERIALPORT_SCARA.IsOpen)
                 {
                     if (MessageBox.Show("The device is still connected, are you sure you want to close the programme?",
                         "Close programme?", MessageBoxButton.YesNoCancel,
@@ -72,13 +72,13 @@ namespace SCARA_GUI
         {
             this.Dispatcher.Invoke(() =>
             {
-                bool open = SERIALPORT.IsOpen;
+                bool open = SERIALPORT_SCARA.IsOpen;
 
                 // Unexpected disconnect flag, device thinks its online, but connection is closed
                 bool unex_disc = lbl_DeviceStatus.Content.ToString().Contains("Available") && !open;
 
                 btn_Connect.Content = open ? "DISCONNECT" : "CONNECT";
-                lbl_ConnectionStatus.Content = open ? $"Connected on {SERIALPORT.PortName}" : "Disconnected";
+                lbl_ConnectionStatus.Content = open ? $"Connected on {SERIALPORT_SCARA.PortName}" : "Disconnected";
                 lbl_DeviceStatus.Content = open ? "System Online": "Offline";
                 menu_Outputs.IsEnabled = !open;
 

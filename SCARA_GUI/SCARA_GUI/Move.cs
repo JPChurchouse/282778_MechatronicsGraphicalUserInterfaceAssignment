@@ -27,7 +27,7 @@ namespace SCARA_GUI
         void MovementHandler()
         {
             Ui_UpdateMoveParams();
-            SendData(pose.Move());
+            PORT_SCARA_Send(pose.Move());
         }
         void MovementHandler(Pose.Axis axis, string val)
         {
